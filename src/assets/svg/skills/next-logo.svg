@@ -1,0 +1,13 @@
+<svg width="120" height="121" viewBox="0 0 120 121" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="next-logo">
+<path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M59.1151 0.255051C40.7881 0.255037 1.00891 16.5758 0.0140067 60.7312C-0.699501 92.3979 25.9376 120.255 59.1151 120.255C71.8802 120.255 83.5373 116.52 93.1577 110.178L44.0128 46.9217L44.2506 84.3026H35.9265V36.3265H46.2722L99.5988 105.283C112.224 94.278 120 78.241 120 60.7312C120 41.6836 107.712 0.255087 59.1151 0.255051ZM76.5957 36.3265H84.4441V71.0884L76.5957 60.8503V36.3265Z" fill="url(#paint0_linear_35_202)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_35_202" x1="19.2308" y1="26.0529" x2="103.154" y2="96.4239" gradientUnits="userSpaceOnUse">
+<stop stop-color="#056945"/>
+<stop offset="0.350898" stop-color="#01A66B"/>
+<stop offset="0.607563" stop-color="#01A66B"/>
+<stop offset="1" stop-color="#056945"/>
+</linearGradient>
+</defs>
+</svg>
