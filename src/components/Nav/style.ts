@@ -13,6 +13,7 @@ export const HeaderContainer = styled.header`
 
   nav {
     width: 67%;
+    max-width: 1200px;
     height: 56px;
 
     display: flex;

@@ -20,7 +20,7 @@ export const Home = () => {
       <S.SectionContainer id="projects" type="primary">
         <Projects />
       </S.SectionContainer>
-      <S.SectionContainer id="skills" type="secondary">
+      <S.SectionContainer id="skills" type="secondary" height="auto">
         <Skills />
       </S.SectionContainer>
       <S.SectionContainer id="certificates" type="primary">

@@ -12,6 +12,12 @@ type TextShadow = {
   textShadow: string;
 };
 
+export type SkillDataProps = {
+  name: string;
+  img: string;
+  description: string;
+};
+
 export type ThemeType = {
   primaryColor: string;
   secondaryColor: string;

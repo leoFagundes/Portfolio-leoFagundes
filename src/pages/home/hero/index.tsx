@@ -10,7 +10,7 @@ export const Hero = () => {
       element.classList.add("move");
       setTimeout(() => {
         element.classList.remove("move");
-      }, 5000);
+      }, 4000);
     });
   };
 

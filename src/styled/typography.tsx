@@ -29,6 +29,12 @@ export const H3 = styled.h3`
   font-size: ${({ theme }) => theme.typography.h3.fontSize};
   font-weight: ${({ theme }) => theme.typography.h3.fontWeight};
   line-height: ${({ theme }) => theme.typography.h3.lineHeight};
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+    font-size: ${({ theme }) => theme.typography.p1.fontSize};
+    font-weight: ${({ theme }) => theme.typography.p1.fontWeight};
+    line-height: ${({ theme }) => theme.typography.p1.lineHeight};
+  }
 `;
 
 export const P1 = styled.p`
