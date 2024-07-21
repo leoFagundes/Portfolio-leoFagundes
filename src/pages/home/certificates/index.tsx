@@ -1,9 +1,10 @@
+import { Title } from "src/components/Title";
 import * as S from "./style";
 
 export const Certificates = () => {
   return (
     <S.CertificatesContainer>
-      <h1>Teste</h1>
+      <Title>Certificados</Title>
     </S.CertificatesContainer>
   );
 };

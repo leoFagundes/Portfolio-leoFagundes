@@ -5,12 +5,24 @@ export const H1 = styled.h1`
   font-size: ${({ theme }) => theme.typography.h1.fontSize};
   font-weight: ${({ theme }) => theme.typography.h1.fontWeight};
   line-height: ${({ theme }) => theme.typography.h1.lineHeight};
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
+    font-size: ${({ theme }) => theme.typography.h2.fontSize};
+    font-weight: ${({ theme }) => theme.typography.h2.fontWeight};
+    line-height: ${({ theme }) => theme.typography.h2.lineHeight};
+  }
 `;
 
 export const H2 = styled.h2`
   font-size: ${({ theme }) => theme.typography.h2.fontSize};
   font-weight: ${({ theme }) => theme.typography.h2.fontWeight};
   line-height: ${({ theme }) => theme.typography.h2.lineHeight};
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
+    font-size: ${({ theme }) => theme.typography.h3.fontSize};
+    font-weight: ${({ theme }) => theme.typography.h3.fontWeight};
+    line-height: ${({ theme }) => theme.typography.h3.lineHeight};
+  }
 `;
 
 export const H3 = styled.h3`

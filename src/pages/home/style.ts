@@ -17,7 +17,16 @@ export const SectionContainer = styled.section<{
 
   section {
     width: 67%;
-
+    max-width: 950px;
+    padding: 48px 0;
     //background-color: rgba(200, 200, 200, 0.1); //grid view
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoints.large}) {
+      width: 85%;
+    }
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+      width: 90%;
+    }
   }
 `;

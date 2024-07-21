@@ -4,27 +4,14 @@ import { GitHub, Linkedin, Instagram } from "react-feather";
 
 export const Hero = () => {
   const handleMoonClick = () => {
-    const element1 = document.getElementById("line1");
-    if (element1) {
-      element1.classList.add("move");
+    const elements = document.querySelectorAll("#line1, #line2, #line3");
+
+    elements.forEach((element) => {
+      element.classList.add("move");
       setTimeout(() => {
-        element1.classList.remove("move");
+        element.classList.remove("move");
       }, 5000);
-    }
-    const element2 = document.getElementById("line2");
-    if (element2) {
-      element2.classList.add("move");
-      setTimeout(() => {
-        element2.classList.remove("move");
-      }, 5000);
-    }
-    const element3 = document.getElementById("line3");
-    if (element3) {
-      element3.classList.add("move");
-      setTimeout(() => {
-        element3.classList.remove("move");
-      }, 5000);
-    }
+    });
   };
 
   return (

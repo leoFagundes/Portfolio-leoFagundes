@@ -46,24 +46,57 @@ export const HeaderContainer = styled.header`
           bottom: 0;
           left: 0;
           width: 0%;
-          height: 2px;
+          height: 1px;
           background-image: linear-gradient(
             to right,
             rgba(0, 0, 0, 0),
             ${({ theme }) => theme.secondaryColor}
           );
-          transition: width 0.5s ease;
+          transition: width 0.6s ease;
           border-radius: 10px;
+          opacity: 0;
+          animation: UnhoverLineAnimation 0.6s ease forwards;
         }
 
         &:hover::before {
-          width: 100%;
+          animation: HoverLineAnimation 0.6s ease forwards;
         }
       }
 
       @media screen and (max-width: ${({ theme }) => theme.breakpoints.nav}) {
         display: none;
       }
+    }
+  }
+
+  @keyframes HoverLineAnimation {
+    0% {
+      width: 0%;
+      opacity: 0;
+    }
+    30% {
+      width: 10%;
+      opacity: 1;
+    }
+    100% {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  @keyframes UnhoverLineAnimation {
+    0% {
+      width: 100%;
+      opacity: 1;
+    }
+    90% {
+      left: 100%;
+      right: 0;
+      width: 0;
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
   }
 

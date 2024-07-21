@@ -1,3 +1,3 @@
 import styled from "styled-components";
 
-export const SkillsContainer = styled.section``;
+export const ProjectsContainer = styled.section``;

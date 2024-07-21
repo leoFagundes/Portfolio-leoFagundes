@@ -1,9 +1,10 @@
+import { Title } from "src/components/Title";
 import * as S from "./style";
 
 export const Contact = () => {
   return (
     <S.ContactContainer>
-      <h1>Teste</h1>
+      <Title>Contato</Title>
     </S.ContactContainer>
   );
 };

@@ -1,9 +1,10 @@
+import { Title } from "src/components/Title";
 import * as S from "./style";
 
 export const Skills = () => {
   return (
     <S.SkillsContainer>
-      <h1>Teste</h1>
+      <Title>Habilidades</Title>
     </S.SkillsContainer>
   );
 };

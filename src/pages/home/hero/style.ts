@@ -11,6 +11,7 @@ export const HeroContainer = styled.section`
   }
 
   .apresentation-box {
+    min-width: 440px;
     z-index: 2;
 
     h1 {
@@ -51,6 +52,19 @@ export const HeroContainer = styled.section`
           animation: shadeIn 1.7s ease-in-out 0s forwards;
         }
       }
+
+      @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
+        margin-top: 12px;
+
+        .social-media-box {
+          height: 40px;
+          width: 40px;
+        }
+      }
+    }
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
+      min-width: 350px;
     }
   }
 

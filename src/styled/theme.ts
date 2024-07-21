@@ -12,10 +12,10 @@ const theme: ThemeType = {
     "140deg, #056945 -5.89%, #01A66B 34.61%, #01A66B 57.76%, #056945 109%",
   borderRadius: "10px",
   breakpoints: {
+    nav: "1040px",
     large: "960px",
     medium: "720px",
     small: "576px",
-    nav: "1040px",
   },
   typography: {
     h1: {
