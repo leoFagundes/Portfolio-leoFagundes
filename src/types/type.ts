@@ -22,6 +22,12 @@ export type ThemeType = {
   errorColor: string;
   linearGradient: string;
   borderRadius: string;
+  breakpoints: {
+    large: string;
+    medium: string;
+    small: string;
+    nav: string;
+  };
   typography: {
     h1: Typography;
     h2: Typography;

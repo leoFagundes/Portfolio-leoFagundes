@@ -13,6 +13,7 @@ export const SectionContainer = styled.section<{
 
   display: flex;
   justify-content: center;
+  overflow-y: hidden;
 
   section {
     width: 67%;

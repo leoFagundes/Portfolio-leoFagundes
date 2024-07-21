@@ -20,6 +20,7 @@ body {
 
     background-color: ${({ theme }) => theme.bgPrimary};
     color: ${({ theme }) => theme.whiteColor};
+    overflow-x: hidden;
 }
 
 html {

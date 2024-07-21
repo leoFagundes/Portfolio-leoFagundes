@@ -20,7 +20,7 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
 
     .nav-logo {
-      @media screen and (max-width: 1040px) {
+      @media screen and (max-width: ${({ theme }) => theme.breakpoints.nav}) {
         display: none;
       }
     }
@@ -61,7 +61,7 @@ export const HeaderContainer = styled.header`
         }
       }
 
-      @media screen and (max-width: 1040px) {
+      @media screen and (max-width: ${({ theme }) => theme.breakpoints.nav}) {
         display: none;
       }
     }
@@ -108,7 +108,7 @@ export const HeaderContainer = styled.header`
       }
     }
 
-    @media screen and (max-width: 1040px) {
+    @media screen and (max-width: ${({ theme }) => theme.breakpoints.nav}) {
       display: flex;
     }
   }
@@ -165,7 +165,7 @@ export const HamburguerMenuContainer = styled.label`
     transform: translate(30px, -11px) rotatez(45deg);
   }
 
-  @media screen and (max-width: 1040px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.nav}) {
     display: flex;
   }
 `;

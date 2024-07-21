@@ -12,29 +12,126 @@ export const HeroContainer = styled.section`
 
   .apresentation-box {
     z-index: 2;
+
+    h1 {
+      animation: shadeIn 1s ease-in-out 0s forwards;
+    }
+    h2 {
+      animation: shadeIn 1.4s ease-in-out 0s forwards;
+    }
+    .social-media {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+
+      .social-media-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: ${({ theme }) => theme.bgSecondary};
+        border-radius: 10px;
+        padding: 8px;
+        box-shadow: ${({ theme }) => theme.shadows.sideWhite.boxShadow};
+
+        transition: all 0.5s ease;
+
+        &:hover {
+          color: ${({ theme }) => theme.secondaryColor};
+          box-shadow: ${({ theme }) => theme.shadows.sideGreen.boxShadow};
+        }
+
+        &.box-1 {
+          animation: shadeIn 2.3s ease-in-out 0s forwards;
+        }
+        &.box-2 {
+          animation: shadeIn 2s ease-in-out 0s forwards;
+        }
+        &.box-3 {
+          animation: shadeIn 1.7s ease-in-out 0s forwards;
+        }
+      }
+    }
   }
 
-  .social-media {
-    display: flex;
-    gap: 12px;
-    margin-top: 16px;
+  #line1 {
+    opacity: 0;
+    width: 2px;
+    height: 200px;
+    background-image: linear-gradient(
+      180deg,
+      rgba(5, 105, 69, 0),
+      rgb(1, 166, 107)
+    );
+    border-radius: 10px;
 
-    .social-media-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &.move {
+      animation: line-move-v-1 4s ease;
+    }
+  }
 
-      background-color: ${({ theme }) => theme.bgSecondary};
-      border-radius: 10px;
-      padding: 8px;
-      box-shadow: ${({ theme }) => theme.shadows.sideWhite.boxShadow};
+  #line2 {
+    opacity: 0;
+    width: 2px;
+    height: 150px;
+    background-image: linear-gradient(
+      180deg,
+      rgba(5, 105, 69, 0),
+      rgb(1, 166, 107)
+    );
+    border-radius: 10px;
 
-      transition: all 0.5s ease;
+    &.move {
+      animation: line-move-v-2 4s ease-in-out 1s;
+    }
+  }
 
-      &:hover {
-        color: ${({ theme }) => theme.secondaryColor};
-        box-shadow: ${({ theme }) => theme.shadows.sideGreen.boxShadow};
-      }
+  #line3 {
+    opacity: 0;
+    width: 180px;
+    height: 3px;
+    background-image: linear-gradient(
+      270deg,
+      rgba(5, 105, 69, 0),
+      rgb(1, 166, 107)
+    );
+    border-radius: 10px;
+
+    &.move {
+      animation: line-move-h 4s ease 0.5s;
+    }
+  }
+
+  @keyframes line-move-v-1 {
+    from {
+      transform: translateY(-100vh) translateX(-200px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(100vh) translateX(-200px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes line-move-h {
+    from {
+      transform: translateX(100vw) translateY(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(-100vw) translateY(100px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes line-move-v-2 {
+    from {
+      transform: translateY(-100vh) translateX(200px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(100vh) translateX(200px);
+      opacity: 1;
     }
   }
 
@@ -42,8 +139,12 @@ export const HeroContainer = styled.section`
     position: absolute;
     width: 70%;
     min-width: 450px;
+    max-width: 650px;
     right: -30px;
-    transform: translateY(30px);
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoints.large}) {
+      display: none;
+    }
   }
 
   #small-elipse {
@@ -74,7 +175,7 @@ export const HeroContainer = styled.section`
 
   .orbit {
     animation: orbit 6s ease 1s forwards;
-    transform-origin: 50% 42%;
+    transform-origin: 50% 50%;
     opacity: 0;
 
     #moon-1,
@@ -171,5 +272,27 @@ export const HeroContainer = styled.section`
       stroke-width: 3;
       opacity: 1;
     }
+  }
+
+  @keyframes shadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+      filter: blur(5px);
+    }
+    70% {
+      opacity: 1;
+      transform: translateX(10px);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+      filter: blur(0);
+    }
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.large}) {
+    justify-content: center;
   }
 `;
