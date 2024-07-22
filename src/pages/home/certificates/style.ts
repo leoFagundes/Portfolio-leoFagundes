@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//prettier-ignore
 export const CertificatesContainer = styled.section`
   .certificates-content {
     display: flex;
@@ -9,8 +10,9 @@ export const CertificatesContainer = styled.section`
     .certificates-carousel {
       display: flex;
       align-items: center;
+      justify-content: center;
       height: 100%;
-      width: 100%;
+      width: 90%;
 
       .prev-button,
       .next-button {
@@ -23,6 +25,10 @@ export const CertificatesContainer = styled.section`
 
         &:hover {
           cursor: pointer;
+        }
+
+        @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
+          display: none;
         }
       }
 
@@ -101,6 +107,10 @@ export const CertificatesContainer = styled.section`
             button::before {
               color: ${({ theme }) => theme.secondaryColor};
             }
+          }
+
+          @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
+            transform: translateY(30px);
           }
         }
       }

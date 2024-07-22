@@ -21,7 +21,7 @@ export const SectionContainer = styled.section<{
     width: 67%;
     max-width: 1200px;
     padding: 48px 0;
-    /* background-color: rgba(200, 200, 200, 0.1); //grid view */
+    background-color: rgba(200, 200, 200, 0.1); //grid view
 
     @media screen and (max-width: ${({ theme }) => theme.breakpoints.large}) {
       width: 85%;

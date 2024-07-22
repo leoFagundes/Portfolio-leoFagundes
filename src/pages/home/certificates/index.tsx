@@ -65,7 +65,7 @@ export const Certificates = () => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1500,
+        breakpoint: 1600,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -73,7 +73,7 @@ export const Certificates = () => {
         },
       },
       {
-        breakpoint: 1150,
+        breakpoint: 1250,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -81,7 +81,7 @@ export const Certificates = () => {
         },
       },
       {
-        breakpoint: 570,
+        breakpoint: 620,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
