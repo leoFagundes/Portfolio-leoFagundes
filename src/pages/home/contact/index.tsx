@@ -90,20 +90,20 @@ export const Contact = () => {
         email: form.emailValue,
       };
 
-      // const response = await emailjs.send(
-      //   "service_c7h51ab",
-      //   "template_oyyaw83",
-      //   templateParams,
-      //   "SIMSqB4eHRWnaQaui"
-      // );
+      const response = await emailjs.send(
+        "service_c7h51ab",
+        "template_oyyaw83",
+        templateParams,
+        "SIMSqB4eHRWnaQaui"
+      );
 
-      // console.log("E-mail enviado:", response.status, response.text);
+      console.log("E-mail enviado:", response.status, response.text);
 
-      // setForm({
-      //   nameValue: "",
-      //   emailValue: "",
-      //   contentValue: "",
-      // });
+      setForm({
+        nameValue: "",
+        emailValue: "",
+        contentValue: "",
+      });
 
       setTimeout(() => {
         setAlertConfigs({
