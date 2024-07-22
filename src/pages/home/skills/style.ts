@@ -50,7 +50,7 @@ export const SkillItem = styled.div`
   border-radius: 10px;
   text-align: center;
 
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
 
   &:hover {
     cursor: pointer;

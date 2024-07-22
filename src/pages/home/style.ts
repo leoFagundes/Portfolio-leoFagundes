@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const HomeContainer = styled.main``;
+export const HomeContainer = styled.main`
+  overflow: hidden;
+`;
 
 export const SectionContainer = styled.section<{
   type: "primary" | "secondary";
@@ -15,13 +17,13 @@ export const SectionContainer = styled.section<{
 
   display: flex;
   justify-content: center;
-  overflow-y: hidden;
+  overflow: hidden;
 
   section {
     width: 67%;
     max-width: 1200px;
     padding: 48px 0;
-    background-color: rgba(200, 200, 200, 0.1); //grid view
+    //background-color: rgba(200, 200, 200, 0.1); //grid view
 
     @media screen and (max-width: ${({ theme }) => theme.breakpoints.large}) {
       width: 85%;

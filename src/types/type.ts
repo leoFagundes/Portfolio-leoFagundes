@@ -48,6 +48,7 @@ export type ThemeType = {
     gray: BoxShadow;
     sideWhite: BoxShadow;
     sideGreen: BoxShadow;
+    error: BoxShadow;
     text: TextShadow;
   };
 };

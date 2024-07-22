@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const ButtonContainer = styled.button<{ width?: string }>`
+export const ButtonContainer = styled.button<{
+  width?: string;
+  iconDeslocation?: string;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,8 +21,11 @@ export const ButtonContainer = styled.button<{ width?: string }>`
   transition: box-shadow 0.3s ease-in-out;
 
   .icon {
+    display: flex;
+    align-items: center;
+    height: 100%;
     position: absolute;
-    right: 40px;
+    right: auto;
     opacity: 0;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
@@ -35,7 +41,7 @@ export const ButtonContainer = styled.button<{ width?: string }>`
 
     .icon {
       opacity: 1;
-      transform: translateX(12px);
+      transform: translateX(${(props) => props.iconDeslocation || "0"});
     }
   }
 

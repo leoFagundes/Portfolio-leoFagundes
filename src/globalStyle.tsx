@@ -41,6 +41,10 @@ body {
     }
 }
 
+input::placeholder, textarea::placeholder {
+  font-family: "Saira", sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }

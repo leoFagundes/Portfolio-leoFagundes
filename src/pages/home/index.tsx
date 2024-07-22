@@ -5,6 +5,7 @@ import { Contact } from "./contact";
 import { Hero } from "./hero";
 import { Projects } from "./projects";
 import { Skills } from "./skills";
+import logo from "src/assets/svg/branding/lf.svg";
 import * as S from "./style";
 
 export const Home = () => {
@@ -26,15 +27,15 @@ export const Home = () => {
       <S.SectionContainer
         id="certificates"
         type="primary"
-        height="60vh"
-        minHeight="60vh"
+        height="80vh"
+        minHeight="80vh"
       >
         <Certificates />
       </S.SectionContainer>
       <S.SectionContainer
         id="contact"
         type="secondary"
-        height="60vh"
+        height="auto"
         minHeight="60vh"
       >
         <Contact />

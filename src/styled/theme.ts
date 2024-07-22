@@ -65,6 +65,9 @@ const theme: ThemeType = {
     sideGreen: {
       boxShadow: "1px 1px 2px rgba(1, 166, 107, 0.6)",
     },
+    error: {
+      boxShadow: "0px 0px 4px 1px rgba(167, 65, 19, 0.6)",
+    },
     text: {
       textShadow: "0px 0px 8px rgba(1, 166, 107, 0.8)",
     },

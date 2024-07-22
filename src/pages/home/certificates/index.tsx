@@ -2,7 +2,7 @@ import { Title } from "src/components/Title";
 import * as S from "./style";
 import * as T from "src/styled/typography";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -47,8 +47,12 @@ export const Certificates = () => {
           </li>
         </ul>
         <div className="button-content">
-          <a href={certificate.link} target="_blank">
-            <Button width="170px" hoveredIcon={<Download size={18} />}>
+          <a href={certificate.link} target="_blank" rel="noreferrer">
+            <Button
+              width="170px"
+              hoveredIcon={<Download size={18} />}
+              iconDeslocation="46px"
+            >
               Ver Certificado
             </Button>
           </a>

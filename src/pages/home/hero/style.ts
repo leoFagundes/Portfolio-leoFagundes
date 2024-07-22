@@ -116,39 +116,6 @@ export const HeroContainer = styled.section`
     }
   }
 
-  @keyframes line-move-v-1 {
-    from {
-      transform: translateY(-100vh) translateX(-200px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(100vh) translateX(-200px);
-      opacity: 1;
-    }
-  }
-
-  @keyframes line-move-h {
-    from {
-      transform: translateX(100vw) translateY(100px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(-100vw) translateY(100px);
-      opacity: 1;
-    }
-  }
-
-  @keyframes line-move-v-2 {
-    from {
-      transform: translateY(-100vh) translateX(200px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(100vh) translateX(200px);
-      opacity: 1;
-    }
-  }
-
   .svg {
     position: absolute;
     width: 70%;
@@ -198,6 +165,39 @@ export const HeroContainer = styled.section`
         cursor: pointer;
         filter: drop-shadow(0 5px 10px rgba(1, 166, 107, 1));
       }
+    }
+  }
+
+  @keyframes line-move-v-1 {
+    from {
+      transform: translateY(-100vh) translateX(-200px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(100vh) translateX(-200px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes line-move-h {
+    from {
+      transform: translateX(100vw) translateY(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(-100vw) translateY(100px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes line-move-v-2 {
+    from {
+      transform: translateY(-100vh) translateX(200px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(100vh) translateX(200px);
+      opacity: 1;
     }
   }
 
