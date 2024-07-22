@@ -1,7 +1,7 @@
 import bootstrapLogo from "src/assets/svg/skills/bootstrap-logo.svg";
-import cssLogo from "src/assets/svg/skills/css-logo.svg";
+// import cssLogo from "src/assets/svg/skills/css-logo.svg";
 import figmaLogo from "src/assets/svg/skills/figma-logo.svg";
-import htmlLogo from "src/assets/svg/skills/html-logo.svg";
+// import htmlLogo from "src/assets/svg/skills/html-logo.svg";
 import javascriptLogo from "src/assets/svg/skills/javascript-logo.svg";
 import jestLogo from "src/assets/svg/skills/jest-logo.svg";
 import nextLogo from "src/assets/svg/skills/next-logo.svg";

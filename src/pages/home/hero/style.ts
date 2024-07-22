@@ -208,8 +208,7 @@ export const HeroContainer = styled.section`
       stroke-dashoffset: 0;
       stroke-width: 0;
       opacity: 1;
-      filter: drop-shadow(0 0 0 rgba(1, 166, 107, 0.3))
-        drop-shadow(0 0 0 rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0 0 0 rgba(1, 166, 107, 0.3));
     }
     70% {
       fill-opacity: 0;
@@ -217,8 +216,7 @@ export const HeroContainer = styled.section`
       stroke-dashoffset: 0;
       stroke-width: 1;
       opacity: 1;
-      filter: drop-shadow(0 0 10px rgba(1, 166, 107, 0.3))
-        drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0 0 10px rgba(1, 166, 107, 0.3));
     }
     100% {
       fill-opacity: 1;
@@ -226,8 +224,7 @@ export const HeroContainer = styled.section`
       stroke-dashoffset: 0;
       stroke-width: 0;
       opacity: 1;
-      filter: drop-shadow(0 0 10px rgba(1, 166, 107, 0.3))
-        drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0 0 10px rgba(1, 166, 107, 0.3));
     }
   }
 

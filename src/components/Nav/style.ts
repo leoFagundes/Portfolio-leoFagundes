@@ -46,21 +46,27 @@ export const HeaderContainer = styled.header`
           position: absolute;
           bottom: 0;
           left: 0;
-          width: 0%;
+          width: 0;
           height: 1px;
           background-image: linear-gradient(
             to right,
             rgba(0, 0, 0, 0),
             ${({ theme }) => theme.secondaryColor}
           );
-          transition: width 0.6s ease;
           border-radius: 10px;
           opacity: 0;
-          animation: UnhoverLineAnimation 0.6s ease forwards;
         }
 
         &:hover::before {
+          width: 100%;
+          opacity: 1;
+        }
+
+        &.hovered::before {
           animation: HoverLineAnimation 0.6s ease forwards;
+        }
+        &.unhovered::before {
+          animation: UnhoverLineAnimation 0.6s ease forwards;
         }
       }
 

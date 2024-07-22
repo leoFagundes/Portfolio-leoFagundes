@@ -21,6 +21,24 @@ body {
     background-color: ${({ theme }) => theme.bgPrimary};
     color: ${({ theme }) => theme.whiteColor};
     overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: ${({ theme }) => theme.bgSecondary};
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme.primaryColor}; 
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: ${({ theme }) => theme.grayColor};
+    }
 }
 
 html {

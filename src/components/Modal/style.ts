@@ -32,7 +32,7 @@ export const ModalContainer = styled.div`
     background-color: ${({ theme }) => theme.bgSecondary};
     box-shadow: ${({ theme }) => theme.shadows.strong.boxShadow};
 
-    animation: shadeIn 0.4s ease-in-out forwards;
+    animation: shadeIn 0.8s ease-in-out forwards;
 
     .close-modal-icon {
       position: absolute;
@@ -62,22 +62,24 @@ export const ModalContainer = styled.div`
 
   @keyframes onBlur {
     0% {
-      background: rgba(25, 25, 25, 0);
       backdrop-filter: blur(0);
     }
     100% {
-      background: rgba(25, 25, 25, 0.4);
       backdrop-filter: blur(4px);
     }
   }
 
   @keyframes shadeIn {
     0% {
-      filter: blur(5px);
+      transform: translateY(-30px);
       opacity: 0;
     }
+    80% {
+      transform: translateY(1px);
+      opacity: 1;
+    }
     100% {
-      filter: blur(0px);
+      transform: translateY(0);
       opacity: 1;
     }
   }

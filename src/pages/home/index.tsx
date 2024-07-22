@@ -23,10 +23,20 @@ export const Home = () => {
       <S.SectionContainer id="skills" type="secondary" height="auto">
         <Skills />
       </S.SectionContainer>
-      <S.SectionContainer id="certificates" type="primary">
+      <S.SectionContainer
+        id="certificates"
+        type="primary"
+        height="60vh"
+        minHeight="60vh"
+      >
         <Certificates />
       </S.SectionContainer>
-      <S.SectionContainer id="contact" type="secondary">
+      <S.SectionContainer
+        id="contact"
+        type="secondary"
+        height="60vh"
+        minHeight="60vh"
+      >
         <Contact />
       </S.SectionContainer>
     </S.HomeContainer>
