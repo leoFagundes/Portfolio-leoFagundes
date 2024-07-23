@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 // prettier-ignore
 export const AboutMeContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
   .info-content {
     height: 100%;
     display: flex;

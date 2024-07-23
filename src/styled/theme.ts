@@ -7,7 +7,7 @@ const theme: ThemeType = {
   bgSecondary: "#0B0B0B",
   whiteColor: "#F9F9F9",
   grayColor: "#969597",
-  errorColor: "#a74113",
+  errorColor: "#C33502",
   linearGradient:
     "140deg, #056945 -5.89%, #01A66B 34.61%, #01A66B 57.76%, #056945 109%",
   borderRadius: "10px",

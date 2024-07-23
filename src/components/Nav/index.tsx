@@ -31,7 +31,7 @@ export const Nav = () => {
     <S.HeaderContainer>
       <nav>
         <T.H3 className="nav-logo">
-          <span className="green">{"<"}</span>Léo Fagundes
+          <span className="green">{"<"}</span>Léo Fagundes{" "}
           <span className="green">{"/>"}</span>
         </T.H3>
 

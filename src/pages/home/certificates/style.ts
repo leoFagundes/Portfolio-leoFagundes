@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 //prettier-ignore
 export const CertificatesContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  
   .certificates-content {
     display: flex;
     justify-content: center;
@@ -110,7 +114,8 @@ export const CertificatesContainer = styled.section`
           }
 
           @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
-            transform: translateY(30px);
+            transform: translateY(25px);
+            height: 50px;
           }
         }
       }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ContactContainer = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 40px;
   position: relative;
 
 

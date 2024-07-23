@@ -79,6 +79,12 @@ export const Contact = () => {
 
   const handleSubmit = async () => {
     if (!validateForm()) {
+      setAlertConfigs({
+        message: `Ops! Faltou preencher alguns campos
+        `,
+        isAlertOpen: true,
+        type: "danger",
+      });
       return;
     }
 
@@ -107,7 +113,7 @@ export const Contact = () => {
 
       setTimeout(() => {
         setAlertConfigs({
-          message: "Email enviado com sucesso",
+          message: `Recebi sua mensagem, ${form.nameValue}!`,
           isAlertOpen: true,
           type: "success",
         });
@@ -175,6 +181,7 @@ export const Contact = () => {
               onClick={handleSubmit}
               hoveredIcon={<Mail size={16} />}
               iconDeslocation="20px"
+              iconInitialPosition="12px"
             >
               Enviar
             </Button>

@@ -52,6 +52,7 @@ export const Certificates = () => {
               width="170px"
               hoveredIcon={<Download size={18} />}
               iconDeslocation="46px"
+              iconInitialPosition="28px"
             >
               Ver Certificado
             </Button>
@@ -63,7 +64,7 @@ export const Certificates = () => {
 
   var settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,

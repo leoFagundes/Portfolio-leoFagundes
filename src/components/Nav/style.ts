@@ -128,7 +128,9 @@ export const HeaderContainer = styled.header`
       height: auto;
       min-height: 100px;
       background-color: ${({ theme }) => theme.bgPrimary};
-      border: 2px solid ${({ theme }) => theme.bgSecondary};
+      border-radius: 5px;
+      /* border: 2px solid ${({ theme }) => theme.bgSecondary}; */
+      box-shadow: ${({ theme }) => theme.shadows.light.boxShadow};
       transition: all 0.5s ease-in-out;
 
       &.nav-open {

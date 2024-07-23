@@ -5,7 +5,6 @@ import { Contact } from "./contact";
 import { Hero } from "./hero";
 import { Projects } from "./projects";
 import { Skills } from "./skills";
-import logo from "src/assets/svg/branding/lf.svg";
 import * as S from "./style";
 
 export const Home = () => {
@@ -15,20 +14,30 @@ export const Home = () => {
       <S.SectionContainer id="hero" type="primary">
         <Hero />
       </S.SectionContainer>
-      <S.SectionContainer id="aboutMe" type="secondary">
+      <S.SectionContainer
+        height="auto"
+        minHeight="60vh"
+        id="aboutMe"
+        type="secondary"
+      >
         <AboutMe />
       </S.SectionContainer>
       <S.SectionContainer id="projects" type="primary">
         <Projects />
       </S.SectionContainer>
-      <S.SectionContainer id="skills" type="secondary" height="auto">
+      <S.SectionContainer
+        height="auto"
+        minHeight="60vh"
+        id="skills"
+        type="secondary"
+      >
         <Skills />
       </S.SectionContainer>
       <S.SectionContainer
         id="certificates"
         type="primary"
-        height="80vh"
-        minHeight="80vh"
+        height="auto"
+        minHeight="60vh"
       >
         <Certificates />
       </S.SectionContainer>

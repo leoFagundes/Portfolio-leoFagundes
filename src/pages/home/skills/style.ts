@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const SkillsContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   position: relative;
 
   .skills-content {
@@ -8,7 +11,6 @@ export const SkillsContainer = styled.section`
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding: 24px 0;
 
     .skills-items-content {
       display: flex;

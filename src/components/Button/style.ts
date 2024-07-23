@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ButtonContainer = styled.button<{
   width?: string;
   iconDeslocation?: string;
+  iconInitialPosition?: string;
 }>`
   display: flex;
   align-items: center;
@@ -57,7 +58,7 @@ export const ButtonContainer = styled.button<{
 
     .icon {
       opacity: 0;
-      transform: translateX(0);
+      transform: translateX(${(prosp) => prosp.iconInitialPosition || "0"});
     }
   }
 `;

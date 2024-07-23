@@ -5,6 +5,7 @@ export const Projects = () => {
   return (
     <S.ProjectsContainer>
       <Title>Projetos</Title>
+      <div className="projects-content"></div>
     </S.ProjectsContainer>
   );
 };

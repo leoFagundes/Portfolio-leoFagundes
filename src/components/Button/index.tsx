@@ -6,6 +6,7 @@ type ButtonProps = ComponentProps<"button"> & {
   width?: string;
   hoveredIcon?: ReactNode;
   iconDeslocation?: string;
+  iconInitialPosition?: string;
 };
 
 export const Button = ({
@@ -13,6 +14,7 @@ export const Button = ({
   width,
   hoveredIcon,
   iconDeslocation,
+  iconInitialPosition,
   ...props
 }: ButtonProps) => {
   return (
@@ -21,6 +23,7 @@ export const Button = ({
       className={hoveredIcon ? "hoverAnimation" : ""}
       width={width}
       iconDeslocation={iconDeslocation}
+      iconInitialPosition={iconInitialPosition}
     >
       <span>{children}</span>
       <div className={`icon`}>{hoveredIcon}</div>
