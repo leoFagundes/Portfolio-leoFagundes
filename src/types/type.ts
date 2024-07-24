@@ -18,6 +18,24 @@ export type SkillDataProps = {
   description: string;
 };
 
+export type CertificateProps = {
+  name: string;
+  institute: string;
+  duration: string;
+  conclusion: string;
+  link: string;
+};
+
+export type ProjectDataProps = {
+  image: string;
+  name: string;
+  description: string;
+  stack: string;
+  repoLink: string;
+  demoLink?: string;
+  figmaLink?: string;
+};
+
 export type ThemeType = {
   primaryColor: string;
   secondaryColor: string;

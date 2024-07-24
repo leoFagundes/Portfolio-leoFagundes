@@ -61,6 +61,14 @@ export const CertificatesContainer = styled.section`
 
             background-color: ${({ theme }) => theme.bgSecondary};
             box-shadow: ${({ theme }) => theme.shadows.strong.boxShadow};
+            
+            &:hover {
+              cursor: grab;
+            }
+
+            &:active {
+              cursor: grabbing;
+            }
 
             .certificate-title-box {
               flex: 1;

@@ -1,10 +1,4 @@
-type CertificateProps = {
-  name: string;
-  institute: string;
-  duration: string;
-  conclusion: string;
-  link: string;
-};
+import { CertificateProps } from "src/types/type";
 
 export const certificateData: CertificateProps[] = [
   {

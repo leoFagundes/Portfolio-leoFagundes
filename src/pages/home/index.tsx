@@ -22,7 +22,12 @@ export const Home = () => {
       >
         <AboutMe />
       </S.SectionContainer>
-      <S.SectionContainer id="projects" type="primary">
+      <S.SectionContainer
+        height="auto"
+        minHeight="80vh"
+        id="projects"
+        type="primary"
+      >
         <Projects />
       </S.SectionContainer>
       <S.SectionContainer

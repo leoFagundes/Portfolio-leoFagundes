@@ -65,6 +65,7 @@ export const HeaderContainer = styled.header`
         &.hovered::before {
           animation: HoverLineAnimation 0.6s ease forwards;
         }
+
         &.unhovered::before {
           animation: UnhoverLineAnimation 0.6s ease forwards;
         }
@@ -76,37 +77,6 @@ export const HeaderContainer = styled.header`
     }
   }
 
-  @keyframes HoverLineAnimation {
-    0% {
-      width: 0%;
-      opacity: 0;
-    }
-    30% {
-      width: 10%;
-      opacity: 1;
-    }
-    100% {
-      width: 100%;
-      opacity: 1;
-    }
-  }
-
-  @keyframes UnhoverLineAnimation {
-    0% {
-      width: 100%;
-      opacity: 1;
-    }
-    90% {
-      left: 100%;
-      right: 0;
-      width: 0;
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
   .mobile-nav-container {
     display: none;
     justify-content: center;
@@ -115,6 +85,7 @@ export const HeaderContainer = styled.header`
     right: 0;
     top: 50px;
     height: 100vh;
+    pointer-events: none;
 
     .icon-list {
       display: flex;

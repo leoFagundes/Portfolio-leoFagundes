@@ -57,6 +57,38 @@ a {
   text-decoration: none;
   color: ${({ theme }) => theme.whiteColor};
 }
+
+
+@keyframes HoverLineAnimation {
+    0% {
+      width: 0%;
+      opacity: 0;
+    }
+    30% {
+      width: 10%;
+      opacity: 1;
+    }
+    100% {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+@keyframes UnhoverLineAnimation {
+  0% {
+    width: 100%;
+    opacity: 1;
+  }
+  90% {
+    left: 100%;
+    right: 0;
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 `;
 
 export default GlobalStyle;
