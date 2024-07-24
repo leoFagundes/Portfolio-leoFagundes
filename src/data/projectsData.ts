@@ -32,6 +32,7 @@ export const projectsData: ProjectDataProps[] = [
     demoLink: "#",
     figmaLink:
       "https://www.figma.com/design/Ncvt08SckbhsoT7WICYOqT/Cine-Drive-in-Design?node-id=513-19&t=RR8lyJ2Kc6cA9pHZ-1",
+    underConstruction: true,
   },
   {
     image: myBooks,

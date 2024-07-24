@@ -24,7 +24,7 @@ export const Home = () => {
       </S.SectionContainer>
       <S.SectionContainer
         height="auto"
-        minHeight="80vh"
+        minHeight="700px"
         id="projects"
         type="primary"
       >
