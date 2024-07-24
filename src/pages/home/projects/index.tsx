@@ -79,7 +79,14 @@ export const Projects = () => {
                     src={project.image}
                   />
                   <div className="project-info">
-                    <T.H3 className="project-name">{project.name}</T.H3>
+                    <T.H3 className="project-name">
+                      {project.name}{" "}
+                      {project.underConstruction && (
+                        <T.P2>
+                          <i>(Em construção)</i>
+                        </T.P2>
+                      )}
+                    </T.H3>
                     <T.P2 className="project-description">
                       {project.description}
                     </T.P2>

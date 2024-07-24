@@ -34,6 +34,7 @@ export type ProjectDataProps = {
   repoLink: string;
   demoLink?: string;
   figmaLink?: string;
+  underConstruction?: boolean;
 };
 
 export type ThemeType = {

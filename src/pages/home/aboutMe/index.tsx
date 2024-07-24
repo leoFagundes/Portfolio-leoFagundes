@@ -20,18 +20,18 @@ export const AboutMe = () => {
           </T.P1>
           <br />
           <T.P1>
-            Sou <span className="green">apaixonado por tecnologia</span> desde
-            de criança, sempre buscando pelo desconhecido. Atualmente, sou
-            estudande de Ciência da Computação na UniCEUB.
+            Sempre fui <span className="green">apaixonado por tecnologia</span>{" "}
+            desde criança, o que me levou a seguir uma carreira na área.
+            Atualmente, sou estudante de Ciência da Computação na UniCEUB,
+            focado na área de front-end e UX/UI.
           </T.P1>
           <br />
           <T.P1>
             Meu objetivo é me tornar um{" "}
-            <span className="green">desenvolvedor Front-end</span> e criar
-            experiências incríveis na web. Desde que comecei essa jornada, tenho
-            me dedicado a me especializar cada vez mais, sempre com a visão de
-            como a tecnologia pode transformar o mundo ao nosso redor
-            <span className="green">!</span>
+            <span className="green">engenheiro de software front-end</span> e
+            criar experiências incríveis na web. Desde que comecei essa jornada,
+            tenho me dedicado a me especializar cada vez mais, sempre com a
+            visão de como a tecnologia pode transformar o mundo ao nosso redor!
           </T.P1>
         </div>
       </div>

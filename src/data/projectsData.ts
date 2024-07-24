@@ -1,6 +1,5 @@
 import { ProjectDataProps } from "src/types/type";
 
-// Importando as imagens
 import blackJackWeb from "src/assets/image/projects/black-jack-web.png";
 import cineDrivein from "src/assets/image/projects/cine-drivein.png";
 import comunidadeProgramacao from "src/assets/image/projects/comunidade-programacao.png";
@@ -8,6 +7,7 @@ import imikino from "src/assets/image/projects/imikino.png";
 import myBooks from "src/assets/image/projects/mybooks.png";
 import portfolio from "src/assets/image/projects/portfólio.png";
 import weatherForecast from "src/assets/image/projects/weather-forecast.png";
+import codeLibrary from "src/assets/image/projects/code-library.png";
 
 export const projectsData: ProjectDataProps[] = [
   {
@@ -78,5 +78,15 @@ export const projectsData: ProjectDataProps[] = [
     stack: "Python (Flask), HTML, CSS, JavaScript, Bootstrap e SQL",
     repoLink: "https://github.com/leoFagundes/AplicacaoWeb-Imikino",
     demoLink: "https://aplicacaoweb-imikino-production.up.railway.app/",
+  },
+  {
+    image: codeLibrary,
+    name: "Code.Library",
+    description:
+      "Site criado com o objetivo de compartilhar tudo sobre programação como conhecimento, bibliotecas, extenções, links úteis e etc. Além disso você poderá escutar músicas Lofi enquanto navega!",
+    stack: "React.js, TypeScript e Styled-Components",
+    repoLink: "https://github.com/leoFagundes/code.library",
+    demoLink: "https://code-library-dev.vercel.app",
+    underConstruction: true,
   },
 ];

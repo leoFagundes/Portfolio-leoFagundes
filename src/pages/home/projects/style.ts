@@ -34,6 +34,7 @@ export const ProjectsContainer = styled.section`
         display: flex;
         flex-direction: column;
         gap: 32px;
+        border-radius: 4px;
 
         position: relative;
 
