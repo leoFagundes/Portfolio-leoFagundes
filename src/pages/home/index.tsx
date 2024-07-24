@@ -42,7 +42,7 @@ export const Home = () => {
         id="certificates"
         type="primary"
         height="auto"
-        minHeight="60vh"
+        minHeight="550px"
       >
         <Certificates />
       </S.SectionContainer>
