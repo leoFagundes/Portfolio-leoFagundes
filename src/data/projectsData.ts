@@ -36,12 +36,15 @@ export const projectsData: ProjectDataProps[] = [
   },
   {
     image: myBooks,
-    name: "MyBooks.leo",
+    name: "MyBooks",
     description:
-      "Repositório para visualizar os livros que já li ao longo da minha vida de uma maneira organizada e com sistema de filtro.",
-    stack: "Next.js, Styled-Components e TypeScript",
-    repoLink: "https://github.com/leoFagundes/MyBooks.leo",
-    demoLink: "https://mybooksleo.vercel.app/",
+      "Aplicação fullstack para que os usuários consigam ter sua própria coleção de livros em um só lugar de froma prática e minimalista.",
+    stack: "Next.js, Tailwind, TypeScript, Node.js e MongoDB",
+    repoLink:
+      "https://github.com/leoFagundes?tab=repositories&q=mybooks+AND+NOT+leo&type=&language=&sort=",
+    demoLink: "https://mybooks-repo.vercel.app/",
+    figmaLink:
+      "https://www.figma.com/design/V2hiugqjTDX3Z6mo1sxLof/MyBooks?node-id=1-4&t=avP2MHjMuKyEMCtf-1",
   },
   {
     image: blackJackWeb,
