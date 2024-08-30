@@ -259,7 +259,7 @@ export const HeroContainer = styled.section`
     100% {
       stroke-dasharray: 10 20;
       stroke-dashoffset: -200;
-      stroke-width: 3;
+      stroke-width: 4;
       opacity: 0.3;
     }
   }
@@ -278,9 +278,9 @@ export const HeroContainer = styled.section`
       opacity: 1;
     }
     100% {
-      stroke-dasharray: 100 1;
+      stroke-dasharray: 100 0;
       stroke-dashoffset: 20;
-      stroke-width: 3;
+      stroke-width: 4;
       opacity: 1;
     }
   }

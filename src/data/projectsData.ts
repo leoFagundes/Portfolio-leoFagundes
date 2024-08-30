@@ -1,7 +1,8 @@
 import { ProjectDataProps } from "src/types/type";
 
 import blackJackWeb from "src/assets/image/projects/black-jack-web.png";
-import cineDrivein from "src/assets/image/projects/cine-drivein.png";
+import cineDriveinSnack from "src/assets/image/projects/cine-drivein.png";
+import cineDriveinSite from "src/assets/image/projects/cine-drivein-site.png";
 import comunidadeProgramacao from "src/assets/image/projects/comunidade-programacao.png";
 import imikino from "src/assets/image/projects/imikino.png";
 import myBooks from "src/assets/image/projects/mybooks.png";
@@ -22,10 +23,21 @@ export const projectsData: ProjectDataProps[] = [
       "https://www.figma.com/design/1fCsklI9Qg4WMEyEn4c2pO/Portf%C3%B3lio-3.0?node-id=0-1&t=LihCXgBqF5bw7fBc-1",
   },
   {
-    image: cineDrivein,
-    name: "Cine Drive-in System",
+    image: cineDriveinSite,
+    name: "Cine Drive-in Site",
     description:
-      "Aplicação web desenvolvida para o Cine Drive-in, composta por duas interfaces front-end (cliente e administrador) e um back-end.",
+      "Aplicação Web desenvolvida para ser o novo site do Cine Drive-in de Brasília, usando o mesmo back-end da aplicação desenvolvida para a lanchonete.",
+    stack: "Next.js 14, Tailwind, TypeScript, Node.js e MongoDB",
+    repoLink: "https://github.com/leoFagundes/cine-drivein-site",
+    demoLink: "https://cinedrivein.vercel.app/",
+    figmaLink:
+      "https://www.figma.com/design/Ncvt08SckbhsoT7WICYOqT/Cine-Drive-in-Design?node-id=513-19&t=RR8lyJ2Kc6cA9pHZ-1",
+  },
+  {
+    image: cineDriveinSnack,
+    name: "Cine Drive-in Snack Bar",
+    description:
+      "Aplicação web desenvolvida para a lanchonete do Cine Drive-in, composta por duas interfaces front-end (cliente e administrador) e um back-end.",
     stack: "React.js, Sass, TypeScript, Node.js e MongoDB",
     repoLink:
       "https://github.com/leoFagundes?tab=repositories&q=cine-drive-in&type=&language=&sort=",
