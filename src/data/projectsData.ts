@@ -15,7 +15,7 @@ export const projectsData: ProjectDataProps[] = [
     image: portfolio,
     name: "Portfólio - LeoFagundes",
     description:
-      "Esse é meu portfólio pessoal que criei para falar um pouco mais sobre mim e apresentar meus projetos , certificados e habilidades através de uma interface agradável!",
+      "Esse é meu portfólio pessoal que criei para falar um pouco mais sobre mim e apresentar meus projetos, certificados e habilidades através de uma interface agradável!",
     stack: "React.js, TypeScript e Styled-Components",
     repoLink: "https://github.com/leoFagundes/Portfolio-leoFagundes",
     demoLink: "https://leofagundes.dev.br/",
