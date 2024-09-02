@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HeroContainer = styled.section`
+export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
   display: flex;
   align-items: center;
   position: relative;
@@ -17,9 +17,11 @@ export const HeroContainer = styled.section`
     h1 {
       animation: shadeIn 1s ease-in-out 0s forwards;
     }
+
     h2 {
       animation: shadeIn 1.4s ease-in-out 0s forwards;
     }
+
     .social-media {
       display: flex;
       gap: 12px;
@@ -43,13 +45,13 @@ export const HeroContainer = styled.section`
         }
 
         &.box-1 {
-          animation: shadeIn 2.3s ease-in-out 0s forwards;
+          animation: shadeIn 2.1s ease-in-out 0s forwards;
         }
         &.box-2 {
           animation: shadeIn 2s ease-in-out 0s forwards;
         }
         &.box-3 {
-          animation: shadeIn 1.7s ease-in-out 0s forwards;
+          animation: shadeIn 1.9s ease-in-out 0s forwards;
         }
       }
 
@@ -162,8 +164,10 @@ export const HeroContainer = styled.section`
     #moon-1,
     #moon-2 {
       &:hover {
-        cursor: pointer;
-        filter: drop-shadow(0 5px 10px rgba(1, 166, 107, 1));
+        cursor: ${(props) => (props.isMoonClickable ? "pointer" : "default")};
+        filter: ${(props) =>
+          props.isMoonClickable &&
+          "drop-shadow(0 5px 10px rgba(1, 166, 107, 1))"};
       }
     }
   }
