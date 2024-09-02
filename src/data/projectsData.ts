@@ -1,8 +1,9 @@
 import { ProjectDataProps } from "src/types/type";
 
-import blackJackWeb from "src/assets/image/projects/black-jack-web.png";
-import cineDriveinSnack from "src/assets/image/projects/cine-drivein.png";
+import blackJackWeb from "src/assets/image/projects/blackjack.png";
+import cineDriveinSnack from "src/assets/image/projects/cine-drivein-snack.png";
 import cineDriveinSite from "src/assets/image/projects/cine-drivein-site.png";
+import cineDriveinBack from "src/assets/image/projects/cine-drivein-back.png";
 import comunidadeProgramacao from "src/assets/image/projects/comunidade-programacao.png";
 import imikino from "src/assets/image/projects/imikino.png";
 import myBooks from "src/assets/image/projects/mybooks.png";
@@ -26,8 +27,8 @@ export const projectsData: ProjectDataProps[] = [
     image: cineDriveinSite,
     name: "Cine Drive-in Site",
     description:
-      "Aplicação Web desenvolvida para ser o novo site do Cine Drive-in de Brasília, usando o mesmo back-end da aplicação desenvolvida para a lanchonete.",
-    stack: "Next.js 14, Tailwind, TypeScript, Node.js e MongoDB",
+      "A aplicação Web, criada para o do Cine Drive-in de Brasília, permite que os usuários visualizem todas as informações que necessitam como os filmes em cartaz, preços, a lanchonete, sua história, como funciona e entre outros.",
+    stack: "Next.js 14, Tailwind, TypeScript",
     repoLink: "https://github.com/leoFagundes/cine-drivein-site",
     demoLink: "https://cinedrivein.vercel.app/",
     figmaLink:
@@ -37,13 +38,22 @@ export const projectsData: ProjectDataProps[] = [
     image: cineDriveinSnack,
     name: "Cine Drive-in Snack Bar",
     description:
-      "Aplicação web desenvolvida para a lanchonete do Cine Drive-in, composta por duas interfaces front-end (cliente e administrador) e um back-end.",
-    stack: "React.js, Sass, TypeScript, Node.js e MongoDB",
+      "Aplicação web desenvolvida para a lanchonete do Cine Drive-in, composta por duas interfaces front-end (cliente e administrador).",
+    stack: "React.js, Sass, TypeScript",
     repoLink:
-      "https://github.com/leoFagundes?tab=repositories&q=cine-drive-in&type=&language=&sort=",
+      "https://github.com/leoFagundes?tab=repositories&q=cine-drive-in+AND+NOT+%22backend%22&type=&language=&sort=",
     demoLink: "#",
     figmaLink:
       "https://www.figma.com/design/Ncvt08SckbhsoT7WICYOqT/Cine-Drive-in-Design?node-id=513-19&t=RR8lyJ2Kc6cA9pHZ-1",
+    underConstruction: true,
+  },
+  {
+    image: cineDriveinBack,
+    name: "Cine Drive-in API",
+    description:
+      "A API fornece a base para a gestão de filmes, pedidos da lanchonete, usuários, e relatórios administrativos. Além disso, permite operações de CRUD e autenticação criptografada para funcionários.",
+    stack: "Node.js, Express e MongoDB",
+    repoLink: "https://github.com/leoFagundes/cine-drivein-backend",
     underConstruction: true,
   },
   {

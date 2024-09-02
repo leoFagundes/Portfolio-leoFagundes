@@ -5,6 +5,7 @@ export const ProjectsContainer = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  user-select: none;
 
   .projects-content {
     display: flex;
