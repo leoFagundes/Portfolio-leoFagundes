@@ -73,7 +73,7 @@ export const projectsData: ProjectDataProps[] = [
     name: "Black Jack Web",
     description:
       "Jogo de baralho conhecido como 21 ou BlackJack, foi criado usando uma API pública para o controle do baralho e das cartas.",
-    stack: "Next.js, Styled-Components e TypeScript",
+    stack: "Next.js, Tailwind e TypeScript",
     repoLink: "https://github.com/leoFagundes/BlackJack-Web",
     demoLink: "https://black-jack-web.vercel.app/",
     figmaLink:
