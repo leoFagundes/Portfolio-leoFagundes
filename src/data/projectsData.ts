@@ -74,8 +74,10 @@ export const projectsData: ProjectDataProps[] = [
     description:
       "Jogo de baralho conhecido como 21 ou BlackJack, foi criado usando uma API pública para o controle do baralho e das cartas.",
     stack: "Next.js, Styled-Components e TypeScript",
-    repoLink: "https://github.com/leoFagundes/BlackJack",
-    demoLink: "https://black-jack-leo.vercel.app/",
+    repoLink: "https://github.com/leoFagundes/BlackJack-Web",
+    demoLink: "https://black-jack-web.vercel.app/",
+    figmaLink:
+      "https://www.figma.com/design/Xsx9zO0C2LkGOOwYO2pjHj/BlackJack?node-id=68-42&t=mp6VrhPwUicgDd5c-1",
   },
 
   {
