@@ -28,7 +28,7 @@ export const projectsData: ProjectDataProps[] = [
     name: "Cine Drive-in Site",
     description:
       "A aplicação Web, criada para o do Cine Drive-in de Brasília, permite que os usuários visualizem todas as informações que necessitam como os filmes em cartaz, preços, a lanchonete, sua história, como funciona e entre outros.",
-    stack: "Next.js 14, Tailwind, TypeScript",
+    stack: "Next.js 14, Tailwind e TypeScript",
     repoLink: "https://github.com/leoFagundes/cine-drivein-site",
     demoLink: "https://cinedrivein.vercel.app/",
     figmaLink:
@@ -39,7 +39,7 @@ export const projectsData: ProjectDataProps[] = [
     name: "Cine Drive-in Snack Bar",
     description:
       "Aplicação web desenvolvida para a lanchonete do Cine Drive-in, composta por duas interfaces front-end (cliente e administrador).",
-    stack: "React.js, Sass, TypeScript",
+    stack: "React.js, Sass, TypeScript e Jest",
     repoLink:
       "https://github.com/leoFagundes?tab=repositories&q=cine-drive-in+AND+NOT+%22backend%22&type=&language=&sort=",
     demoLink: "#",
