@@ -30,7 +30,7 @@ export const projectsData: ProjectDataProps[] = [
       "A aplicação Web, criada para o Cine Drive-in de Brasília, permite que os usuários visualizem todas as informações que necessitam como os filmes em cartaz, preços, a lanchonete, sua história e entre outros.",
     stack: "Next.js 14, Tailwind e TypeScript",
     repoLink: "https://github.com/leoFagundes/cine-drivein-site",
-    demoLink: "https://cinedrivein.vercel.app/",
+    demoLink: "https://cinedrivein.com/",
     figmaLink:
       "https://www.figma.com/design/Ncvt08SckbhsoT7WICYOqT/Cine-Drive-in-Design?node-id=513-19&t=RR8lyJ2Kc6cA9pHZ-1",
   },
