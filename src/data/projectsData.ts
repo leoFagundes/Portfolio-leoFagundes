@@ -27,7 +27,7 @@ export const projectsData: ProjectDataProps[] = [
     image: cineDriveinSite,
     name: "Cine Drive-in Site",
     description:
-      "A aplicação Web, criada para o do Cine Drive-in de Brasília, permite que os usuários visualizem todas as informações que necessitam como os filmes em cartaz, preços, a lanchonete, sua história, como funciona e entre outros.",
+      "A aplicação Web, criada para o Cine Drive-in de Brasília, permite que os usuários visualizem todas as informações que necessitam como os filmes em cartaz, preços, a lanchonete, sua história e entre outros.",
     stack: "Next.js 14, Tailwind e TypeScript",
     repoLink: "https://github.com/leoFagundes/cine-drivein-site",
     demoLink: "https://cinedrivein.vercel.app/",
