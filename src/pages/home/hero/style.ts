@@ -151,6 +151,13 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
     animation: spin-dashed 8s ease 0s forwards;
   }
 
+  #logo,
+  #bg-logo,
+  #logo-svg,
+  svg {
+    overflow: visible;
+  }
+
   #lf {
     opacity: 1;
     animation: fn-logo 10s ease 0s forwards;
@@ -264,7 +271,7 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
       stroke-dasharray: 10 20;
       stroke-dashoffset: -200;
       stroke-width: 4;
-      opacity: 0.3;
+      opacity: 0.8;
     }
   }
 

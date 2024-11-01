@@ -23,6 +23,11 @@ export const ProjectsContainer = styled.section`
       cursor: pointer;
     }
 
+    .prev-button,
+    .next-button {
+      z-index: 4;
+    }
+
     .project-slider {
       display: flex;
       justify-content: center;

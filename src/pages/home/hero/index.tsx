@@ -19,6 +19,26 @@ export const Hero = () => {
     });
   };
 
+  const handleMoonClick2 = () => {
+    const body = document.getElementsByTagName("body")[0];
+
+    const randomValue = Math.random();
+
+    if (randomValue < 0.5) {
+      body.classList.add("shake");
+    } else {
+      body.classList.add("jello");
+    }
+
+    setIsMoonClickable(false);
+
+    setTimeout(() => {
+      body.classList.remove("shake");
+      body.classList.remove("jello");
+      setIsMoonClickable(true);
+    }, 4000);
+  };
+
   return (
     <S.HeroContainer isMoonClickable={isMoonClickable}>
       <div className="apresentation-box">
@@ -104,7 +124,7 @@ export const Hero = () => {
                     fill="url(#paint3_linear_189_3360)"
                     onClick={
                       isMoonClickable
-                        ? handleMoonClick
+                        ? handleMoonClick2
                         : () => console.warn("Wait...")
                     }
                   />

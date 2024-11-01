@@ -20,14 +20,15 @@ export const Modal = ({ children, isOpen, onClose }: ModalProps) => {
 
   return (
     <>
-      {isOpen && (
-        <S.ModalContainer onClick={handleContainerClick}>
-          <div className="modal-content" onClick={handleContentClick}>
-            <X size={24} className="close-modal-icon" onClick={onClose} />
-            {children}
-          </div>
-        </S.ModalContainer>
-      )}
+      <S.ModalContainer
+        isOpen={isOpen ? "true" : "false"}
+        onClick={handleContainerClick}
+      >
+        <div className="modal-content" onClick={handleContentClick}>
+          <X size={24} className="close-modal-icon" onClick={onClose} />
+          {children}
+        </div>
+      </S.ModalContainer>
     </>
   );
 };

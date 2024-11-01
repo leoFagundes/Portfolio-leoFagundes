@@ -107,10 +107,13 @@ export const HeaderContainer = styled.header`
 
       &.nav-open {
         transform: translate(2px);
+        z-index: 50;
       }
 
       &.nav-close {
         transform: translate(50px);
+        z-index: 0;
+        opacity: 0.5;
       }
 
       li:hover {

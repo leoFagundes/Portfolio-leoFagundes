@@ -19,7 +19,9 @@ export const Skills = () => {
 
   const handleCloseModal = () => {
     setIsSkillModalOpen(false);
-    setCurrentSkillClicked(undefined);
+    setTimeout(() => {
+      setCurrentSkillClicked(undefined);
+    }, 800);
   };
 
   return (

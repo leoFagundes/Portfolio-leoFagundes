@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div<{ isOpen: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,11 @@ export const ModalContainer = styled.div`
   width: 100vw;
   height: 120%;
 
-  animation: onBlur 0.4s ease-in-out forwards;
+  /* animation: onBlur 0.4s ease-in-out forwards; */
+  animation: ${({ isOpen }) =>
+    isOpen === "true"
+      ? "onBlur 0.4s ease-in-out forwards;"
+      : "outBlur 0.4s ease-in-out forwards;"};
 
   &:hover {
     cursor: pointer;
@@ -27,20 +31,25 @@ export const ModalContainer = styled.div`
 
     position: relative;
     padding: 24px;
-    opacity: 0;
 
     background-color: ${({ theme }) => theme.bgSecondary};
     box-shadow: ${({ theme }) => theme.shadows.strong.boxShadow};
 
-    animation: shadeIn 0.8s ease-in-out forwards;
+    /* animation: shadeIn 0.8s ease-in-out forwards; */
+    animation: ${({ isOpen }) =>
+      isOpen === "true"
+        ? "shadeIn 0.8s ease-in-out forwards;"
+        : "shadeOut 0.8s ease-in-out forwards;"};
 
     .close-modal-icon {
       position: absolute;
       right: 8px;
       top: 8px;
+      transition: color 0.3s ease-in-out;
 
       &:hover {
         cursor: pointer;
+        color: ${({ theme }) => theme.primaryColor};
       }
     }
 
@@ -69,6 +78,15 @@ export const ModalContainer = styled.div`
     }
   }
 
+  @keyframes outBlur {
+    0% {
+      backdrop-filter: blur(4px);
+    }
+    100% {
+      backdrop-filter: blur(0);
+    }
+  }
+
   @keyframes shadeIn {
     0% {
       transform: translateY(-30px);
@@ -81,6 +99,17 @@ export const ModalContainer = styled.div`
     100% {
       transform: translateY(0);
       opacity: 1;
+    }
+  }
+
+  @keyframes shadeOut {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(30px);
+      opacity: 0;
     }
   }
 `;
