@@ -21,11 +21,22 @@ export const Hero = () => {
 
   const handleMoonClick2 = () => {
     const body = document.getElementsByTagName("body")[0];
+    const github = document.getElementById("github");
+    const linkedin = document.getElementById("linkedin");
+    const instagram = document.getElementById("instagram");
+    const svg = document.getElementById("svg");
+    const name = document.getElementById("text-name");
 
     const randomValue = Math.random();
 
-    if (randomValue < 0.5) {
+    if (randomValue < 0.2) {
       body.classList.add("shake");
+    } else if (randomValue < 0.5) {
+      github?.classList.add("roll-out-left");
+      linkedin?.classList.add("roll-out-left");
+      instagram?.classList.add("roll-out-left");
+      svg?.classList.add("roll-out-right");
+      name?.classList.add("roll-out-top");
     } else {
       body.classList.add("jello");
     }
@@ -35,6 +46,12 @@ export const Hero = () => {
     setTimeout(() => {
       body.classList.remove("shake");
       body.classList.remove("jello");
+      body.classList.remove("scale-out-top");
+      github?.classList.remove("roll-out-left");
+      linkedin?.classList.remove("roll-out-left");
+      instagram?.classList.remove("roll-out-left");
+      svg?.classList.remove("roll-out-right");
+      name?.classList.remove("roll-out-top");
       setIsMoonClickable(true);
     }, 4000);
   };
@@ -42,15 +59,22 @@ export const Hero = () => {
   return (
     <S.HeroContainer isMoonClickable={isMoonClickable}>
       <div className="apresentation-box">
-        <T.H1>Leonardo Fagundes</T.H1>
-        <T.H2>Desenvolvedor Web</T.H2>
+        <div id="text-name">
+          <T.H1>Leonardo Fagundes</T.H1>
+          <T.H2>Desenvolvedor Web</T.H2>
+        </div>
         <div className="social-media">
-          <a href="https://github.com/leoFagundes" target="_blanked">
+          <a
+            id="github"
+            href="https://github.com/leoFagundes"
+            target="_blanked"
+          >
             <div className="social-media-box box-1">
               <GitHub size={32} />
             </div>
           </a>
           <a
+            id="linkedin"
             href="https://www.linkedin.com/in/leonardo-fagundes-5a348a248/"
             target="_blanked"
           >
@@ -59,6 +83,7 @@ export const Hero = () => {
             </div>
           </a>
           <a
+            id="instagram"
             href="https://www.instagram.com/leo.fagundes.50/"
             target="_blanked"
           >
@@ -73,6 +98,7 @@ export const Hero = () => {
       <div id={`line3`} className="line"></div>
 
       <svg
+        id="svg"
         width="1224"
         height="1216"
         viewBox="0 0 1224 1216"
