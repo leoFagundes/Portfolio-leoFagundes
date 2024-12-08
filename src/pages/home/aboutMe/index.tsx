@@ -21,9 +21,9 @@ export const AboutMe = () => {
           <br />
           <T.P1>
             Sempre fui <span className="green">apaixonado por tecnologia</span>{" "}
-            desde criança, o que me levou a seguir uma carreira na área.
-            Atualmente, sou estudante de Ciência da Computação na UniCEUB,
-            focado na área de front-end e UX/UI.
+            desde criança, o que me levou a seguir uma carreira na área. Formei
+            em Ciência da Computação na UniCEUB, e estou focado na área de
+            front-end e UX/UI.
           </T.P1>
           <br />
           <T.P1>
