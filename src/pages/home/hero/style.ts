@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { H1, H2 } from "src/styled/typography";
 
 export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
   display: flex;
@@ -14,12 +15,8 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
     min-width: 440px;
     z-index: 2;
 
-    h1 {
-      animation: shadeIn 1s ease-in-out 0s forwards;
-    }
-
-    h2 {
-      animation: shadeIn 1.4s ease-in-out 0s forwards;
+    .name-letters {
+      display: flex;
     }
 
     .social-media {
@@ -45,13 +42,18 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
         }
 
         &.box-1 {
-          animation: shadeIn 2.1s ease-in-out 0s forwards;
+          opacity: 0;
+          animation: shadeIn 2.1s ease-in-out 2.4s forwards;
         }
         &.box-2 {
-          animation: shadeIn 2s ease-in-out 0s forwards;
+          opacity: 0;
+
+          animation: shadeIn 2s ease-in-out 2.2s forwards;
         }
         &.box-3 {
-          animation: shadeIn 1.9s ease-in-out 0s forwards;
+          opacity: 0;
+
+          animation: shadeIn 1.9s ease-in-out 2s forwards;
         }
       }
 
@@ -317,4 +319,21 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.large}) {
     justify-content: center;
   }
+`;
+
+export const StyledH1Letter = styled(H1)<{ index: number; total: number }>`
+  opacity: 0;
+  animation: shadeIn 1s ease-in-out forwards;
+  animation-delay: ${({ index, total }) => (total - index - 1) * 0.1}s;
+`;
+
+export const StyledH2Letter = styled(H2)<{
+  index: number;
+  total: number;
+  h1Total: number;
+}>`
+  opacity: 0;
+  animation: shadeIn 1s ease-in-out forwards;
+  animation-delay: ${({ index, total, h1Total }) =>
+    h1Total * 0.1 + (total - index - 1) * 0.1}s; // Atraso baseado no H1
 `;

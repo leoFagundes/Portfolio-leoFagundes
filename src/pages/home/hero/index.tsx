@@ -56,12 +56,72 @@ export const Hero = () => {
     }, 4000);
   };
 
+  const nameLetters = [
+    "L",
+    "e",
+    "n",
+    "a",
+    "r",
+    "d",
+    "o",
+    " ",
+    "F",
+    "a",
+    "g",
+    "u",
+    "n",
+    "d",
+    "e",
+    "s",
+  ];
+
+  const professionLetters = [
+    "D",
+    "e",
+    "s",
+    "e",
+    "n",
+    "v",
+    "o",
+    "l",
+    "v",
+    "e",
+    "d",
+    "o",
+    "r",
+    " ",
+    "W",
+    "e",
+    "b",
+  ];
+
   return (
     <S.HeroContainer isMoonClickable={isMoonClickable}>
       <div className="apresentation-box">
         <div id="text-name">
-          <T.H1>Leonardo Fagundes</T.H1>
-          <T.H2>Desenvolvedor Web</T.H2>
+          <div className="name-letters">
+            {nameLetters.map((letter, index) => (
+              <S.StyledH1Letter
+                key={index}
+                index={index}
+                total={nameLetters.length}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </S.StyledH1Letter>
+            ))}
+          </div>
+          <div className="name-letters">
+            {professionLetters.map((letter, index) => (
+              <S.StyledH2Letter
+                key={index}
+                index={index}
+                total={professionLetters.length}
+                h1Total={nameLetters.length}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </S.StyledH2Letter>
+            ))}
+          </div>
         </div>
         <div className="social-media">
           <a
