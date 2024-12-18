@@ -1,12 +1,43 @@
 import { Title } from "src/components/Title";
 import * as S from "./style";
 import * as T from "src/styled/typography";
-import { projectsData } from "src/data/projectsData";
-import { Fragment, useState } from "react";
-import { ArrowLeft, ArrowRight } from "react-feather";
+import { projectsDataJSON } from "src/data/projectsData";
+import { Fragment, useEffect, useState } from "react";
+import {
+  Airplay,
+  ArrowLeft,
+  ArrowRight,
+  Grid,
+  Smartphone,
+  Square,
+} from "react-feather";
+import { ProjectDataProps } from "src/types/type";
 
 export const Projects = () => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [activeMode, setActiveMode] = useState<
+    "AllProjects" | "ImportantProjects"
+  >("AllProjects");
+  const [activeDevice, setActiveDevice] = useState<
+    "DesktopDevice" | "MobileDevice"
+  >("DesktopDevice");
+  const [projectsData, setProjectsData] = useState<ProjectDataProps[]>([]);
+
+  useEffect(() => {
+    setProjectsData(projectsDataJSON);
+  }, []);
+
+  useEffect(() => {
+    if (activeMode === "AllProjects") {
+      setProjectsData(projectsDataJSON);
+    }
+
+    if (activeMode === "ImportantProjects") {
+      setProjectsData(projectsDataJSON.filter((project) => project.isRelevant));
+    }
+
+    setCurrentProjectIndex(0);
+  }, [activeMode]);
 
   const handlePrevProject = () => {
     setCurrentProjectIndex((prev) =>
@@ -36,7 +67,48 @@ export const Projects = () => {
 
   return (
     <S.ProjectsContainer>
-      <Title>Projetos</Title>
+      <div className="projects-header">
+        <Title>Projetos</Title>
+        <div className="project-options">
+          <div>
+            <Grid
+              onClick={() => setActiveMode("AllProjects")}
+              className={activeMode === "AllProjects" ? "active-project" : ""}
+            />
+            <Square
+              onClick={() => setActiveMode("ImportantProjects")}
+              className={
+                activeMode === "ImportantProjects" ? "active-project" : ""
+              }
+            />
+            <span>
+              {activeMode === "AllProjects"
+                ? "Todos os Projetos"
+                : "Projetos Relevantes"}
+            </span>
+          </div>
+          <hr />
+          <div>
+            <Airplay
+              onClick={() => setActiveDevice("DesktopDevice")}
+              className={
+                activeDevice === "DesktopDevice" ? "active-project" : ""
+              }
+            />
+            <Smartphone
+              onClick={() => setActiveDevice("MobileDevice")}
+              className={
+                activeDevice === "MobileDevice" ? "active-project" : ""
+              }
+            />
+            <span>
+              {activeDevice === "DesktopDevice"
+                ? "Tela de Computador"
+                : "Tela de Celular"}
+            </span>
+          </div>
+        </div>
+      </div>
 
       <div className="projects-content">
         <ArrowLeft
@@ -76,7 +148,11 @@ export const Projects = () => {
                   <img
                     className="project-image"
                     alt={`${project.name}`}
-                    src={project.image}
+                    src={
+                      activeDevice === "MobileDevice" && project.mobileImage
+                        ? project.mobileImage
+                        : project.image
+                    }
                   />
                   <div className="project-info">
                     <T.H3 className="project-name">

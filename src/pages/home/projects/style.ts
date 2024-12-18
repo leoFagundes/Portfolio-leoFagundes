@@ -7,6 +7,44 @@ export const ProjectsContainer = styled.section`
   gap: 40px;
   user-select: none;
 
+  .projects-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .project-options {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+
+      & > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        position: relative;
+
+        svg {
+          background-color: ${({ theme }) => theme.bgPrimary};
+          cursor: pointer;
+        }
+
+        .active-project {
+          color: ${({ theme }) => theme.primaryColor};
+        }
+
+        & > span {
+          position: absolute;
+          top: 120%;
+          font-size: 12px;
+          font-style: italic;
+          text-align: center;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
   .projects-content {
     display: flex;
     justify-content: center;
@@ -56,6 +94,7 @@ export const ProjectsContainer = styled.section`
           height: 200px;
           width: 100%;
           box-shadow: 0 0 1px 0px rgba(255, 255, 255, 0.8);
+          border-radius: 6px;
         }
 
         .project-info {

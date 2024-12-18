@@ -11,7 +11,17 @@ import portfolio from "src/assets/image/projects/portfólio.png";
 import weatherForecast from "src/assets/image/projects/weather-forecast.png";
 import codeLibrary from "src/assets/image/projects/code-library.png";
 
-export const projectsData: ProjectDataProps[] = [
+import blackJackWebMobile from "src/assets/image/projects/blackjack-mobile.png";
+import cineDriveinSiteMobile from "src/assets/image/projects/cinedrivein-site-mobile.png";
+import cineDriveinSnackMobile from "src/assets/image/projects/cinedrivein-snack-mobile.png";
+import codeLibraryMobile from "src/assets/image/projects/codelibrary-mobile.png";
+import myBooksMobile from "src/assets/image/projects/mybooks-mobile.png";
+import portfolioMobile from "src/assets/image/projects/portfolio-mobile.png";
+import weatherMobile from "src/assets/image/projects/weather-mobile.png";
+
+import noMobile from "src/assets/image/projects/nomobile.png";
+
+export const projectsDataJSON: ProjectDataProps[] = [
   {
     image: portfolio,
     name: "Portfólio - LeoFagundes",
@@ -22,17 +32,21 @@ export const projectsData: ProjectDataProps[] = [
     demoLink: "https://leofagundes.dev.br/",
     figmaLink:
       "https://www.figma.com/design/1fCsklI9Qg4WMEyEn4c2pO/Portf%C3%B3lio-3.0?node-id=0-1&t=LihCXgBqF5bw7fBc-1",
+    isRelevant: true,
+    mobileImage: portfolioMobile,
   },
   {
     image: cineDriveinSite,
     name: "Cine Drive-in Site",
     description:
       "A aplicação Web, criada para o Cine Drive-in de Brasília, permite que os usuários visualizem todas as informações que necessitam como os filmes em cartaz, preços, a lanchonete, sua história e entre outros.",
-    stack: "Next.js 14, Tailwind e TypeScript",
+    stack: "Next.js, Tailwind e TypeScript",
     repoLink: "https://github.com/leoFagundes/cine-drivein-site",
     demoLink: "https://cinedrivein.com/",
     figmaLink:
       "https://www.figma.com/design/Ncvt08SckbhsoT7WICYOqT/Cine-Drive-in-Design?node-id=513-19&t=RR8lyJ2Kc6cA9pHZ-1",
+    isRelevant: true,
+    mobileImage: cineDriveinSiteMobile,
   },
   {
     image: cineDriveinSnack,
@@ -42,10 +56,11 @@ export const projectsData: ProjectDataProps[] = [
     stack: "React.js, Sass, TypeScript e Jest",
     repoLink:
       "https://github.com/leoFagundes?tab=repositories&q=cine-drive-in+AND+NOT+%22backend%22&type=&language=&sort=",
-    demoLink: "#",
     figmaLink:
       "https://www.figma.com/design/Ncvt08SckbhsoT7WICYOqT/Cine-Drive-in-Design?node-id=513-19&t=RR8lyJ2Kc6cA9pHZ-1",
-    underConstruction: true,
+    underConstruction: false,
+    isRelevant: true,
+    mobileImage: cineDriveinSnackMobile,
   },
   {
     image: cineDriveinBack,
@@ -54,19 +69,23 @@ export const projectsData: ProjectDataProps[] = [
       "A API fornece a base para a gestão de filmes, pedidos da lanchonete, usuários, e relatórios administrativos. Além disso, permite operações de CRUD e autenticação criptografada para funcionários.",
     stack: "Node.js, Express e MongoDB",
     repoLink: "https://github.com/leoFagundes/cine-drivein-backend",
-    underConstruction: true,
+    underConstruction: false,
+    isRelevant: true,
+    mobileImage: noMobile,
   },
   {
     image: myBooks,
     name: "MyBooks",
     description:
       "Aplicação fullstack para que os usuários consigam ter sua própria coleção de livros em um só lugar de froma prática e minimalista.",
-    stack: "Next.js, Tailwind, TypeScript, Node.js e MongoDB",
+    stack: "Next.js, Tailwind, TypeScript, Node.js, Express e MongoDB",
     repoLink:
       "https://github.com/leoFagundes?tab=repositories&q=mybooks+AND+NOT+leo&type=&language=&sort=",
     demoLink: "https://mybooks-repo.vercel.app/",
     figmaLink:
       "https://www.figma.com/design/V2hiugqjTDX3Z6mo1sxLof/MyBooks?node-id=1-4&t=avP2MHjMuKyEMCtf-1",
+    isRelevant: true,
+    mobileImage: myBooksMobile,
   },
   {
     image: blackJackWeb,
@@ -78,6 +97,8 @@ export const projectsData: ProjectDataProps[] = [
     demoLink: "https://black-jack-web.vercel.app/",
     figmaLink:
       "https://www.figma.com/design/Xsx9zO0C2LkGOOwYO2pjHj/BlackJack?node-id=68-42&t=mp6VrhPwUicgDd5c-1",
+    isRelevant: true,
+    mobileImage: blackJackWebMobile,
   },
 
   {
@@ -88,6 +109,8 @@ export const projectsData: ProjectDataProps[] = [
     stack: "Python (Flask), HTML, CSS, Bootstrap e SQL",
     repoLink:
       "https://github.com/leoFagundes/AplicacaoWeb-ComunidadeProgramacao",
+    isRelevant: false,
+    mobileImage: noMobile,
   },
   {
     image: weatherForecast,
@@ -97,6 +120,8 @@ export const projectsData: ProjectDataProps[] = [
     stack: "React.js, TypeScript e Tailwind",
     repoLink: "https://github.com/leoFagundes/Weather-API",
     demoLink: "https://weather-api-leo.vercel.app/",
+    isRelevant: false,
+    mobileImage: weatherMobile,
   },
   {
     image: imikino,
@@ -106,6 +131,8 @@ export const projectsData: ProjectDataProps[] = [
     stack: "Python (Flask), HTML, CSS, JavaScript, Bootstrap e SQL",
     repoLink: "https://github.com/leoFagundes/AplicacaoWeb-Imikino",
     demoLink: "https://aplicacaoweb-imikino-production.up.railway.app/",
+    isRelevant: false,
+    mobileImage: noMobile,
   },
   {
     image: codeLibrary,
@@ -116,5 +143,7 @@ export const projectsData: ProjectDataProps[] = [
     repoLink: "https://github.com/leoFagundes/code.library",
     demoLink: "https://code-library-dev.vercel.app",
     underConstruction: true,
+    isRelevant: false,
+    mobileImage: codeLibraryMobile,
   },
 ];

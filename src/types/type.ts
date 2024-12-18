@@ -28,6 +28,7 @@ export type CertificateProps = {
 
 export type ProjectDataProps = {
   image: string;
+  mobileImage: string;
   name: string;
   description: string;
   stack: string;
@@ -35,6 +36,7 @@ export type ProjectDataProps = {
   demoLink?: string;
   figmaLink?: string;
   underConstruction?: boolean;
+  isRelevant: boolean;
 };
 
 export type ThemeType = {
