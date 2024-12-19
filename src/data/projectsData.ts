@@ -41,7 +41,7 @@ export const projectsDataJSON: ProjectDataProps[] = [
   },
   {
     image: herbalife,
-    name: "Portfólio - LeoFagundes",
+    name: "Herbalife - Negócio Pessoal",
     description:
       "Site para o meu negócio pessoal na Herbalife, permite que cada usuário crie seu próprio perfil. Cada conta possui uma página personalizada de vendas, com contatos seus prórprios pessoais integrados!",
     stack: "Next.js, Tailwind, TypeScript e Firebase",
