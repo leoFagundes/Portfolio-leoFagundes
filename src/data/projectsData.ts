@@ -43,7 +43,7 @@ export const projectsDataJSON: ProjectDataProps[] = [
     image: herbalife,
     name: "Herbalife - Negócio Pessoal",
     description:
-      "Site para o meu negócio pessoal na Herbalife, permite que cada usuário crie seu próprio perfil. Cada conta possui uma página personalizada de vendas, com contatos seus prórprios pessoais integrados!",
+      "Site para o meu negócio pessoal na Herbalife, permite que cada usuário crie seu próprio perfil. Cada conta possui uma página personalizada de vendas, com seus prórprios contatos pessoais integrados!",
     stack: "Next.js, Tailwind, TypeScript e Firebase",
     repoLink: "https://github.com/leoFagundes/Herbalife-App",
     demoLink: "https://hbl-nutrition.vercel.app/Leonardo%20Fagundes/intro",
