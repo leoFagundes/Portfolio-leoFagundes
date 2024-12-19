@@ -23,8 +23,9 @@ export const AboutMeContainer = styled.section`
         position: absolute;
         width: 100%;
         height: 100%;
-        border-radius: 30px;
-        box-shadow: ${({ theme }) => theme.shadows.gray.boxShadow};
+        border-radius: 12px;
+        box-shadow: ${({ theme }) => theme.shadows.sideWhite.boxShadow};
+        filter: contrast(110%) saturate(105%);
       }
 
       .image-mask {
@@ -32,8 +33,7 @@ export const AboutMeContainer = styled.section`
         position: absolute;
         height: 100%;
         width: 100%;
-        background-color: aquamarine;
-        border-radius: 30px;
+        border-radius: 12px;
         background: linear-gradient(
           182.1deg,
           rgba(15, 15, 15, 0) 1.77%,
@@ -54,6 +54,10 @@ export const AboutMeContainer = styled.section`
 
       .green {
         color: ${({ theme }) => theme.secondaryColor};
+      }
+
+      .heart-icon {
+        cursor: pointer;
       }
     }
   }

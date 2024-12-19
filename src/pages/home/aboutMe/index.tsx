@@ -2,8 +2,28 @@ import { Title } from "src/components/Title";
 import * as S from "./style";
 import * as T from "src/styled/typography";
 import LeoFagundesImg from "src/assets/image/leoFagundes.png";
+import confetti from "canvas-confetti";
+import { Heart } from "react-feather";
 
 export const AboutMe = () => {
+  const randomValue = Math.random();
+
+  const handleConfetti = (event: any) => {
+    // Obtém a posição do clique em relação ao viewport
+    const { clientX, clientY } = event;
+
+    // Calcula a origem para o confetti
+    const originX = clientX / window.innerWidth;
+    const originY = clientY / window.innerHeight;
+
+    // Configura o confetti para sair dessa posição
+    confetti({
+      particleCount: 300,
+      spread: 100,
+      origin: { x: originX, y: originY },
+    });
+  };
+
   return (
     <S.AboutMeContainer>
       <Title>Sobre mim</Title>
@@ -31,8 +51,12 @@ export const AboutMe = () => {
             <span className="green">engenheiro de software front-end</span> e
             criar experiências incríveis na web. Desde que comecei essa jornada,
             tenho me dedicado a me especializar cada vez mais, sempre com a
-            visão de como a tecnologia pode transformar o mundo ao nosso redor!
+            visão de como a tecnologia pode transformar o mundo ao nosso redor!{" "}
           </T.P1>
+          <br />
+          {randomValue <= 0.2 && (
+            <Heart size={20} onClick={handleConfetti} className="heart-icon" />
+          )}
         </div>
       </div>
     </S.AboutMeContainer>

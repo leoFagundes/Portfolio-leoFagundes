@@ -1,4 +1,3 @@
-import * as T from "src/styled/typography";
 import * as S from "./style";
 import { GitHub, Linkedin, Instagram } from "react-feather";
 import { useState } from "react";

@@ -43,17 +43,17 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
 
         &.box-1 {
           opacity: 0;
-          animation: shadeIn 2.1s ease-in-out 2.4s forwards;
+          animation: shadeIn 1.4s ease-in-out 2.4s forwards;
         }
         &.box-2 {
           opacity: 0;
 
-          animation: shadeIn 2s ease-in-out 2.2s forwards;
+          animation: shadeIn 1.2s ease-in-out 2.2s forwards;
         }
         &.box-3 {
           opacity: 0;
 
-          animation: shadeIn 1.9s ease-in-out 2s forwards;
+          animation: shadeIn 1s ease-in-out 2s forwards;
         }
       }
 
@@ -304,11 +304,6 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
       transform: translateX(-100px);
       filter: blur(5px);
     }
-    70% {
-      opacity: 1;
-      transform: translateX(10px);
-      filter: blur(0);
-    }
     100% {
       opacity: 1;
       transform: translateX(0);
@@ -323,7 +318,7 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
 
 export const StyledH1Letter = styled(H1)<{ index: number; total: number }>`
   opacity: 0;
-  animation: shadeIn 1s ease-in-out forwards;
+  animation: shadeIn 0.8s ease-in-out forwards;
   animation-delay: ${({ index, total }) => (total - index - 1) * 0.1}s;
 `;
 
@@ -333,7 +328,7 @@ export const StyledH2Letter = styled(H2)<{
   h1Total: number;
 }>`
   opacity: 0;
-  animation: shadeIn 1s ease-in-out forwards;
+  animation: shadeIn 0.8s ease-in-out forwards;
   animation-delay: ${({ index, total, h1Total }) =>
-    h1Total * 0.1 + (total - index - 1) * 0.1}s; // Atraso baseado no H1
+    h1Total * 0.08 + (total - index - 1) * 0.1}s; // Atraso baseado no H1
 `;
