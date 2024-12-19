@@ -10,6 +10,8 @@ import myBooks from "src/assets/image/projects/mybooks.png";
 import portfolio from "src/assets/image/projects/portfólio.png";
 import weatherForecast from "src/assets/image/projects/weather-forecast.png";
 import codeLibrary from "src/assets/image/projects/code-library.png";
+import herbalife from "src/assets/image/projects/herbalife.png";
+import effycity from "src/assets/image/projects/effycity.png";
 
 import blackJackWebMobile from "src/assets/image/projects/blackjack-mobile.png";
 import cineDriveinSiteMobile from "src/assets/image/projects/cinedrivein-site-mobile.png";
@@ -18,6 +20,8 @@ import codeLibraryMobile from "src/assets/image/projects/codelibrary-mobile.png"
 import myBooksMobile from "src/assets/image/projects/mybooks-mobile.png";
 import portfolioMobile from "src/assets/image/projects/portfolio-mobile.png";
 import weatherMobile from "src/assets/image/projects/weather-mobile.png";
+import herbalifeMobile from "src/assets/image/projects/herbalife-mobile.png";
+import effycityMobile from "src/assets/image/projects/effycity-mobile.png";
 
 import noMobile from "src/assets/image/projects/nomobile.png";
 
@@ -34,6 +38,19 @@ export const projectsDataJSON: ProjectDataProps[] = [
       "https://www.figma.com/design/1fCsklI9Qg4WMEyEn4c2pO/Portf%C3%B3lio-3.0?node-id=0-1&t=LihCXgBqF5bw7fBc-1",
     isRelevant: true,
     mobileImage: portfolioMobile,
+  },
+  {
+    image: herbalife,
+    name: "Portfólio - LeoFagundes",
+    description:
+      "Site para o meu negócio pessoal na Herbalife, permite que cada usuário crie seu próprio perfil. Cada conta possui uma página personalizada de vendas, com contatos seus prórprios pessoais integrados!",
+    stack: "Next.js, Tailwind, TypeScript e Firebase",
+    repoLink: "https://github.com/leoFagundes/Herbalife-App",
+    demoLink: "https://hbl-nutrition.vercel.app/Leonardo%20Fagundes/intro",
+    figmaLink:
+      "https://www.figma.com/design/Y6qf7rqOztNC9kReUBdah9/Herbalife?node-id=10-6&t=vxn96CblUH5DmUAX-1",
+    isRelevant: true,
+    mobileImage: herbalifeMobile,
   },
   {
     image: cineDriveinSite,
@@ -72,6 +89,22 @@ export const projectsDataJSON: ProjectDataProps[] = [
     underConstruction: false,
     isRelevant: true,
     mobileImage: noMobile,
+  },
+  {
+    image: effycity,
+    name: "Effycity",
+    description:
+      "Projeto final da faculdade, um aplicativo mobile com o tema de cidades inteligente onde Gestores com necessidades e Empresas com projetos conseguem se encontrar. ",
+    stack:
+      "React Native e Android Studio para o mobile, Next e Tailwind para a Web",
+    repoLink:
+      "https://github.com/leoFagundes?tab=repositories&q=effycity&type=&language=&sort=",
+    externalLink:
+      "https://docs.google.com/document/d/15qyAmYvshe0-fZrRQPgWawzxKsOai84LXrDPei9lB2o/edit?usp=sharing",
+    figmaLink:
+      "https://www.figma.com/design/LzC3mYXzNsv0estE8emeiF/Projeto-Integrador-IV?node-id=0-1&t=xyrv00toynovOVNX-1",
+    isRelevant: true,
+    mobileImage: effycityMobile,
   },
   {
     image: myBooks,

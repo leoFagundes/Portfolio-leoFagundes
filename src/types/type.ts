@@ -34,6 +34,7 @@ export type ProjectDataProps = {
   stack: string;
   repoLink: string;
   demoLink?: string;
+  externalLink?: string;
   figmaLink?: string;
   underConstruction?: boolean;
   isRelevant: boolean;

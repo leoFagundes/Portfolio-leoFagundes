@@ -197,6 +197,17 @@ export const Projects = () => {
                             <T.H3>Aplicação no ar</T.H3>
                           </a>
                         )}
+                        {project.externalLink && (
+                          <a
+                            rel="noreferrer"
+                            target="_blank"
+                            onMouseLeave={handleMouseLeave}
+                            onMouseEnter={handleMouseEnter}
+                            href={project.externalLink}
+                          >
+                            <T.H3>Link externo</T.H3>
+                          </a>
+                        )}
                         {project.figmaLink && (
                           <a
                             rel="noreferrer"
