@@ -17,6 +17,7 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
 
     .name-letters {
       display: flex;
+      user-select: none;
     }
 
     .social-media {
