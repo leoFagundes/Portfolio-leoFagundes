@@ -58,6 +58,7 @@ export const Hero = () => {
   const nameLetters = [
     "L",
     "e",
+    "o",
     "n",
     "a",
     "r",
