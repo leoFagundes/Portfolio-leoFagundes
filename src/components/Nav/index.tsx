@@ -30,10 +30,11 @@ export const Nav = () => {
   return (
     <S.HeaderContainer>
       <nav>
-        <T.H3 className="nav-logo">
-          <span className="green">{"<"}</span>Léo Fagundes{" "}
-          <span className="green">{"/>"}</span>
-        </T.H3>
+        <T.H2 className="nav-logo">
+          <span className="green signature">{"<"}</span>{" "}
+          <span className="signature">Léo Fagundes</span>{" "}
+          <span className="green signature">{"/>"}</span>
+        </T.H2>
 
         <S.HamburguerMenuContainer onClick={toggleMenu} htmlFor="check">
           <input type="checkbox" id="check" />

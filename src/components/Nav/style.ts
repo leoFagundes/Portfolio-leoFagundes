@@ -21,6 +21,7 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
 
     .nav-logo {
+      margin-right: 32px;
       @media screen and (max-width: ${({ theme }) => theme.breakpoints.nav}) {
         display: none;
       }
@@ -28,6 +29,10 @@ export const HeaderContainer = styled.header`
 
     .green {
       color: ${({ theme }) => theme.secondaryColor};
+    }
+
+    .signature {
+      font-family: "Dancing Script", cursive;
     }
 
     .name-list {
