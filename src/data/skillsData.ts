@@ -16,103 +16,178 @@ import tailwindLogo from "src/assets/svg/skills/tailwind-logo.svg";
 import typescriptLogo from "src/assets/svg/skills/typescript-logo.svg";
 import htmlCssLogo from "src/assets/svg/skills/html&css-logo.svg";
 import firebaseLogo from "src/assets/svg/skills/firebase-logo.svg";
+import mongodbLogo from "src/assets/svg/skills/mongodb-logo.svg";
+import expressLogo from "src/assets/svg/skills/express-logo.svg";
+import gitLogo from "src/assets/svg/skills/git-logo.svg";
+import reactNativeLogo from "src/assets/svg/skills/react-native-logo.svg";
 import { SkillDataProps } from "src/types/type";
 
 export const skillsData: SkillDataProps[] = [
   {
-    name: "React",
-    img: reactLogo,
-    description:
-      "Biblioteca JavaScript para construir interfaces de usuário, focada na criação de componentes reutilizáveis e na eficiência da atualização da interface.",
-  },
-  {
-    name: "Javascript",
-    img: javascriptLogo,
-    description:
-      "Linguagem de programação popular para desenvolvimento web, conhecida por sua flexibilidade e uso no lado do cliente e do servidor.",
-  },
-  {
-    name: "Typescript",
-    img: typescriptLogo,
-    description:
-      "Superset de JavaScript que adiciona tipagem estática opcional e outras funcionalidades, melhorando a robustez e a manutenção do código.",
-  },
-  {
     name: "Next.js",
     img: nextLogo,
+    category: "Front-end",
+    matches: ["Next.js"],
     description:
       "Framework React para construção de aplicações web, oferecendo renderização do lado do servidor, geração de sites estáticos e roteamento automático.",
   },
   {
-    name: "Python",
-    img: pythonLogo,
+    name: "React",
+    img: reactLogo,
+    category: "Front-end",
+    matches: ["React.js", "Next.js", "React Native"],
     description:
-      "Linguagem de programação de alto nível, conhecida por sua simplicidade e legibilidade, amplamente utilizada em desenvolvimento web, ciência de dados e automação.",
+      "Biblioteca JavaScript para construir interfaces de usuário, focada na criação de componentes reutilizáveis e na eficiência da atualização da interface.",
   },
   {
-    name: "Html & Css",
+    name: "TypeScript",
+    img: typescriptLogo,
+    category: "Front-end",
+    matches: ["TypeScript"],
+    description:
+      "Superset de JavaScript que adiciona tipagem estática opcional e outras funcionalidades, melhorando a robustez e a manutenção do código.",
+  },
+  {
+    name: "Tailwind",
+    img: tailwindLogo,
+    category: "Estilização",
+    matches: ["Tailwind"],
+    description:
+      "Framework de CSS utilitário que fornece classes pré-definidas para construir interfaces de usuário de forma rápida e personalizada.",
+  },
+  {
+    name: "Firebase",
+    img: firebaseLogo,
+    category: "Back-end",
+    matches: ["Firebase"],
+    description:
+      "Plataforma do Google para desenvolvimento de aplicativos web e mobile, oferecendo banco de dados em tempo real, autenticação, hospedagem e diversas ferramentas integradas.",
+  },
+  {
+    name: "JavaScript",
+    img: javascriptLogo,
+    category: "Front-end",
+    matches: ["JavaScript", "TypeScript", "React.js", "Next.js", "Node.js"],
+    description:
+      "Linguagem de programação popular para desenvolvimento web, conhecida por sua flexibilidade e uso no lado do cliente e do servidor.",
+  },
+  {
+    name: "HTML & CSS",
     img: htmlCssLogo,
+    category: "Front-end",
+    matches: [
+      "HTML",
+      "CSS",
+      "Tailwind",
+      "Sass",
+      "Styled-Components",
+      "Bootstrap",
+    ],
     description:
       "HTML (HyperText Markup Language) é a linguagem de marcação para estruturar conteúdo na web, enquanto CSS (Cascading Style Sheets) é usado para estilizar e layoutizar essas páginas.",
   },
   {
+    name: "Node.js",
+    img: nodeLogo,
+    category: "Back-end",
+    matches: ["Node.js", "Express"],
+    description:
+      "Ambiente de execução para JavaScript no lado do servidor, permitindo a construção de aplicações web escaláveis e de alto desempenho.",
+  },
+  {
+    name: "Express",
+    img: expressLogo,
+    category: "Back-end",
+    matches: ["Express"],
+    description:
+      "Framework minimalista para Node.js, usado para criar APIs e servidores web com rotas, middlewares e integração simples com bancos de dados.",
+  },
+  {
+    name: "MongoDB",
+    img: mongodbLogo,
+    category: "Back-end",
+    matches: ["MongoDB"],
+    description:
+      "Banco de dados NoSQL orientado a documentos, que armazena as informações em um formato parecido com JSON e permite uma modelagem de dados flexível.",
+  },
+  {
     name: "Styled Components",
     img: styledComponentsLogo,
+    category: "Estilização",
+    matches: ["Styled-Components"],
     description:
       "Biblioteca para estilização de componentes em aplicações React, utilizando uma abordagem de CSS-in-JS que permite criar estilos encapsulados e reutilizáveis.",
   },
   {
     name: "Sass",
     img: sassLogo,
+    category: "Estilização",
+    matches: ["Sass"],
     description:
       "Pré-processador CSS que adiciona funcionalidades como variáveis, aninhamento e mixins ao CSS, tornando a escrita de estilos mais eficiente e organizada.",
   },
   {
-    name: "Tailwind",
-    img: tailwindLogo,
+    name: "React Native",
+    img: reactNativeLogo,
+    category: "Front-end",
+    matches: ["React Native"],
     description:
-      "Framework de CSS utilitário que fornece classes pré-definidas para construir interfaces de usuário de forma rápida e personalizada.",
-  },
-  {
-    name: "Bootstrap",
-    img: bootstrapLogo,
-    description:
-      "Framework de CSS e JavaScript que oferece componentes e utilitários prontos para criar interfaces responsivas e modernas rapidamente.",
-  },
-  {
-    name: "Jest",
-    img: jestLogo,
-    description:
-      "Framework de testes para JavaScript, projetado para garantir a qualidade do código com funcionalidades como mocks, testes assíncronos e cobertura de código.",
-  },
-  {
-    name: "Redux",
-    img: reduxLogo,
-    description:
-      "Biblioteca para gerenciamento de estado global em aplicações JavaScript, frequentemente usada com React para gerenciar e centralizar o estado da aplicação.",
-  },
-  {
-    name: "Node.js",
-    img: nodeLogo,
-    description:
-      "Ambiente de execução para JavaScript no lado do servidor, permitindo a construção de aplicações web escaláveis e de alto desempenho.",
+      "Framework para desenvolver aplicativos mobile nativos para Android e iOS usando React e JavaScript.",
   },
   {
     name: "Figma",
     img: figmaLogo,
+    category: "Ferramentas",
+    matches: ["Figma"],
     description:
       "Ferramenta de design de interface colaborativa baseada na web, que permite a criação de protótipos interativos e design de interfaces de forma colaborativa.",
   },
   {
+    name: "Git",
+    img: gitLogo,
+    category: "Ferramentas",
+    matches: ["Git"],
+    description:
+      "Sistema de controle de versão distribuído, usado para registrar o histórico do código, trabalhar com branches e colaborar em equipe.",
+  },
+  {
+    name: "Jest",
+    img: jestLogo,
+    category: "Ferramentas",
+    matches: ["Jest"],
+    description:
+      "Framework de testes para JavaScript, projetado para garantir a qualidade do código com funcionalidades como mocks, testes assíncronos e cobertura de código.",
+  },
+  {
+    name: "Python",
+    img: pythonLogo,
+    category: "Back-end",
+    matches: ["Python (Flask)"],
+    description:
+      "Linguagem de programação de alto nível, conhecida por sua simplicidade e legibilidade, amplamente utilizada em desenvolvimento web, ciência de dados e automação.",
+  },
+  {
     name: "SQL",
     img: sqlLogo,
+    category: "Back-end",
+    matches: ["SQL"],
     description:
       "Linguagem de consulta estruturada utilizada para gerenciar e manipular dados em bancos de dados relacionais, permitindo operações como consultas, inserções e atualizações.",
   },
   {
-    name: "Firebase",
-    img: firebaseLogo,
+    name: "Bootstrap",
+    img: bootstrapLogo,
+    category: "Estilização",
+    matches: ["Bootstrap"],
     description:
-      "Plataforma do Google para desenvolvimento de aplicativos web e mobile, oferecendo banco de dados em tempo real, autenticação, hospedagem e diversas ferramentas integradas.",
+      "Framework de CSS e JavaScript que oferece componentes e utilitários prontos para criar interfaces responsivas e modernas rapidamente.",
+  },
+  {
+    name: "Redux",
+    img: reduxLogo,
+    category: "Front-end",
+    matches: [],
+    description:
+      "Biblioteca para gerenciamento de estado global em aplicações JavaScript, frequentemente usada com React para gerenciar e centralizar o estado da aplicação.",
   },
 ];

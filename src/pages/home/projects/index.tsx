@@ -2,42 +2,104 @@ import { Title } from "src/components/Title";
 import * as S from "./style";
 import * as T from "src/styled/typography";
 import { projectsDataJSON } from "src/data/projectsData";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  Airplay,
-  ArrowLeft,
-  ArrowRight,
+  ExternalLink,
+  Figma,
+  FileText,
+  GitHub,
   Grid,
+  Maximize2,
+  Monitor,
   Smartphone,
-  Square,
+  Star,
 } from "react-feather";
+import { CarouselControls } from "src/components/CarouselControls";
+import { Modal } from "src/components/Modal";
+import {
+  SegmentedControl,
+  SegmentedOption,
+} from "src/components/SegmentedControl";
+import { onSelectProject } from "src/utils/projectSelection";
 import { ProjectDataProps } from "src/types/type";
+
+type ProjectsMode = "AllProjects" | "ImportantProjects";
+type DeviceMode = "DesktopDevice" | "MobileDevice";
+
+const relevantProjects = projectsDataJSON.filter(
+  (project) => project.isRelevant
+);
+
+const modeOptions: SegmentedOption<ProjectsMode>[] = [
+  {
+    value: "ImportantProjects",
+    label: "Relevantes",
+    icon: <Star size={16} />,
+    count: relevantProjects.length,
+  },
+  {
+    value: "AllProjects",
+    label: "Todos",
+    icon: <Grid size={16} />,
+    count: projectsDataJSON.length,
+  },
+];
+
+const deviceOptions: SegmentedOption<DeviceMode>[] = [
+  { value: "DesktopDevice", label: "Computador", icon: <Monitor size={16} /> },
+  { value: "MobileDevice", label: "Celular", icon: <Smartphone size={16} /> },
+];
+
+const getProjectImage = (project: ProjectDataProps, device: DeviceMode) =>
+  device === "MobileDevice" && project.mobileImage
+    ? project.mobileImage
+    : project.image;
 
 export const Projects = () => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-  const [activeMode, setActiveMode] = useState<
-    "AllProjects" | "ImportantProjects"
-  >("ImportantProjects");
-  const [activeDevice, setActiveDevice] = useState<
-    "DesktopDevice" | "MobileDevice"
-  >("DesktopDevice");
-  const [projectsData, setProjectsData] = useState<ProjectDataProps[]>([]);
+  const [activeMode, setActiveMode] =
+    useState<ProjectsMode>("ImportantProjects");
+  const [activeDevice, setActiveDevice] =
+    useState<DeviceMode>("DesktopDevice");
+  const [expandedProject, setExpandedProject] = useState<ProjectDataProps>();
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxDevice, setLightboxDevice] =
+    useState<DeviceMode>("DesktopDevice");
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const closeLightboxTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
-  useEffect(() => {
-    setProjectsData(projectsDataJSON);
-  }, []);
+  const projectsData =
+    activeMode === "AllProjects" ? projectsDataJSON : relevantProjects;
 
-  useEffect(() => {
-    if (activeMode === "AllProjects") {
-      setProjectsData(projectsDataJSON);
-    }
+  useEffect(() => () => clearTimeout(closeLightboxTimeoutRef.current), []);
 
-    if (activeMode === "ImportantProjects") {
-      setProjectsData(projectsDataJSON.filter((project) => project.isRelevant));
-    }
+  useEffect(
+    () =>
+      onSelectProject((projectName) => {
+        const index = projectsData.findIndex(
+          (project) => project.name === projectName
+        );
 
+        if (index >= 0) {
+          setCurrentProjectIndex(index);
+          return;
+        }
+
+        const indexInAll = projectsDataJSON.findIndex(
+          (project) => project.name === projectName
+        );
+        if (indexInAll < 0) return;
+
+        setActiveMode("AllProjects");
+        setCurrentProjectIndex(indexInAll);
+      }),
+    [projectsData]
+  );
+
+  const handleModeChange = (mode: ProjectsMode) => {
+    setActiveMode(mode);
     setCurrentProjectIndex(0);
-  }, [activeMode]);
+  };
 
   const handlePrevProject = () => {
     setCurrentProjectIndex((prev) =>
@@ -51,18 +113,45 @@ export const Projects = () => {
     );
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (e.currentTarget) {
-      e.currentTarget.classList.remove("hovered");
-      e.currentTarget.classList.add("unhovered");
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") handlePrevProject();
+    if (e.key === "ArrowRight") handleNextProject();
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+
+    if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+
+    if (deltaX < 0) {
+      handleNextProject();
+    } else {
+      handlePrevProject();
     }
   };
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (e.currentTarget) {
-      e.currentTarget.classList.remove("unhovered");
-      e.currentTarget.classList.add("hovered");
-    }
+  const handleOpenLightbox = (project: ProjectDataProps) => {
+    clearTimeout(closeLightboxTimeoutRef.current);
+    setLightboxDevice(project.mobileImage ? activeDevice : "DesktopDevice");
+    setExpandedProject(project);
+    setIsLightboxOpen(true);
+  };
+
+  const handleCloseLightbox = () => {
+    setIsLightboxOpen(false);
+    closeLightboxTimeoutRef.current = setTimeout(() => {
+      setExpandedProject(undefined);
+    }, 800);
   };
 
   return (
@@ -70,53 +159,33 @@ export const Projects = () => {
       <div className="projects-header">
         <Title>Projetos</Title>
         <div className="project-options">
-          <div>
-            <Grid
-              onClick={() => setActiveMode("AllProjects")}
-              className={activeMode === "AllProjects" ? "active-project" : ""}
-            />
-            <Square
-              onClick={() => setActiveMode("ImportantProjects")}
-              className={
-                activeMode === "ImportantProjects" ? "active-project" : ""
-              }
-            />
-            <span>
-              {activeMode === "AllProjects"
-                ? "Todos os Projetos"
-                : "Projetos Relevantes"}
-            </span>
-          </div>
-          <hr />
-          <div>
-            <Airplay
-              onClick={() => setActiveDevice("DesktopDevice")}
-              className={
-                activeDevice === "DesktopDevice" ? "active-project" : ""
-              }
-            />
-            <Smartphone
-              onClick={() => setActiveDevice("MobileDevice")}
-              className={
-                activeDevice === "MobileDevice" ? "active-project" : ""
-              }
-            />
-            <span>
-              {activeDevice === "DesktopDevice"
-                ? "Tela de Computador"
-                : "Tela de Celular"}
-            </span>
-          </div>
+          <SegmentedControl
+            label="Filtrar projetos"
+            options={modeOptions}
+            value={activeMode}
+            onChange={handleModeChange}
+          />
+          <SegmentedControl
+            label="Tipo de tela"
+            options={deviceOptions}
+            value={activeDevice}
+            onChange={setActiveDevice}
+          />
         </div>
       </div>
 
-      <div className="projects-content">
-        <ArrowLeft
-          size={24}
-          className="prev-button"
-          onClick={handlePrevProject}
-        />
-        <div className="project-slider">
+      <div
+        className="projects-content"
+        role="region"
+        aria-roledescription="carrossel"
+        aria-label="Projetos"
+        onKeyDown={handleKeyDown}
+      >
+        <div
+          className="project-slider"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {projectsData.map((project, index) => {
             const isCurrent = currentProjectIndex === index;
             const isPrev =
@@ -126,113 +195,180 @@ export const Projects = () => {
             const isNext =
               index === (currentProjectIndex + 1) % projectsData.length;
             const isHidden = !isCurrent && !isPrev && !isNext;
+            const linkTabIndex = isCurrent ? undefined : -1;
+            const isMissingMobileImage =
+              activeDevice === "MobileDevice" && !project.mobileImage;
 
-            const className = `project-box 
-            ${isCurrent ? "current" : ""} 
-            ${isPrev ? "prev" : ""} 
-            ${isNext ? "next" : ""} 
+            const className = `project-box
+            ${isCurrent ? "current" : ""}
+            ${isPrev ? "prev" : ""}
+            ${isNext ? "next" : ""}
             ${isHidden ? "hide" : ""}`.trim();
 
             return (
-              <Fragment key={index}>
-                <div
-                  onClick={
-                    isPrev
-                      ? handlePrevProject
-                      : isNext
-                      ? handleNextProject
-                      : () => {}
-                  }
-                  className={className}
+              <div
+                key={project.name}
+                className={className}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={project.name}
+                aria-hidden={!isCurrent}
+                onClick={
+                  isPrev
+                    ? handlePrevProject
+                    : isNext
+                    ? handleNextProject
+                    : undefined
+                }
+              >
+                <button
+                  type="button"
+                  className="project-image-box"
+                  aria-label={`Ampliar imagem de ${project.name}`}
+                  tabIndex={linkTabIndex}
+                  onClick={() => handleOpenLightbox(project)}
                 >
                   <img
                     className="project-image"
-                    alt={`${project.name}`}
-                    src={
-                      activeDevice === "MobileDevice" && project.mobileImage
-                        ? project.mobileImage
-                        : project.image
-                    }
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    src={getProjectImage(project, activeDevice)}
                   />
-                  <div className="project-info">
-                    <T.H3 className="project-name">
-                      {project.name}{" "}
-                      {project.underConstruction && (
-                        <T.P2>
-                          <i>(Em construção)</i>
-                        </T.P2>
-                      )}
-                    </T.H3>
-                    <T.P2 className="project-description">
-                      {project.description}
-                    </T.P2>
-                  </div>
-                  <div className="hovered-project-box">
-                    <div className="hovered-content">
-                      <T.H2 className="hovered-project-h2">{project.name}</T.H2>
-                      <T.P2 className="hovered-project-p2">
-                        {project.stack}
-                      </T.P2>
+                  <span className="project-badges">
+                    {project.underConstruction && (
+                      <span className="project-badge">Em construção</span>
+                    )}
+                    {isMissingMobileImage && (
+                      <span className="project-badge">Sem tela de celular</span>
+                    )}
+                  </span>
+                  <span className="project-expand" aria-hidden="true">
+                    <Maximize2 size={16} />
+                  </span>
+                </button>
 
-                      <div className="hovered-project-links">
-                        {project.repoLink && (
-                          <a
-                            rel="noreferrer"
-                            target="_blank"
-                            onMouseLeave={handleMouseLeave}
-                            onMouseEnter={handleMouseEnter}
-                            href={project.repoLink}
-                          >
-                            <T.H3>Repositório do Github</T.H3>
-                          </a>
-                        )}
-                        {project.demoLink && (
-                          <a
-                            rel="noreferrer"
-                            target="_blank"
-                            onMouseLeave={handleMouseLeave}
-                            onMouseEnter={handleMouseEnter}
-                            href={project.demoLink}
-                          >
-                            <T.H3>Aplicação no ar</T.H3>
-                          </a>
-                        )}
-                        {project.externalLink && (
-                          <a
-                            rel="noreferrer"
-                            target="_blank"
-                            onMouseLeave={handleMouseLeave}
-                            onMouseEnter={handleMouseEnter}
-                            href={project.externalLink}
-                          >
-                            <T.H3>Link externo</T.H3>
-                          </a>
-                        )}
-                        {project.figmaLink && (
-                          <a
-                            rel="noreferrer"
-                            target="_blank"
-                            onMouseLeave={handleMouseLeave}
-                            onMouseEnter={handleMouseEnter}
-                            href={project.figmaLink}
-                          >
-                            <T.H3>Figma do projeto</T.H3>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                <div className="project-info">
+                  <T.H3 className="project-name">{project.name}</T.H3>
+                  <T.P2 className="project-description">
+                    {project.description}
+                  </T.P2>
                 </div>
-              </Fragment>
+
+                <ul className="project-stack">
+                  {project.stack.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
+
+                <div className="project-links">
+                  {project.demoLink && (
+                    <a
+                      className="primary"
+                      href={project.demoLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      tabIndex={linkTabIndex}
+                    >
+                      <ExternalLink size={16} />
+                      Ver online
+                    </a>
+                  )}
+                  {project.repoLink && (
+                    <a
+                      href={project.repoLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      tabIndex={linkTabIndex}
+                    >
+                      <GitHub size={16} />
+                      Código
+                    </a>
+                  )}
+                  {project.externalLink && (
+                    <a
+                      href={project.externalLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      tabIndex={linkTabIndex}
+                    >
+                      <FileText size={16} />
+                      Documento
+                    </a>
+                  )}
+                  {project.figmaLink && (
+                    <a
+                      href={project.figmaLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      tabIndex={linkTabIndex}
+                    >
+                      <Figma size={16} />
+                      Figma
+                    </a>
+                  )}
+                </div>
+              </div>
             );
           })}
         </div>
-        <ArrowRight
-          size={24}
-          className="next-button"
-          onClick={handleNextProject}
-        />
+
+        <div className="projects-controls">
+          <CarouselControls
+            currentIndex={currentProjectIndex}
+            total={projectsData.length}
+            onPrev={handlePrevProject}
+            onNext={handleNextProject}
+            prevLabel="Projeto anterior"
+            nextLabel="Próximo projeto"
+          />
+        </div>
       </div>
+
+      {expandedProject && (
+        <Modal
+          isOpen={isLightboxOpen}
+          onClose={handleCloseLightbox}
+          labelledBy="project-lightbox-title"
+          size="wide"
+        >
+          <S.ProjectLightbox>
+            <div className="lightbox-header">
+              <T.H3 id="project-lightbox-title">{expandedProject.name}</T.H3>
+              {expandedProject.mobileImage ? (
+                <SegmentedControl
+                  label="Tipo de tela"
+                  options={deviceOptions}
+                  value={lightboxDevice}
+                  onChange={setLightboxDevice}
+                />
+              ) : (
+                <span className="lightbox-note">
+                  <Monitor size={14} />
+                  Sem tela de celular
+                </span>
+              )}
+            </div>
+            <img
+              key={lightboxDevice}
+              className="lightbox-image"
+              src={getProjectImage(expandedProject, lightboxDevice)}
+              alt={`Tela ${
+                lightboxDevice === "MobileDevice" ? "de celular" : "de computador"
+              } do projeto ${expandedProject.name}`}
+            />
+            <a
+              className="lightbox-original"
+              href={getProjectImage(expandedProject, lightboxDevice)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <ExternalLink size={14} />
+              Abrir imagem em tamanho original
+            </a>
+          </S.ProjectLightbox>
+        </Modal>
+      )}
     </S.ProjectsContainer>
   );
 };

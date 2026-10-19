@@ -123,6 +123,14 @@ export const Hero = () => {
             ))}
           </div>
         </div>
+        <div className="hero-actions">
+          <a href="#projects" className="hero-action primary">
+            Ver projetos
+          </a>
+          <a href="#contact" className="hero-action secondary">
+            Fale comigo
+          </a>
+        </div>
         <div className="social-media">
           <a
             id="github"

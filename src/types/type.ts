@@ -12,10 +12,20 @@ type TextShadow = {
   textShadow: string;
 };
 
+export type SkillCategory =
+  | "Front-end"
+  | "Estilização"
+  | "Back-end"
+  | "Ferramentas";
+
 export type SkillDataProps = {
   name: string;
   img: string;
   description: string;
+  category: SkillCategory;
+  // tags do "stack" dos projetos que contam como uso da habilidade
+  // ("Figma" e "Git" vêm dos links de Figma e de repositório)
+  matches: string[];
 };
 
 export type CertificateProps = {
@@ -28,16 +38,36 @@ export type CertificateProps = {
 
 export type ProjectDataProps = {
   image: string;
-  mobileImage: string;
+  mobileImage?: string;
   name: string;
   description: string;
-  stack: string;
+  stack: string[];
   repoLink: string;
   demoLink?: string;
   externalLink?: string;
   figmaLink?: string;
   underConstruction?: boolean;
   isRelevant: boolean;
+};
+
+export type CareerRole = {
+  title: string;
+  period: string;
+};
+
+export type CareerItemProps = {
+  // empresa, cliente ou instituição de ensino
+  organization: string;
+  type: "job" | "freelance" | "education";
+  // cargos/cursos do mais recente para o mais antigo
+  roles: CareerRole[];
+  description?: string;
+  highlights?: string[];
+  stack?: string[];
+  current?: boolean;
+  // nome do projeto em projectsData para o link "Ver projeto"
+  projectName?: string;
+  link?: string;
 };
 
 export type ThemeType = {

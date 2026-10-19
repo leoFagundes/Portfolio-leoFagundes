@@ -20,6 +20,46 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
       user-select: none;
     }
 
+    .hero-actions {
+      display: none;
+      gap: 12px;
+      margin-top: 24px;
+
+      .hero-action {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 42px;
+        padding: 0 16px;
+        border-radius: 5px;
+        font-size: 15px;
+        white-space: nowrap;
+
+        opacity: 0;
+        animation: shadeIn 1s ease-in-out 1.8s forwards;
+
+        &.primary {
+          background-image: linear-gradient(
+            ${({ theme }) => theme.linearGradient}
+          );
+        }
+
+        &.secondary {
+          background-color: ${({ theme }) => theme.bgSecondary};
+          box-shadow: inset 0 0 0 1px ${({ theme }) => theme.secondaryColor};
+        }
+
+        &:active {
+          scale: 0.97;
+        }
+      }
+
+      @media screen and (max-width: ${({ theme }) => theme.breakpoints.large}) {
+        display: flex;
+      }
+    }
+
     .social-media {
       display: flex;
       gap: 12px;
@@ -59,7 +99,7 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
       }
 
       @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
-        margin-top: 12px;
+        margin-top: 18px;
 
         .social-media-box {
           height: 40px;
@@ -129,7 +169,23 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
     right: -30px;
 
     @media screen and (max-width: ${({ theme }) => theme.breakpoints.large}) {
-      display: none;
+      /* translate e opacidade no grupo (e não transform/opacity no svg)
+         para não conflitar com a animação roll-out do easter egg */
+      top: 50%;
+      left: 50%;
+      right: auto;
+      translate: -50% -50%;
+      width: 100vw;
+      min-width: 0;
+      max-width: 600px;
+
+      #bg-logo {
+        opacity: 0.45;
+      }
+
+      #lf {
+        display: none;
+      }
     }
   }
 

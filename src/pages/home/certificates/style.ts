@@ -5,128 +5,157 @@ export const CertificatesContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  
-  .certificates-content {
-    display: flex;
-    justify-content: center;
-    height: 100%;
 
-    .certificates-carousel {
+  .certificates-carousel {
+    --slide-spacing: 24px;
+    --slide-size: 324px;
+    --edge-fade: 8%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
+      --slide-spacing: 16px;
+      --slide-size: 85%;
+      --edge-fade: 4%;
+    }
+  }
+
+  .certificates-viewport {
+    overflow: hidden;
+    padding: 16px 0;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--edge-fade), #000 calc(100% - var(--edge-fade)), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 var(--edge-fade), #000 calc(100% - var(--edge-fade)), transparent);
+  }
+
+  .certificates-track {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    margin-left: calc(var(--slide-spacing) * -1);
+  }
+
+  .certificates-slide {
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    padding-left: var(--slide-spacing);
+  }
+
+  .certificate-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    min-height: 260px;
+    padding: 24px;
+    border-radius: ${({ theme }) => theme.borderRadius};
+
+    background-color: ${({ theme }) => theme.bgSecondary};
+    box-shadow: ${({ theme }) => theme.shadows.light.boxShadow};
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &.is-selected {
+      box-shadow: ${({ theme }) => theme.shadows.strong.boxShadow};
+    }
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+      transform: translateY(-4px);
+      box-shadow: ${({ theme }) => theme.shadows.strong.boxShadow};
+
+      .certificate-link svg {
+        transform: translate(2px, -2px);
+      }
+    }
+
+    .certificate-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .certificate-icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100%;
-      width: 90%;
+      width: 40px;
+      height: 40px;
+      border-radius: ${({ theme }) => theme.borderRadius};
+      color: ${({ theme }) => theme.secondaryColor};
+      background-color: rgba(1, 166, 107, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(1, 166, 107, 0.3);
+    }
 
-      .prev-button,
-      .next-button {
-        background-color: transparent;
-        border: none;
+    .certificate-year {
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: ${({ theme }) => theme.grayColor};
+      box-shadow: inset 0 0 0 1px rgba(249, 249, 249, 0.15);
+    }
 
-        svg {
-          color: ${({ theme }) => theme.whiteColor};
-        }
+    .certificate-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
 
-        &:hover {
-          cursor: pointer;
-        }
+    .certificate-institute {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: ${({ theme }) => theme.secondaryColor};
+    }
 
-        @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
-          display: none;
-        }
+    .certificate-title {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 125%;
+
+      @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
+        font-size: 18px;
       }
+    }
 
-      .disabled {
-        display: none;
+    .certificate-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(249, 249, 249, 0.08);
+      font-size: 14px;
+    }
+
+    .certificate-duration {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: ${({ theme }) => theme.grayColor};
+    }
+
+    .certificate-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+      color: ${({ theme }) => theme.secondaryColor};
+
+      svg {
+        transition: transform 0.3s ease;
       }
+    }
+  }
 
-      .slider {
-        width: 100%;
-        max-width: 1200px;
-
-        .slick-slide {
-          display: flex;
-          justify-content: center;
-
-          & > div {
-            display: flex;
-            flex-direction: column;
-            max-width: 250px;
-            min-width: 250px;
-            width: 250px;
-            height: 280px;
-            scale: 0.95;
-            border-radius: 10px;
-            padding: 22px;
-
-            background-color: ${({ theme }) => theme.bgSecondary};
-            box-shadow: ${({ theme }) => theme.shadows.strong.boxShadow};
-            
-            &:hover {
-              cursor: grab;
-            }
-
-            &:active {
-              cursor: grabbing;
-            }
-
-            .certificate-title-box {
-              flex: 1;
-
-              .certificate-title {
-                color: ${({ theme }) => theme.secondaryColor};
-                text-shadow: ${({ theme }) => theme.shadows.text.textShadow};
-              }
-            }
-
-            .certificate-info-button {
-              display: flex;
-              flex-direction: column;
-              gap: 16px;
-
-              .certificate-info {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-
-                li {
-                  display: flex;
-                  align-items: center;
-                  gap: 8px;
-
-                  .list-topic {
-                    color: ${({ theme }) => theme.grayColor};
-                  }
-                }
-              }
-
-              .button-content {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              }
-            }
-          }
-        }
-
-        .slick-prev,
-        .slick-next {
-          display: none !important;
-        }
-
-        .slick-dots {
-          li {
-            button::before {
-              color: ${({ theme }) => theme.secondaryColor};
-            }
-          }
-
-          @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
-            transform: translateY(25px);
-            height: 50px;
-          }
-        }
-      }
+  @media (prefers-reduced-motion: reduce) {
+    .certificate-card,
+    .certificate-link svg {
+      transition: none;
     }
   }
 `;

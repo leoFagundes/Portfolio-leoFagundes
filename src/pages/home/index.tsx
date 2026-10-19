@@ -1,5 +1,6 @@
 import { Nav } from "src/components/Nav";
 import { AboutMe } from "./aboutMe";
+import { Career } from "./career";
 import { Certificates } from "./certificates";
 import { Contact } from "./contact";
 import { Hero } from "./hero";
@@ -21,6 +22,14 @@ export const Home = () => {
         type="secondary"
       >
         <AboutMe />
+      </S.SectionContainer>
+      <S.SectionContainer
+        height="auto"
+        minHeight="60vh"
+        id="career"
+        type="secondary"
+      >
+        <Career />
       </S.SectionContainer>
       <S.SectionContainer
         height="auto"

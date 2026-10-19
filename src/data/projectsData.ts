@@ -25,15 +25,13 @@ import herbalifeMobile from "src/assets/image/projects/herbalife-mobile.png";
 import effycityMobile from "src/assets/image/projects/effycity-mobile.png";
 import carcasMobile from "src/assets/image/projects/carcas-mobile.png";
 
-import noMobile from "src/assets/image/projects/nomobile.png";
-
 export const projectsDataJSON: ProjectDataProps[] = [
   {
     image: portfolio,
     name: "Portfólio - LeoFagundes",
     description:
       "Esse é meu portfólio pessoal que criei para falar um pouco mais sobre mim e apresentar meus projetos, certificados e habilidades através de uma interface agradável!",
-    stack: "React.js, TypeScript e Styled-Components",
+    stack: ["React.js", "TypeScript", "Styled-Components"],
     repoLink: "https://github.com/leoFagundes/Portfolio-leoFagundes",
     demoLink: "https://leofagundes.dev.br/",
     figmaLink:
@@ -46,7 +44,7 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "Carcassonne - Aplicação Web",
     description:
       "Sistema desenvolvido para o Carcassonne Pub, com cardápio digital, acervo de jogos de tabuleiro e área administrativa completa.",
-    stack: "Next.js, Tailwind, TypeScript e Firebase",
+    stack: ["Next.js", "Tailwind", "TypeScript", "Firebase"],
     repoLink: "https://github.com/leoFagundes/Carcassonne-Admin",
     demoLink: "https://www.carcassonnepub.com.br/clientMenu",
     isRelevant: true,
@@ -57,7 +55,7 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "Herbalife - Negócio Pessoal",
     description:
       "Site para o meu negócio pessoal na Herbalife, permite que cada usuário crie seu próprio perfil. Cada conta possui uma página personalizada de vendas, com seus prórprios contatos pessoais integrados!",
-    stack: "Next.js, Tailwind, TypeScript e Firebase",
+    stack: ["Next.js", "Tailwind", "TypeScript", "Firebase"],
     repoLink: "https://github.com/leoFagundes/Herbalife-App",
     demoLink: "https://hbl-nutrition.vercel.app/Leonardo%20Fagundes/intro",
     figmaLink:
@@ -70,7 +68,7 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "Cine Drive-in Site",
     description:
       "A aplicação Web, criada para o Cine Drive-in de Brasília, permite que os usuários visualizem todas as informações que necessitam como os filmes em cartaz, preços, a lanchonete, sua história e entre outros.",
-    stack: "Next.js, Tailwind e TypeScript",
+    stack: ["Next.js", "Tailwind", "TypeScript"],
     repoLink: "https://github.com/leoFagundes/cine-drivein-site",
     demoLink: "https://cinedrivein.com/",
     figmaLink:
@@ -83,7 +81,7 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "Cine Drive-in Snack Bar",
     description:
       "Aplicação web desenvolvida para a lanchonete do Cine Drive-in, composta por duas interfaces front-end (cliente e administrador).",
-    stack: "React.js, Sass, TypeScript e Jest",
+    stack: ["React.js", "Sass", "TypeScript", "Jest"],
     repoLink:
       "https://github.com/leoFagundes?tab=repositories&q=cine-drive-in+AND+NOT+%22backend%22&type=&language=&sort=",
     figmaLink:
@@ -97,19 +95,16 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "Cine Drive-in API",
     description:
       "A API fornece a base para a gestão de filmes, pedidos da lanchonete, usuários, e relatórios administrativos. Além disso, permite operações de CRUD e autenticação criptografada para funcionários.",
-    stack: "Node.js, Express e MongoDB",
+    stack: ["Node.js", "Express", "MongoDB"],
     repoLink: "https://github.com/leoFagundes/cine-drivein-backend",
     underConstruction: false,
-    isRelevant: true,
-    mobileImage: noMobile,
-  },
+    isRelevant: true,  },
   {
     image: effycity,
     name: "Effycity",
     description:
       "Projeto final da faculdade, um aplicativo mobile com o tema de cidades inteligente onde Gestores com necessidades e Empresas com projetos conseguem se encontrar. ",
-    stack:
-      "React Native e Android Studio para o mobile, Next e Tailwind para a Web",
+    stack: ["React Native", "Android Studio", "Next.js", "Tailwind"],
     repoLink:
       "https://github.com/leoFagundes?tab=repositories&q=effycity&type=&language=&sort=",
     externalLink:
@@ -124,7 +119,14 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "MyBooks",
     description:
       "Aplicação fullstack para que os usuários consigam ter sua própria coleção de livros em um só lugar de froma prática e minimalista.",
-    stack: "Next.js, Tailwind, TypeScript, Node.js, Express e MongoDB",
+    stack: [
+      "Next.js",
+      "Tailwind",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+    ],
     repoLink:
       "https://github.com/leoFagundes?tab=repositories&q=mybooks+AND+NOT+leo&type=&language=&sort=",
     demoLink: "https://mybooks-repo.vercel.app/",
@@ -138,7 +140,7 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "Black Jack Web",
     description:
       "Jogo de baralho conhecido como 21 ou BlackJack, foi criado usando uma API pública para o controle do baralho e das cartas.",
-    stack: "Next.js, Tailwind e TypeScript",
+    stack: ["Next.js", "Tailwind", "TypeScript"],
     repoLink: "https://github.com/leoFagundes/BlackJack-Web",
     demoLink: "https://black-jack-web.vercel.app/",
     figmaLink:
@@ -152,18 +154,16 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "Comunidade de Programação",
     description:
       "Site com sistema de login em que cada usuário pode postar/editar/excluir comentários e outros usuários podem adicionar respostas nesses comentários. Também é possível personalizar seu perfil.",
-    stack: "Python (Flask), HTML, CSS, Bootstrap e SQL",
+    stack: ["Python (Flask)", "HTML", "CSS", "Bootstrap", "SQL"],
     repoLink:
       "https://github.com/leoFagundes/AplicacaoWeb-ComunidadeProgramacao",
-    isRelevant: false,
-    mobileImage: noMobile,
-  },
+    isRelevant: false,  },
   {
     image: weatherForecast,
     name: "Weather Forecast",
     description:
       "Site de previsão de tempo usando a API pública OpenWeatherMap",
-    stack: "React.js, TypeScript e Tailwind",
+    stack: ["React.js", "TypeScript", "Tailwind"],
     repoLink: "https://github.com/leoFagundes/Weather-API",
     demoLink: "https://weather-api-leo.vercel.app/",
     isRelevant: false,
@@ -174,18 +174,16 @@ export const projectsDataJSON: ProjectDataProps[] = [
     name: "Imikino",
     description:
       "Site criado com o objetivo de avaliar jogos feito para o quinto semestre da faculdade. Possui sistema de login, ranking e avaliação",
-    stack: "Python (Flask), HTML, CSS, JavaScript, Bootstrap e SQL",
+    stack: ["Python (Flask)", "HTML", "CSS", "JavaScript", "Bootstrap", "SQL"],
     repoLink: "https://github.com/leoFagundes/AplicacaoWeb-Imikino",
     demoLink: "https://aplicacaoweb-imikino-production.up.railway.app/",
-    isRelevant: false,
-    mobileImage: noMobile,
-  },
+    isRelevant: false,  },
   {
     image: codeLibrary,
     name: "Code.Library",
     description:
       "Site criado com o objetivo de compartilhar tudo sobre programação como conhecimento, bibliotecas, extenções, links úteis e etc. Além disso você poderá escutar músicas Lofi enquanto navega!",
-    stack: "React.js, TypeScript e Styled-Components",
+    stack: ["React.js", "TypeScript", "Styled-Components"],
     repoLink: "https://github.com/leoFagundes/code.library",
     demoLink: "https://code-library-dev.vercel.app",
     underConstruction: true,

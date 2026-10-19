@@ -13,12 +13,17 @@ export const HeaderContainer = styled.header`
 
   nav {
     width: 67%;
+    min-width: 880px;
     max-width: 1200px;
     height: 56px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoints.nav}) {
+      min-width: 0;
+    }
 
     .nav-logo {
       margin-right: 32px;
@@ -88,45 +93,91 @@ export const HeaderContainer = styled.header`
     align-items: center;
     position: fixed;
     right: 0;
-    top: 50px;
-    height: 100vh;
+    top: 56px;
+    height: calc(100vh - 56px);
+    height: calc(100dvh - 56px);
     pointer-events: none;
 
     .icon-list {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
-      opacity: 1;
+      gap: 4px;
+      padding: 8px;
       width: 60px;
-      height: auto;
-      min-height: 100px;
       background-color: ${({ theme }) => theme.bgPrimary};
-      border-radius: 2px;
-      /* border: 2px solid ${({ theme }) => theme.bgSecondary}; */
+      border-radius: ${({ theme }) => theme.borderRadius} 0 0
+        ${({ theme }) => theme.borderRadius};
       box-shadow: ${({ theme }) => theme.shadows.light.boxShadow};
-      transition: all 0.5s ease-in-out;
       pointer-events: auto;
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out,
+        visibility 0s linear 0.5s;
 
       &.nav-open {
-        transform: translate(2px);
-        z-index: 50;
+        transform: translateX(0);
+        visibility: visible;
+        transition-delay: 0s;
       }
 
       &.nav-close {
-        transform: translate(50px);
-        z-index: 0;
-        opacity: 0.5;
+        transform: translateX(calc(100% + 8px));
+        opacity: 0;
+        visibility: hidden;
       }
 
-      li:hover {
-        scale: 1.05;
+      @media (hover: hover) {
+        li:hover {
+          scale: 1.05;
+        }
       }
 
       li:active {
         scale: 0.95;
+      }
+
+      a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        transition: color 0.3s ease, background-color 0.3s ease;
+
+        &.active {
+          color: ${({ theme }) => theme.secondaryColor};
+          background-color: rgba(1, 166, 107, 0.12);
+
+          svg {
+            filter: drop-shadow(0 0 4px rgba(1, 166, 107, 0.8));
+          }
+
+          .icon-label {
+            color: ${({ theme }) => theme.secondaryColor};
+          }
+        }
+      }
+
+      .icon-label {
+        position: absolute;
+        top: 50%;
+        right: calc(100% + 16px);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        color: ${({ theme }) => theme.whiteColor};
+        background-color: ${({ theme }) => theme.bgSecondary};
+        box-shadow: inset 0 0 0 1px rgba(1, 166, 107, 0.3);
+        opacity: 0;
+        transform: translate(8px, -50%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      &.nav-open .icon-label {
+        opacity: 1;
+        transform: translate(0, -50%);
+        transition-delay: calc(var(--index) * 40ms + 200ms);
       }
     }
 
@@ -136,13 +187,17 @@ export const HeaderContainer = styled.header`
   }
 `;
 
-export const HamburguerMenuContainer = styled.label`
+export const HamburguerMenuContainer = styled.button`
   display: none;
   flex-direction: column;
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -29px;
+  right: -29px;
+  box-sizing: content-box;
   width: 70px;
+  padding: 24px;
+  border: none;
+  background: none;
   cursor: pointer;
   scale: 0.4;
   z-index: 2;
@@ -167,24 +222,26 @@ export const HamburguerMenuContainer = styled.label`
     }
   }
 
-  input[type="checkbox"] {
-    display: none;
-  }
-
-  input[type="checkbox"]:checked ~ span:nth-of-type(1) {
+  &[aria-expanded="true"] span:nth-of-type(1) {
     transform-origin: bottom;
     transform: rotatez(45deg) translate(8px, 0px);
   }
 
-  input[type="checkbox"]:checked ~ span:nth-of-type(2) {
+  &[aria-expanded="true"] span:nth-of-type(2) {
     transform-origin: top;
     transform: rotatez(-45deg);
   }
 
-  input[type="checkbox"]:checked ~ span:nth-of-type(3) {
+  &[aria-expanded="true"] span:nth-of-type(3) {
     transform-origin: bottom;
     width: 50%;
     transform: translate(30px, -11px) rotatez(45deg);
+  }
+
+  &:focus-visible {
+    outline: 5px solid ${({ theme }) => theme.secondaryColor};
+    outline-offset: -12px;
+    border-radius: 24px;
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.nav}) {

@@ -1,123 +1,103 @@
 import { Title } from "src/components/Title";
 import * as S from "./style";
 import * as T from "src/styled/typography";
-import "react-alice-carousel/lib/alice-carousel.css";
-import { Fragment, useRef } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { ArrowLeft, ArrowRight } from "react-feather";
+import { useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { ArrowUpRight, Award, Clock } from "react-feather";
 import { certificateData } from "src/data/certificatesData";
-import { Button } from "src/components/Button";
-import { Download } from "react-feather";
+import { CarouselControls } from "src/components/CarouselControls";
 
 export const Certificates = () => {
-  const sliderRef = useRef<Slider | null>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const total = certificateData.length;
 
-  const certificates = certificateData.map((certificate, index) => (
-    <Fragment key={index}>
-      <div className="certificate-title-box">
-        <T.H3 className="certificate-title">{certificate.name}</T.H3>
-      </div>
-      <div className="certificate-info-button">
-        <ul className="certificate-info">
-          <li className="institute">
-            <div>
-              <T.P2 className="list-topic">Instituição:</T.P2>
-            </div>
-            <div>
-              <T.P3>{certificate.institute}</T.P3>
-            </div>
-          </li>
-          <li className="duration">
-            <div>
-              <T.P2 className="list-topic">Duração:</T.P2>
-            </div>
-            <div>
-              <T.P3>{certificate.duration} horas</T.P3>
-            </div>
-          </li>
-          <li className="conclusion">
-            <div>
-              <T.P2 className="list-topic">Conclusão:</T.P2>
-            </div>
-            <div>
-              <T.P3>{certificate.conclusion}</T.P3>
-            </div>
-          </li>
-        </ul>
-        <div className="button-content">
-          <a href={certificate.link} target="_blank" rel="noreferrer">
-            <Button
-              width="170px"
-              hoveredIcon={<Download size={18} />}
-              iconDeslocation="46px"
-              iconInitialPosition="28px"
-            >
-              Ver Certificado
-            </Button>
-          </a>
-        </div>
-      </div>
-    </Fragment>
-  ));
+  useEffect(() => {
+    if (!emblaApi) return;
 
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1250,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 620,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true,
-        },
-      },
-    ],
-  };
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+
+    onSelect();
+    emblaApi.on("select", onSelect).on("reInit", onSelect);
+
+    return () => {
+      emblaApi.off("select", onSelect).off("reInit", onSelect);
+    };
+  }, [emblaApi]);
 
   return (
     <S.CertificatesContainer>
       <Title>Certificados</Title>
 
-      <div className="certificates-content">
-        <div className="certificates-carousel">
-          <button
-            className="prev-button"
-            onClick={() => sliderRef.current?.slickPrev()}
-          >
-            <ArrowLeft />
-          </button>
-          <Slider ref={sliderRef} className="slider" {...settings}>
-            {certificates}
-          </Slider>
-          <button
-            className="next-button"
-            onClick={() => sliderRef.current?.slickNext()}
-          >
-            <ArrowRight />
-          </button>
+      <div
+        className="certificates-carousel"
+        role="region"
+        aria-roledescription="carrossel"
+        aria-label="Certificados"
+      >
+        <div className="certificates-viewport" ref={emblaRef}>
+          <div className="certificates-track">
+            {certificateData.map((certificate, index) => (
+              <div
+                key={certificate.link}
+                className="certificates-slide"
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${index + 1} de ${total}`}
+              >
+                <a
+                  className={`certificate-card ${
+                    index === selectedIndex ? "is-selected" : ""
+                  }`}
+                  href={certificate.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div className="certificate-header">
+                    <span className="certificate-icon">
+                      <Award size={20} />
+                    </span>
+                    <span className="certificate-year">
+                      {certificate.conclusion}
+                    </span>
+                  </div>
+
+                  <div className="certificate-body">
+                    <span className="certificate-institute">
+                      {certificate.institute}
+                    </span>
+                    <T.H3 className="certificate-title">
+                      {certificate.name}
+                    </T.H3>
+                  </div>
+
+                  <div className="certificate-footer">
+                    <span className="certificate-duration">
+                      <Clock size={16} />
+                      {certificate.duration} horas
+                    </span>
+                    <span className="certificate-link">
+                      Ver certificado
+                      <ArrowUpRight size={16} />
+                    </span>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
+
+        <CarouselControls
+          currentIndex={selectedIndex}
+          total={total}
+          onPrev={() => emblaApi?.scrollPrev()}
+          onNext={() => emblaApi?.scrollNext()}
+          prevLabel="Certificado anterior"
+          nextLabel="Próximo certificado"
+        />
       </div>
     </S.CertificatesContainer>
   );

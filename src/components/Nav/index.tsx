@@ -1,17 +1,78 @@
 import * as T from "src/styled/typography";
 import * as S from "./style";
-import { useRef, useState } from "react";
-import { Code, Layers, Mail, Home, User, Award } from "react-feather";
+import { CSSProperties, useEffect, useRef, useState } from "react";
+import {
+  Code,
+  Layers,
+  Mail,
+  Home,
+  User,
+  Award,
+  Briefcase,
+} from "react-feather";
+
+const navItems = [
+  { id: "hero", label: "Início", Icon: Home },
+  { id: "aboutMe", label: "Sobre mim", Icon: User },
+  { id: "career", label: "Trajetória", Icon: Briefcase },
+  { id: "projects", label: "Projetos", Icon: Layers },
+  { id: "skills", label: "Habilidades", Icon: Code },
+  { id: "certificates", label: "Certificados", Icon: Award },
+  { id: "contact", label: "Contato", Icon: Mail },
+];
 
 export const Nav = () => {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
-  const navRef = useRef<HTMLUListElement>(null);
+  const [activeSection, setActiveSection] = useState(navItems[0].id);
+  const menuRef = useRef<HTMLUListElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
-  const toggleMenu = (e: React.MouseEvent<HTMLLabelElement>) => {
-    if (e.target instanceof HTMLInputElement) {
-      setIsNavBarOpen(!isNavBarOpen);
-    }
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+
+    navItems.forEach(({ id }) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isNavBarOpen) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (
+        !menuRef.current?.contains(target) &&
+        !toggleRef.current?.contains(target)
+      ) {
+        setIsNavBarOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsNavBarOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isNavBarOpen]);
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.currentTarget) {
@@ -36,102 +97,52 @@ export const Nav = () => {
           <span className="green signature">{"/>"}</span>
         </T.H2>
 
-        <S.HamburguerMenuContainer onClick={toggleMenu} htmlFor="check">
-          <input type="checkbox" id="check" />
+        <S.HamburguerMenuContainer
+          ref={toggleRef}
+          type="button"
+          aria-label={isNavBarOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={isNavBarOpen}
+          aria-controls="mobile-nav"
+          onClick={() => setIsNavBarOpen((isOpen) => !isOpen)}
+        >
           <span></span>
           <span></span>
           <span></span>
         </S.HamburguerMenuContainer>
 
-        <ul className="name-list" ref={navRef}>
-          <li>
-            <a
-              href="#hero"
-              onMouseLeave={handleMouseLeave}
-              onMouseEnter={handleMouseEnter}
-            >
-              <T.P2>Início</T.P2>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#aboutMe"
-              onMouseLeave={handleMouseLeave}
-              onMouseEnter={handleMouseEnter}
-            >
-              <T.P2>Sobre mim</T.P2>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#projects"
-              onMouseLeave={handleMouseLeave}
-              onMouseEnter={handleMouseEnter}
-            >
-              <T.P2>Projetos</T.P2>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#skills"
-              onMouseLeave={handleMouseLeave}
-              onMouseEnter={handleMouseEnter}
-            >
-              <T.P2>Habilidades</T.P2>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#certificates"
-              onMouseLeave={handleMouseLeave}
-              onMouseEnter={handleMouseEnter}
-            >
-              <T.P2>Certificados</T.P2>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contact"
-              onMouseLeave={handleMouseLeave}
-              onMouseEnter={handleMouseEnter}
-            >
-              <T.P2>Contato</T.P2>
-            </a>
-          </li>
+        <ul className="name-list">
+          {navItems.map(({ id, label }) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                onMouseLeave={handleMouseLeave}
+                onMouseEnter={handleMouseEnter}
+              >
+                <T.P2>{label}</T.P2>
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
       <div className="mobile-nav-container">
-        <ul className={`icon-list ${isNavBarOpen ? "nav-open" : "nav-close"}`}>
-          <li>
-            <a href="#hero">
-              <Home size={"24px"} />
-            </a>
-          </li>
-          <li>
-            <a href="#aboutMe">
-              <User size={"24px"} />
-            </a>
-          </li>
-          <li>
-            <a href="#projects">
-              <Layers size={"24px"} />
-            </a>
-          </li>
-          <li>
-            <a href="#skills">
-              <Code size={"24px"} />
-            </a>
-          </li>
-          <li>
-            <a href="#certificates">
-              <Award size={"24px"} />
-            </a>
-          </li>
-          <li>
-            <a href="#contact">
-              <Mail size={"24px"} />
-            </a>
-          </li>
+        <ul
+          id="mobile-nav"
+          ref={menuRef}
+          className={`icon-list ${isNavBarOpen ? "nav-open" : "nav-close"}`}
+        >
+          {navItems.map(({ id, label, Icon }, index) => (
+            <li key={id} style={{ "--index": index } as CSSProperties}>
+              <a
+                href={`#${id}`}
+                className={activeSection === id ? "active" : ""}
+                aria-current={activeSection === id ? "location" : undefined}
+                onClick={() => setIsNavBarOpen(false)}
+              >
+                <span className="icon-label">{label}</span>
+                <Icon size={24} />
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </S.HeaderContainer>
