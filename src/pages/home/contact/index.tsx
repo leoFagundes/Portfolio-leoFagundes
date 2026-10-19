@@ -34,18 +34,11 @@ export const Contact = () => {
   });
 
   useEffect(() => {
-    let errors = { ...formError };
-
-    if (form.nameValue) {
-      errors.nameError = "";
-    }
-    if (form.emailValue) {
-      errors.emailError = "";
-    }
-    if (form.contentValue) {
-      errors.contentError = "";
-    }
-    setFormError(errors);
+    setFormError((errors) => ({
+      nameError: form.nameValue ? "" : errors.nameError,
+      emailError: form.emailValue ? "" : errors.emailError,
+      contentError: form.contentValue ? "" : errors.contentError,
+    }));
   }, [form]);
 
   const validateForm = () => {

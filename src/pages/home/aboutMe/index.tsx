@@ -15,6 +15,8 @@ const certificateHours = certificateData.reduce(
   0,
 );
 
+// usado pela lista de números, que está comentada no JSX
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const stats = [
   { value: String(projectsDataJSON.length), label: "projetos" },
   {
