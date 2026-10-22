@@ -9,22 +9,30 @@ import {
   FileText,
   GitHub,
   Grid,
+  Image as ImageIcon,
+  Layers,
+  Lock,
   Maximize2,
-  Monitor,
-  Smartphone,
+  RotateCcw,
   Star,
 } from "react-feather";
 import { CarouselControls } from "src/components/CarouselControls";
+import { ImageGallery } from "src/components/ImageGallery";
 import { Modal } from "src/components/Modal";
 import {
   SegmentedControl,
   SegmentedOption,
 } from "src/components/SegmentedControl";
 import { onSelectProject } from "src/utils/projectSelection";
-import { ProjectDataProps } from "src/types/type";
+import { getProjectApps } from "src/utils/projects";
+import { ProjectApp } from "src/types/type";
 
 type ProjectsMode = "AllProjects" | "ImportantProjects";
-type DeviceMode = "DesktopDevice" | "MobileDevice";
+
+type ExpandedImages = {
+  title: string;
+  images: string[];
+};
 
 const relevantProjects = projectsDataJSON.filter(
   (project) => project.isRelevant
@@ -45,26 +53,16 @@ const modeOptions: SegmentedOption<ProjectsMode>[] = [
   },
 ];
 
-const deviceOptions: SegmentedOption<DeviceMode>[] = [
-  { value: "DesktopDevice", label: "Computador", icon: <Monitor size={16} /> },
-  { value: "MobileDevice", label: "Celular", icon: <Smartphone size={16} /> },
-];
-
-const getProjectImage = (project: ProjectDataProps, device: DeviceMode) =>
-  device === "MobileDevice" && project.mobileImage
-    ? project.mobileImage
-    : project.image;
-
 export const Projects = () => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [activeMode, setActiveMode] =
     useState<ProjectsMode>("ImportantProjects");
-  const [activeDevice, setActiveDevice] =
-    useState<DeviceMode>("DesktopDevice");
-  const [expandedProject, setExpandedProject] = useState<ProjectDataProps>();
+  // aba selecionada em cada projeto com várias aplicações
+  const [selectedApps, setSelectedApps] = useState<Record<string, number>>(
+    {}
+  );
+  const [expandedImages, setExpandedImages] = useState<ExpandedImages>();
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [lightboxDevice, setLightboxDevice] =
-    useState<DeviceMode>("DesktopDevice");
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const closeLightboxTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -140,17 +138,22 @@ export const Projects = () => {
     }
   };
 
-  const handleOpenLightbox = (project: ProjectDataProps) => {
+  const handleSelectApp = (projectName: string, appIndex: number) => {
+    setSelectedApps((current) => ({ ...current, [projectName]: appIndex }));
+  };
+
+  const handleOpenLightbox = (title: string, app: ProjectApp) => {
+    if (!app.images?.length) return;
+
     clearTimeout(closeLightboxTimeoutRef.current);
-    setLightboxDevice(project.mobileImage ? activeDevice : "DesktopDevice");
-    setExpandedProject(project);
+    setExpandedImages({ title, images: app.images });
     setIsLightboxOpen(true);
   };
 
   const handleCloseLightbox = () => {
     setIsLightboxOpen(false);
     closeLightboxTimeoutRef.current = setTimeout(() => {
-      setExpandedProject(undefined);
+      setExpandedImages(undefined);
     }, 800);
   };
 
@@ -164,12 +167,6 @@ export const Projects = () => {
             options={modeOptions}
             value={activeMode}
             onChange={handleModeChange}
-          />
-          <SegmentedControl
-            label="Tipo de tela"
-            options={deviceOptions}
-            value={activeDevice}
-            onChange={setActiveDevice}
           />
         </div>
       </div>
@@ -196,8 +193,23 @@ export const Projects = () => {
               index === (currentProjectIndex + 1) % projectsData.length;
             const isHidden = !isCurrent && !isPrev && !isNext;
             const linkTabIndex = isCurrent ? undefined : -1;
-            const isMissingMobileImage =
-              activeDevice === "MobileDevice" && !project.mobileImage;
+
+            const apps = getProjectApps(project);
+            const hasApps = apps.length > 1;
+            const appIndex = Math.min(
+              selectedApps[project.name] ?? 0,
+              apps.length - 1
+            );
+            const app = apps[appIndex];
+            const title = hasApps ? `${project.name} · ${app.name}` : project.name;
+            const cover = app.images?.[0];
+            const screensCount = app.images?.length ?? 0;
+
+            const badges = project.underConstruction && (
+              <span className="project-badges">
+                <span className="project-badge">Em construção</span>
+              </span>
+            );
 
             const className = `project-box
             ${isCurrent ? "current" : ""}
@@ -221,51 +233,82 @@ export const Projects = () => {
                     : undefined
                 }
               >
-                <button
-                  type="button"
-                  className="project-image-box"
-                  aria-label={`Ampliar imagem de ${project.name}`}
-                  tabIndex={linkTabIndex}
-                  onClick={() => handleOpenLightbox(project)}
-                >
-                  <img
-                    className="project-image"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    src={getProjectImage(project, activeDevice)}
-                  />
-                  <span className="project-badges">
-                    {project.underConstruction && (
-                      <span className="project-badge">Em construção</span>
+                {hasApps && (
+                  <div className="project-apps">
+                    <SegmentedControl
+                      label={`Aplicações do projeto ${project.name}`}
+                      options={apps.map((item, itemIndex) => ({
+                        value: String(itemIndex),
+                        label: item.name,
+                      }))}
+                      value={String(appIndex)}
+                      onChange={(value) =>
+                        handleSelectApp(project.name, Number(value))
+                      }
+                      tabIndex={linkTabIndex}
+                    />
+                  </div>
+                )}
+
+                {cover ? (
+                  <button
+                    type="button"
+                    className="project-image-box"
+                    aria-label={
+                      screensCount > 1
+                        ? `Ver as ${screensCount} telas de ${title}`
+                        : `Ampliar imagem de ${title}`
+                    }
+                    tabIndex={linkTabIndex}
+                    onClick={() => handleOpenLightbox(title, app)}
+                  >
+                    <img
+                      className="project-image"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      src={cover}
+                    />
+                    {badges}
+                    {screensCount > 1 && (
+                      <span className="project-screens" aria-hidden="true">
+                        <Layers size={12} />
+                        {screensCount} telas
+                      </span>
                     )}
-                    {isMissingMobileImage && (
-                      <span className="project-badge">Sem tela de celular</span>
-                    )}
-                  </span>
-                  <span className="project-expand" aria-hidden="true">
-                    <Maximize2 size={16} />
-                  </span>
-                </button>
+                    <span className="project-expand" aria-hidden="true">
+                      <Maximize2 size={16} />
+                    </span>
+                  </button>
+                ) : (
+                  <div className="project-image-box is-placeholder">
+                    {badges}
+                    <ImageIcon size={28} />
+                    <span>Print em breve</span>
+                  </div>
+                )}
 
                 <div className="project-info">
+                  {hasApps && (
+                    <span className="project-app-name">{app.name}</span>
+                  )}
                   <T.H3 className="project-name">{project.name}</T.H3>
                   <T.P2 className="project-description">
-                    {project.description}
+                    {app.description}
                   </T.P2>
                 </div>
 
                 <ul className="project-stack">
-                  {project.stack.map((tech) => (
+                  {app.stack.map((tech) => (
                     <li key={tech}>{tech}</li>
                   ))}
                 </ul>
 
                 <div className="project-links">
-                  {project.demoLink && (
+                  {app.demoLink && (
                     <a
                       className="primary"
-                      href={project.demoLink}
+                      href={app.demoLink}
                       target="_blank"
                       rel="noreferrer"
                       tabIndex={linkTabIndex}
@@ -274,9 +317,9 @@ export const Projects = () => {
                       Ver online
                     </a>
                   )}
-                  {project.repoLink && (
+                  {app.repoLink && (
                     <a
-                      href={project.repoLink}
+                      href={app.repoLink}
                       target="_blank"
                       rel="noreferrer"
                       tabIndex={linkTabIndex}
@@ -285,9 +328,15 @@ export const Projects = () => {
                       Código
                     </a>
                   )}
-                  {project.externalLink && (
+                  {!app.repoLink && app.isPrivateRepo && (
+                    <span className="project-private">
+                      <Lock size={14} />
+                      Código privado
+                    </span>
+                  )}
+                  {app.externalLink && (
                     <a
-                      href={project.externalLink}
+                      href={app.externalLink}
                       target="_blank"
                       rel="noreferrer"
                       tabIndex={linkTabIndex}
@@ -296,9 +345,9 @@ export const Projects = () => {
                       Documento
                     </a>
                   )}
-                  {project.figmaLink && (
+                  {app.figmaLink && (
                     <a
-                      href={project.figmaLink}
+                      href={app.figmaLink}
                       target="_blank"
                       rel="noreferrer"
                       tabIndex={linkTabIndex}
@@ -308,6 +357,30 @@ export const Projects = () => {
                     </a>
                   )}
                 </div>
+
+                {project.previousVersion && (
+                  <div className="project-previous">
+                    <RotateCcw size={14} className="project-previous-icon" />
+                    <div className="project-previous-header">
+                      <strong>{project.previousVersion.label}</strong>
+                      {project.previousVersion.links.map((link) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          tabIndex={linkTabIndex}
+                        >
+                          {link.label}
+                          <ExternalLink size={12} />
+                        </a>
+                      ))}
+                    </div>
+                    <p className="project-previous-description">
+                      {project.previousVersion.description}
+                    </p>
+                  </div>
+                )}
               </div>
             );
           })}
@@ -325,7 +398,7 @@ export const Projects = () => {
         </div>
       </div>
 
-      {expandedProject && (
+      {expandedImages && (
         <Modal
           isOpen={isLightboxOpen}
           onClose={handleCloseLightbox}
@@ -334,38 +407,12 @@ export const Projects = () => {
         >
           <S.ProjectLightbox>
             <div className="lightbox-header">
-              <T.H3 id="project-lightbox-title">{expandedProject.name}</T.H3>
-              {expandedProject.mobileImage ? (
-                <SegmentedControl
-                  label="Tipo de tela"
-                  options={deviceOptions}
-                  value={lightboxDevice}
-                  onChange={setLightboxDevice}
-                />
-              ) : (
-                <span className="lightbox-note">
-                  <Monitor size={14} />
-                  Sem tela de celular
-                </span>
-              )}
+              <T.H3 id="project-lightbox-title">{expandedImages.title}</T.H3>
             </div>
-            <img
-              key={lightboxDevice}
-              className="lightbox-image"
-              src={getProjectImage(expandedProject, lightboxDevice)}
-              alt={`Tela ${
-                lightboxDevice === "MobileDevice" ? "de celular" : "de computador"
-              } do projeto ${expandedProject.name}`}
+            <ImageGallery
+              images={expandedImages.images}
+              title={expandedImages.title}
             />
-            <a
-              className="lightbox-original"
-              href={getProjectImage(expandedProject, lightboxDevice)}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <ExternalLink size={14} />
-              Abrir imagem em tamanho original
-            </a>
           </S.ProjectLightbox>
         </Modal>
       )}

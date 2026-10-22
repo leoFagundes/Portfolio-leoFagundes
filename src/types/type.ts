@@ -23,36 +23,64 @@ export type SkillDataProps = {
   img: string;
   description: string;
   category: SkillCategory;
-  // tags do "stack" dos projetos que contam como uso da habilidade
-  // ("Figma" e "Git" vêm dos links de Figma e de repositório)
-  matches: string[];
 };
 
 export type CertificateProps = {
   name: string;
   institute: string;
-  duration: string;
+  duration?: string;
+  // ano de conclusão (ou o ano atual, se ainda estiver em andamento)
   conclusion: string;
-  link: string;
+  // PDF em public/; cursos em andamento podem ainda não ter certificado
+  link?: string;
+  // aparece no filtro "Relevantes" (o padrão da seção)
+  isRelevant?: boolean;
+  inProgress?: boolean;
 };
 
-export type ProjectDataProps = {
-  image: string;
-  mobileImage?: string;
-  name: string;
+// conteúdo mostrado no card: o projeto inteiro ou uma das suas aplicações
+export type ProjectContent = {
   description: string;
+  // telas do projeto: a primeira aparece no card e as outras na galeria
+  // ao ampliar. Sem nenhuma, o card mostra "Print em breve"
+  images?: string[];
   stack: string[];
-  repoLink: string;
+  repoLink?: string;
+  // repositório privado: mostra "Código privado" no lugar do link
+  isPrivateRepo?: boolean;
   demoLink?: string;
   externalLink?: string;
   figmaLink?: string;
-  underConstruction?: boolean;
-  isRelevant: boolean;
 };
+
+export type ProjectApp = ProjectContent & {
+  // nome da aba no card, ex.: "Pedidos"
+  name: string;
+};
+
+export type ProjectPreviousVersion = {
+  label: string;
+  description: string;
+  stack: string[];
+  links: { label: string; url: string }[];
+};
+
+type ProjectBase = {
+  name: string;
+  isRelevant: boolean;
+  underConstruction?: boolean;
+  previousVersion?: ProjectPreviousVersion;
+};
+
+// projeto com uma aplicação só, ou com várias (o card ganha abas)
+export type ProjectDataProps =
+  | (ProjectBase & ProjectContent & { apps?: undefined })
+  | (ProjectBase & { apps: ProjectApp[] });
 
 export type CareerRole = {
   title: string;
   period: string;
+  description?: string;
 };
 
 export type CareerItemProps = {
@@ -68,6 +96,11 @@ export type CareerItemProps = {
   // nome do projeto em projectsData para o link "Ver projeto"
   projectName?: string;
   link?: string;
+  // PDF (em public/) aberto no modal, ex.: diploma ou certificado
+  file?: {
+    label: string;
+    link: string;
+  };
 };
 
 export type ThemeType = {

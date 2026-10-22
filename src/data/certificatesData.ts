@@ -2,11 +2,28 @@ import { CertificateProps } from "src/types/type";
 
 export const certificateData: CertificateProps[] = [
   {
+    name: "IA para quem programa de verdade",
+    institute: "curso.dev",
+    conclusion: "2026",
+    isRelevant: true,
+    inProgress: true,
+  },
+  {
+    name: "Desenvolvimento Web",
+    institute: "curso.dev",
+    duration: "81",
+    conclusion: "2026",
+    link: "pdf/Certificado · leoFagundes · curso.dev.pdf",
+    isRelevant: true,
+    inProgress: true,
+  },
+  {
     name: "Python Impressionador",
     institute: "Hashtag Treinamentos",
     duration: "179",
     conclusion: "2022",
     link: "pdf/Certificado-Hashtah_Treinamentos-Python_Impressionador.pdf",
+    isRelevant: true,
   },
   {
     name: "Certificado CC50 Ciência da Computação",
@@ -14,6 +31,7 @@ export const certificateData: CertificateProps[] = [
     duration: "70",
     conclusion: "2022",
     link: "pdf/Certificado-CC50-Ciencia_da_computaçao.pdf",
+    isRelevant: true,
   },
   {
     name: "Node.js: Api REST com Express e MongoDB",

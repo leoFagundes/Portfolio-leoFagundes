@@ -219,7 +219,8 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
 
   #lf {
     opacity: 1;
-    animation: fn-logo 10s ease 0s forwards;
+    /* começa depois dos anéis; "both" mantém a logo escondida durante o atraso */
+    animation: fn-logo 4s ease 1.5s both;
   }
 
   .orbit {
@@ -365,6 +366,38 @@ export const HeroContainer = styled.section<{ isMoonClickable: boolean }>`
       opacity: 1;
       transform: translateX(0);
       filter: blur(0);
+    }
+  }
+
+  /* quem pediu "reduzir movimento" no sistema vê tudo já montado */
+  @media (prefers-reduced-motion: reduce) {
+    .name-letters > *,
+    .apresentation-box .hero-actions .hero-action,
+    .apresentation-box .social-media .social-media-box.box-1,
+    .apresentation-box .social-media .social-media-box.box-2,
+    .apresentation-box .social-media .social-media-box.box-3,
+    .orbit {
+      animation: none;
+      opacity: 1;
+    }
+
+    #small-elipse,
+    #big-elipse {
+      animation: none;
+      stroke-dasharray: 10 20;
+      stroke-width: 4;
+      opacity: 0.8;
+    }
+
+    #medium-elipse {
+      animation: none;
+      stroke-width: 4;
+    }
+
+    #lf {
+      animation: none;
+      stroke-width: 0;
+      filter: drop-shadow(0 0 10px rgba(1, 166, 107, 0.3));
     }
   }
 

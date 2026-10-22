@@ -7,8 +7,17 @@ import { Hero } from "./hero";
 import { Projects } from "./projects";
 import { Skills } from "./skills";
 import * as S from "./style";
+import { useEffect } from "react";
 
 export const Home = () => {
+  useEffect(() => {
+    // dica do easter egg para quem abre o console
+    console.log(
+      "%cPsiu... as palavras em verde do “Sobre mim” escondem um segredo.",
+      "color: #01A66B; font-size: 14px; font-weight: 600;"
+    );
+  }, []);
+
   return (
     <S.HomeContainer>
       <Nav />

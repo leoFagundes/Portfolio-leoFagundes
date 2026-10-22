@@ -3,15 +3,22 @@ import * as S from "./style";
 import * as T from "src/styled/typography";
 import LeoFagundesImg from "src/assets/image/leoFagundes.png";
 import { FileText, Mail } from "react-feather";
+import { useState } from "react";
+import { DocumentFile, DocumentModal } from "src/components/DocumentModal";
 import { projectsDataJSON } from "src/data/projectsData";
 import { skillsData } from "src/data/skillsData";
 import { certificateData } from "src/data/certificatesData";
 import { careerData } from "src/data/careerData";
 
-const CV_LINK = "pdf/Curriculo-Leonardo-Fagundes.pdf";
+// PDF gerado a partir de curriculo/curriculo.html
+const CV_FILE: DocumentFile = {
+  title: "Currículo",
+  subtitle: "Leonardo Fagundes · Desenvolvedor Full Stack",
+  link: "pdf/Curriculo-Leonardo-Fagundes-2026.pdf",
+};
 
 const certificateHours = certificateData.reduce(
-  (total, certificate) => total + Number(certificate.duration),
+  (total, certificate) => total + Number(certificate.duration ?? 0),
   0,
 );
 
@@ -32,59 +39,66 @@ const stats = [
   },
 ];
 
-export const AboutMe = () => (
-  <S.AboutMeContainer>
-    <Title>Sobre mim</Title>
-    <div className="info-content">
-      <div className="leo-fagundes-img">
-        <img src={LeoFagundesImg} alt="Foto de Leonardo Fagundes" />
-        <div className="image-mask" />
-      </div>
-      <div className="aboutme-text">
-        <T.P1>
-          <span className="green">Olá!</span> Meu nome é{" "}
-          <span className="green">Leonardo Cantieri Taube Fagundes</span> e
-          nasci em Brasília no ano de 2001.
-        </T.P1>
-        <T.P1>
-          Sempre fui <span className="green">apaixonado por tecnologia</span>{" "}
-          desde criança, o que me levou a seguir uma carreira na área. Formei em
-          Ciência da Computação na UniCEUB, e estou focado na área de front-end
-          e UX/UI.
-        </T.P1>
-        <T.P1>
-          Meu objetivo é me tornar um{" "}
-          <span className="green">engenheiro de software front-end</span> e
-          criar experiências incríveis na web. Desde que comecei essa jornada,
-          tenho me dedicado a me especializar cada vez mais, sempre com a visão
-          de como a tecnologia pode transformar o mundo ao nosso redor!
-        </T.P1>
+export const AboutMe = () => {
+  const [openFile, setOpenFile] = useState<DocumentFile>();
 
-        {/* <ul className="aboutme-stats">
-          {stats.map(({ value, label }) => (
-            <li key={label}>
-              <strong>{value}</strong>
-              <span>{label}</span>
-            </li>
-          ))}
-        </ul> */}
+  return (
+    <S.AboutMeContainer>
+      <Title>Sobre mim</Title>
+      <div className="info-content">
+        <div className="leo-fagundes-img">
+          <img src={LeoFagundesImg} alt="Foto de Leonardo Fagundes" />
+          <div className="image-mask" />
+        </div>
+        <div className="aboutme-text">
+          <span className="green">/</span>
+          <T.P1>
+            Olá! Meu nome é Leonardo Fagundes, desenvolvedor de Brasília,
+            formado em Ciência da Computação pelo CEUB e pós-graduado em
+            Desenvolvimento Full Stack.
+          </T.P1>
+          <T.P1>
+            Hoje trabalho como desenvolvedor na{" "}
+            <span className="green">Caixa Econômica Federal</span>, onde comecei
+            na área de UX e atualmente atuo com{" "}
+            <span className="green">Angular</span> e ABAP. Em paralelo, crio
+            soluções web para negócios reais como{" "}
+            <span className="green">Freelancer</span>.
+          </T.P1>
+          <T.P1>
+            Fora do código, gosto de jogos de tabuleiro, enigmas e amo livros.
+            Além disso, tenho uma estranha mania de esconder{" "}
+            <span className="green">Easter eggs</span> nos meus projetos
+            pessoais.
+          </T.P1>
 
-        <div className="aboutme-actions">
-          <a
-            className="primary"
-            href={CV_LINK}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FileText size={16} />
-            Currículo
-          </a>
-          <a href="#contact">
-            <Mail size={16} />
-            Fale comigo
-          </a>
+          {/* <ul className="aboutme-stats">
+            {stats.map(({ value, label }) => (
+              <li key={label}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </li>
+            ))}
+          </ul> */}
+
+          <div className="aboutme-actions">
+            <button
+              type="button"
+              className="primary"
+              onClick={() => setOpenFile(CV_FILE)}
+            >
+              <FileText size={16} />
+              Currículo
+            </button>
+            <a href="#contact">
+              <Mail size={16} />
+              Fale comigo
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </S.AboutMeContainer>
-);
+
+      <DocumentModal file={openFile} onClose={() => setOpenFile(undefined)} />
+    </S.AboutMeContainer>
+  );
+};

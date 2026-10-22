@@ -2,19 +2,27 @@ import { CareerItemProps } from "src/types/type";
 
 export const careerData: CareerItemProps[] = [
   {
-    organization:"Caixa Econômica Federal",
+    organization: "Caixa Econômica Federal",
     type: "job",
     current: true,
     roles: [
-      { title: "Desenvolvedor Angular e ABAP", period: "abr 2026 – atual" },
-      { title: "UX Designer", period: "out 2025 – abr 2026" },
+      {
+        title: "Desenvolvedor Fullstack",
+        period: "abr 2026 – atual",
+        description:
+          "Hoje atuo no desenvolvimento de aplicações internas utilizando as tecnologias Angular e ABAP.",
+      },
+      {
+        title: "UX Designer",
+        period: "out 2025 – abr 2026",
+        description:
+          "Comecei na área de UX, onde passei seis meses trabalhando no design de interfaces para aplicações internas.",
+      },
     ],
-    description:
-      "Entrei na área de UX, onde passei seis meses trabalhando no design de interfaces, e hoje atuo como desenvolvedor Angular e ABAP.",
-    stack: ["Angular", "TypeScript", "ABAP", "UX/UI"],
+    stack: ["Angular", "TypeScript", "ABAP", "UX/UI", "Figma"],
   },
   {
-    organization:"CTIR Gov",
+    organization: "CTIR Gov",
     type: "job",
     roles: [
       { title: "Estágio em desenvolvimento", period: "nov 2022 – nov 2024" },
@@ -38,7 +46,7 @@ export const careerData: CareerItemProps[] = [
     ],
   },
   {
-    organization:"Cine Drive-in de Brasília",
+    organization: "Cine Drive-in de Brasília",
     type: "freelance",
     current: true,
     roles: [{ title: "Desenvolvedor full stack", period: "jan 2024 – atual" }],
@@ -60,11 +68,11 @@ export const careerData: CareerItemProps[] = [
       "MongoDB",
       "Firebase",
     ],
-    projectName: "Cine Drive-in Site",
+    projectName: "Cine Drive-in",
     link: "https://cinedrivein.com/",
   },
   {
-    organization:"Carcassonne Pub",
+    organization: "Carcassonne Pub",
     type: "freelance",
     current: true,
     roles: [{ title: "Desenvolvedor full stack", period: "abr 2025 – atual" }],
@@ -75,27 +83,31 @@ export const careerData: CareerItemProps[] = [
     link: "https://www.carcassonnepub.com.br/clientMenu",
   },
   {
-    organization:"Alfredos Pizzaria",
+    organization: "Alfredos Pizzaria",
     type: "freelance",
     current: true,
     roles: [{ title: "Desenvolvedor full stack", period: "nov 2025 – atual" }],
     description:
       "Desenvolvi o sistema de pedidos online da pizzaria, com cardápio por loja, pizza meio a meio e pagamento via Pix com Mercado Pago, além de um painel administrativo de pedidos, estoque, lojas e usuários.",
     stack: ["Next.js", "TypeScript", "Tailwind", "Firebase", "Mercado Pago"],
+    projectName: "Alfredos Pizzaria",
     link: "https://alfredos.vercel.app/",
   },
   {
     organization: "Faculdade Focus",
     type: "education",
-    current: true,
     roles: [
       {
-        title: "Pós-graduação em Desenvolvimento Fullstack (EAD)",
-        period: "em andamento",
+        title: "Pós-graduação em Desenvolvimento Full Stack",
+        period: "jan 2026 – out 2026",
       },
     ],
     description:
-      "Especialização a distância com foco em desenvolvimento fullstack, do front-end ao back-end.",
+      "Especialização lato sensu EAD de 420 horas, com disciplinas de front-end, back-end, bancos de dados, computação em nuvem e engenharia de software.",
+    file: {
+      label: "Ver certificado",
+      link: "pdf/formacao/posgraduacao_certificado_07402493121_63882_2026102016450939_assinado.pdf",
+    },
   },
   {
     organization: "CEUB – Centro Universitário de Brasília",
@@ -109,10 +121,14 @@ export const careerData: CareerItemProps[] = [
     description:
       "No projeto final desenvolvi o Effycity, um aplicativo de cidades inteligentes que conecta gestores com necessidades a empresas com projetos.",
     projectName: "Effycity",
+    file: {
+      label: "Ver diploma",
+      link: "pdf/formacao/bacharelado_cienciadacomputacao.pdf",
+    },
   },
   {
-    organization: "Ensino médio completo",
+    organization: "Leonardo da Vinci – Asa Norte",
     type: "education",
-    roles: [],
+    roles: [{ title: "Ensino médio completo", period: "concluído em 2018" }],
   },
 ];

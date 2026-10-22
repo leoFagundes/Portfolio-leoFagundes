@@ -29,6 +29,39 @@ export const SkillsContainer = styled.section`
         gap: 12px;
       }
     }
+
+    /* entrada em cascata: escondidos até a seção aparecer na tela */
+    &:not(.is-visible) .skills-items-content > * {
+      opacity: 0;
+    }
+
+    /* "backwards" só segura o estado inicial durante o atraso; depois
+       o card volta aos estilos normais (hover continua funcionando) */
+    &.is-visible .skills-items-content > * {
+      animation: skill-in 0.5s ease backwards;
+      animation-delay: calc(var(--index, 0) * 40ms);
+    }
+  }
+
+  @keyframes skill-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skills-content:not(.is-visible) .skills-items-content > * {
+      opacity: 1;
+    }
+
+    .skills-content.is-visible .skills-items-content > * {
+      animation: none;
+    }
   }
 `;
 
@@ -37,16 +70,16 @@ export const SkillItem = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 24px;
   border: 1px solid transparent;
 
   width: 200px;
-  height: 200px;
+  height: 180px;
 
   font-family: inherit;
   color: ${({ theme }) => theme.whiteColor};
   background-color: ${({ theme }) => theme.bgPrimary};
-  padding: 20px;
+  padding: 24px;
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
@@ -66,16 +99,9 @@ export const SkillItem = styled.button`
     height: 64px;
   }
 
-  .skill-count {
-    margin-top: -8px;
-    font-size: 12px;
-    color: ${({ theme }) => theme.grayColor};
-    text-shadow: none;
-  }
-
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.medium}) {
     width: 150px;
-    height: 160px;
+    height: 140px;
     gap: 12px;
     padding: 16px;
 
@@ -86,7 +112,7 @@ export const SkillItem = styled.button`
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.small}) {
     width: calc((100% - 24px) / 3);
-    height: 130px;
+    height: 115px;
     gap: 8px;
     padding: 12px 8px;
 
@@ -97,11 +123,6 @@ export const SkillItem = styled.button`
     h3 {
       font-size: 14px;
       line-height: 125%;
-    }
-
-    .skill-count {
-      margin-top: -4px;
-      font-size: 11px;
     }
   }
 `;
@@ -132,41 +153,6 @@ export const SkillModalContent = styled.div`
 
   .modal-skill-text {
     color: ${({ theme }) => theme.grayColor};
-  }
-
-  .modal-skill-projects {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 4px;
-
-    a {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 14px;
-      color: ${({ theme }) => theme.secondaryColor};
-      background-color: rgba(1, 166, 107, 0.1);
-      box-shadow: inset 0 0 0 1px rgba(1, 166, 107, 0.3);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-
-      svg {
-        transition: transform 0.3s ease;
-      }
-
-      &:hover,
-      &:focus-visible {
-        outline: none;
-        background-color: rgba(1, 166, 107, 0.18);
-        box-shadow: inset 0 0 0 1px ${({ theme }) => theme.secondaryColor};
-
-        svg {
-          transform: translateX(2px);
-        }
-      }
-    }
   }
 
   .modal-skill-img {

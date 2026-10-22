@@ -1,13 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-const imageFadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+import styled from "styled-components";
 
 //prettier-ignore
 export const ProjectsContainer = styled.section`
@@ -43,9 +34,12 @@ export const ProjectsContainer = styled.section`
     max-width: 770px;
   }
 
+  /* cards empilhados na mesma célula; cada um com a altura do próprio
+     conteúdo, centralizado (o espaço que sobra fica fora do card) */
   .project-slider {
     display: grid;
     justify-items: center;
+    align-items: center;
     touch-action: pan-y;
   }
 
@@ -71,8 +65,10 @@ export const ProjectsContainer = styled.section`
       opacity: 0.6;
       cursor: pointer;
 
+      .project-apps,
       .project-image-box,
-      .project-links {
+      .project-links,
+      .project-previous {
         pointer-events: none;
       }
     }
@@ -146,6 +142,22 @@ export const ProjectsContainer = styled.section`
       transition: color 0.3s ease, box-shadow 0.3s ease;
     }
 
+    /* avisa que o projeto tem mais telas na galeria */
+    .project-screens {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: ${({ theme }) => theme.whiteColor};
+      background-color: rgba(11, 11, 11, 0.75);
+      box-shadow: inset 0 0 0 1px rgba(249, 249, 249, 0.15);
+    }
+
     &:hover,
     &:focus-visible {
       .project-image {
@@ -162,6 +174,39 @@ export const ProjectsContainer = styled.section`
       outline: 2px solid ${({ theme }) => theme.secondaryColor};
       outline-offset: 2px;
     }
+
+    /* aplicação ainda sem print */
+    &.is-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: default;
+      font-size: 13px;
+      color: ${({ theme }) => theme.grayColor};
+      background:
+        radial-gradient(circle at 50% 35%, rgba(1, 166, 107, 0.14), transparent 65%),
+        ${({ theme }) => theme.bgPrimary};
+
+      svg {
+        color: ${({ theme }) => theme.secondaryColor};
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .project-apps {
+    display: flex;
+    justify-content: center;
+  }
+
+  .project-app-name {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: ${({ theme }) => theme.secondaryColor};
   }
 
   .project-info {
@@ -233,6 +278,64 @@ export const ProjectsContainer = styled.section`
     }
   }
 
+  .project-private {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: ${({ theme }) => theme.grayColor};
+    box-shadow: inset 0 0 0 1px rgba(249, 249, 249, 0.08);
+  }
+
+  /* ícone na coluna da esquerda; título + links e descrição na da direita */
+  .project-previous {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2px 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(249, 249, 249, 0.08);
+    font-size: 12px;
+    line-height: 150%;
+    color: ${({ theme }) => theme.grayColor};
+
+    .project-previous-icon {
+      color: ${({ theme }) => theme.secondaryColor};
+    }
+
+    .project-previous-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2px 12px;
+    }
+
+    .project-previous-description {
+      grid-column: 2;
+    }
+
+    strong {
+      font-weight: 500;
+      color: ${({ theme }) => theme.whiteColor};
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+      color: ${({ theme }) => theme.secondaryColor};
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+  }
+
   .projects-controls {
     align-self: center;
     width: 100%;
@@ -265,7 +368,8 @@ export const ProjectsContainer = styled.section`
       -webkit-line-clamp: 5;
     }
 
-    .project-links a {
+    .project-links a,
+    .project-links .project-private {
       height: 34px;
       padding: 0 12px;
       font-size: 13px;
@@ -284,40 +388,5 @@ export const ProjectLightbox = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-  }
-
-  .lightbox-note {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    color: ${({ theme }) => theme.grayColor};
-  }
-
-  .lightbox-image {
-    display: block;
-    width: 100%;
-    max-height: calc(100vh - 220px);
-    max-height: calc(100dvh - 220px);
-    object-fit: contain;
-    border-radius: 6px;
-    background-color: ${({ theme }) => theme.bgPrimary};
-    box-shadow: 0 0 1px 0px rgba(255, 255, 255, 0.8);
-    animation: ${imageFadeIn} 0.3s ease;
-  }
-
-  .lightbox-original {
-    display: flex;
-    align-items: center;
-    align-self: flex-start;
-    gap: 6px;
-    font-size: 14px;
-    color: ${({ theme }) => theme.grayColor};
-    transition: color 0.3s ease;
-
-    &:hover,
-    &:focus-visible {
-      color: ${({ theme }) => theme.secondaryColor};
-    }
   }
 `;

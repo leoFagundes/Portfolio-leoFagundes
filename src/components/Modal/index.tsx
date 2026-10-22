@@ -46,9 +46,20 @@ export const Modal = ({
     };
   }, [isOpen]);
 
+  // só fecha se o clique começou e terminou no fundo: arrastar algo
+  // (como a galeria) e soltar fora da caixa não deve fechar o modal
+  const pointerDownTargetRef = useRef<EventTarget | null>(null);
+
+  const handleContainerMouseDown = (event: React.MouseEvent) => {
+    pointerDownTargetRef.current = event.target;
+  };
+
   const handleContainerClick = (event: React.MouseEvent) => {
     event.stopPropagation();
-    onClose();
+
+    const startedOnBackdrop =
+      pointerDownTargetRef.current === event.currentTarget;
+    if (startedOnBackdrop && event.target === event.currentTarget) onClose();
   };
 
   const handleContentClick = (event: React.MouseEvent) => {
@@ -59,6 +70,7 @@ export const Modal = ({
     <S.ModalContainer
       $isOpen={isOpen}
       $size={size}
+      onMouseDown={handleContainerMouseDown}
       onClick={handleContainerClick}
     >
       <div

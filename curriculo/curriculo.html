@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Currículo · Leonardo Fagundes</title>
+    <!--
+      Para gerar o PDF: abra este arquivo no Chrome/Edge, Ctrl+P,
+      destino "Salvar como PDF", margens "Nenhuma" e sem cabeçalhos e rodapés.
+      Salve como public/pdf/Curriculo-Leonardo-Fagundes-2026.pdf, o arquivo
+      que o botão "Currículo" do site abre.
+
+      Evite position (relative/absolute) no conteúdo: o Chrome escreve esse
+      texto no fim do PDF e os sistemas de recrutamento (ATS) leem fora de ordem.
+    -->
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-weight: 400;
+        src: url("fonts/inter-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 500;
+        src: url("fonts/inter-latin-500-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 600;
+        src: url("fonts/inter-latin-600-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 700;
+        src: url("fonts/inter-latin-700-normal.woff2") format("woff2");
+      }
+
+      :root {
+        --text: #1c2024;
+        --body: #2b3137;
+        --muted: #5a626a;
+        --line: #e1e5e8;
+        --green: #056945;
+        --accent: #01a66b;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        background: #fff;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", Arial, sans-serif;
+        font-size: 8.9pt;
+        line-height: 1.36;
+        color: var(--text);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      ul,
+      dl {
+        margin: 0;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        padding: 10mm 14.5mm 9mm;
+        background: #fff;
+        border-top: 4px solid var(--accent);
+      }
+
+      /* cabeçalho */
+      .header h1 {
+        font-size: 20pt;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.015em;
+      }
+
+      .header .role {
+        margin-top: 2px;
+        font-size: 10.8pt;
+        font-weight: 600;
+        color: var(--green);
+      }
+
+      .contacts {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 6px;
+        padding: 0;
+        list-style: none;
+        font-size: 8.5pt;
+        color: var(--muted);
+      }
+
+      .contacts + .contacts {
+        margin-top: 1px;
+      }
+
+      .contacts li + li::before {
+        content: "·";
+        margin: 0 7px;
+        color: #a7aeb4;
+      }
+
+      .contacts a {
+        color: var(--text);
+      }
+
+      /* seções */
+      section {
+        margin-top: 10px;
+      }
+
+      h2 {
+        margin-bottom: 5px;
+        padding-bottom: 2.5px;
+        border-bottom: 1px solid var(--line);
+        font-size: 8.2pt;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green);
+      }
+
+      .summary,
+      .note {
+        color: var(--body);
+      }
+
+      /* experiências */
+      .entry {
+        break-inside: avoid;
+      }
+
+      .entry + .entry {
+        margin-top: 8px;
+      }
+
+      .entry-head,
+      .step-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .entry-head h3 {
+        font-size: 10pt;
+        font-weight: 700;
+      }
+
+      .entry-head h3 span {
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      .date {
+        flex-shrink: 0;
+        font-size: 8.3pt;
+        font-variant-numeric: tabular-nums;
+        color: var(--muted);
+      }
+
+      /* cargos ou clientes dentro de uma mesma experiência, em linha do tempo */
+      .steps {
+        margin: 3px 0 0 3px;
+        padding-left: 12px;
+        border-left: 1.5px solid var(--line);
+      }
+
+      .step {
+        break-inside: avoid;
+      }
+
+      .step + .step {
+        margin-top: 4px;
+      }
+
+      .step-head h4 {
+        font-size: 9.2pt;
+        font-weight: 600;
+      }
+
+      /* bolinha sobre a linha do tempo, no fluxo do texto (sem position) */
+      .step-head h4::before {
+        content: "";
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        margin: 0 8.25px 0 -17.25px;
+        border: 1.5px solid var(--accent);
+        border-radius: 50%;
+        background: #fff;
+        vertical-align: -1px;
+      }
+
+      .bullets {
+        margin-top: 1.5px;
+        padding-left: 13px;
+      }
+
+      .bullets li {
+        padding-left: 1px;
+        color: var(--body);
+      }
+
+      .bullets li + li {
+        margin-top: 1px;
+      }
+
+      .bullets li::marker {
+        color: var(--accent);
+      }
+
+      .note {
+        margin-top: 1px;
+      }
+
+      .tech {
+        margin-top: 3px;
+        font-size: 8.3pt;
+        color: var(--muted);
+      }
+
+      .tech strong {
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      /* habilidades */
+      .skills {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 2px 14px;
+      }
+
+      .skills dt {
+        font-weight: 600;
+      }
+
+      .skills dd {
+        margin: 0;
+        color: var(--body);
+      }
+
+      @media screen {
+        html {
+          background: #e9ecee;
+        }
+
+        .page {
+          margin: 24px auto;
+          box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <h1>Leonardo Cantieri Taube Fagundes</h1>
+        <p class="role">Desenvolvedor Full Stack</p>
+        <ul class="contacts">
+          <li>Brasília, DF</li>
+          <li><a href="tel:+5561998253228">(61) 99825-3228</a></li>
+          <li>
+            <a href="mailto:leofagundes2015@gmail.com"
+              >leofagundes2015@gmail.com</a
+            >
+          </li>
+        </ul>
+        <ul class="contacts">
+          <li>
+            <a href="https://www.linkedin.com/in/leofagundes50/"
+              >linkedin.com/in/leofagundes50</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/leoFagundes">github.com/leoFagundes</a>
+          </li>
+          <li><a href="https://leofagundes.dev.br/">leofagundes.dev.br</a></li>
+        </ul>
+      </header>
+
+      <section>
+        <h2>Resumo</h2>
+        <p class="summary">
+          Desenvolvedor Full Stack na Caixa Econômica Federal (Angular e ABAP),
+          onde comecei como UX Designer. Como freelancer, desenvolvo e mantenho
+          sistemas em produção para negócios locais, como o site do Cine
+          Drive-in de Brasília, com cerca de 20 mil acessos por mês, e
+          plataformas de pedidos online e reservas em Next.js, TypeScript e
+          Firebase. Bacharel em Ciência da Computação e pós-graduado em
+          Desenvolvimento Full Stack.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experiência profissional</h2>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>Caixa Econômica Federal</h3>
+            <span class="date">out 2025 – atual</span>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-head">
+                <h4>Desenvolvedor Full Stack</h4>
+                <span class="date">abr 2026 – atual</span>
+              </div>
+              <p class="note">
+                Desenvolvimento de aplicações internas com Angular e ABAP.
+              </p>
+            </div>
+            <div class="step">
+              <div class="step-head">
+                <h4>UX Designer</h4>
+                <span class="date">out 2025 – abr 2026</span>
+              </div>
+              <p class="note">
+                Design de interfaces e protótipos no Figma para aplicações
+                internas.
+              </p>
+            </div>
+          </div>
+          <p class="tech">
+            <strong>Tecnologias:</strong> Angular · TypeScript · ABAP · Figma ·
+            UX/UI
+          </p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>Freelancer <span>· Desenvolvedor Full Stack</span></h3>
+            <span class="date">jan 2024 – atual</span>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-head">
+                <h4>Cine Drive-in de Brasília</h4>
+                <span class="date">jan 2024 – atual</span>
+              </div>
+              <ul class="bullets">
+                <li>
+                  Site oficial e sistema de pedidos da lanchonete, com áreas
+                  para clientes e administradores, que reduziu o tempo de
+                  atendimento. O site tem cerca de 20 mil acessos por mês.
+                </li>
+                <li>
+                  Em 2026, refiz pedidos e painel em Next.js e Firebase: pedidos
+                  pelo celular com validação de localização e chat, dashboard,
+                  impressão automática de comandas, relatórios em PDF, logs e
+                  moderação de avaliações.
+                </li>
+                <li>
+                  Versão anterior em React, Sass e Jest, com API RESTful própria
+                  em Node.js, Express e MongoDB.
+                </li>
+              </ul>
+            </div>
+            <div class="step">
+              <div class="step-head">
+                <h4>Alfredos Pizzaria</h4>
+                <span class="date">nov 2025 – atual</span>
+              </div>
+              <ul class="bullets">
+                <li>
+                  Pedidos online com cardápio por loja, pizza meio a meio e
+                  pagamento via Pix (Mercado Pago), além de painel de pedidos,
+                  estoque, lojas e usuários com níveis de acesso.
+                </li>
+              </ul>
+            </div>
+            <div class="step">
+              <div class="step-head">
+                <h4>Carcassonne Pub</h4>
+                <span class="date">abr 2025 – atual</span>
+              </div>
+              <ul class="bullets">
+                <li>
+                  Cardápio digital, acervo de jogos e reservas online, com
+                  painel de estatísticas, gestão do cardápio e temas sazonais.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p class="tech">
+            <strong>Tecnologias:</strong> Next.js · React · TypeScript ·
+            Tailwind CSS · Firebase · Node.js · Express · MongoDB · Mercado Pago
+            · Jest · Figma
+          </p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>CTIR Gov <span>· Estágio em Desenvolvimento</span></h3>
+            <span class="date">nov 2022 – nov 2024</span>
+          </div>
+          <ul class="bullets">
+            <li>
+              Aplicação interna para monitorar os status da ReGIC, melhorando a
+              visibilidade e o controle dos processos internos.
+            </li>
+            <li>
+              Pipeline de CI/CD com GitHub Actions automatizando testes, build e
+              deploy.
+            </li>
+            <li>
+              Scripts em Python para automatizar a geração de tickets de
+              resposta a incidentes de segurança.
+            </li>
+            <li>
+              Interfaces no padrão visual da organização, com protótipos no
+              Figma, em equipe ágil com Trello e Git/GitLab.
+            </li>
+          </ul>
+          <p class="tech">
+            <strong>Tecnologias:</strong> React · TypeScript · Tailwind CSS ·
+            Node.js · MongoDB · Python · Jest
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Formação</h2>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>
+              Pós-graduação em Desenvolvimento Full Stack
+              <span>· Faculdade Focus</span>
+            </h3>
+            <span class="date">jan 2026 – out 2026</span>
+          </div>
+          <p class="note">
+            Especialização EAD de 420 h: front-end, back-end, bancos de dados,
+            nuvem e engenharia de software.
+          </p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>
+              Bacharelado em Ciência da Computação
+              <span>· CEUB – Centro Universitário de Brasília</span>
+            </h3>
+            <span class="date">jan 2021 – dez 2024</span>
+          </div>
+          <p class="note">
+            Projeto final: Effycity, app de cidades inteligentes que conecta
+            gestores a empresas com projetos (React Native).
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Habilidades</h2>
+        <dl class="skills">
+          <dt>Front-end</dt>
+          <dd>
+            React · Next.js · Angular · TypeScript · JavaScript · HTML e CSS ·
+            Tailwind CSS · Sass · Styled Components · React Native · Redux
+          </dd>
+          <dt>Back-end e dados</dt>
+          <dd>
+            Node.js · Express · Firebase · MongoDB · SQL · Python · ABAP ·
+            Mercado Pago (Pix)
+          </dd>
+          <dt>Práticas</dt>
+          <dd>
+            Git · GitHub Actions (CI/CD) · Jest · React Testing Library · Figma
+            (UX/UI) · Metodologias ágeis
+          </dd>
+          <dt>Idiomas</dt>
+          <dd>Português (nativo) · Inglês (intermediário)</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>Certificações e cursos</h2>
+        <ul class="bullets">
+          <li>
+            Desenvolvimento Web e IA para quem programa de verdade · curso.dev
+            (em andamento)
+          </li>
+          <li>Python Impressionador · Hashtag Treinamentos (179 h, 2022)</li>
+          <li>
+            CC50: Introdução à Ciência da Computação (Harvard) · Fundação
+            Estudar (70 h, 2022)
+          </li>
+          <li>
+            Alura: React com JavaScript e TypeScript, Node.js com Express e
+            MongoDB, Tailwind CSS, Git e GitHub (2023–2024)
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

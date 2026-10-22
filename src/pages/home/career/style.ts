@@ -91,14 +91,20 @@ export const CareerContainer = styled.section`
 
     li {
       display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 2px 12px;
+      flex-direction: column;
+      gap: 4px;
     }
 
     li:first-child .career-role {
       color: ${({ theme }) => theme.secondaryColor};
+    }
+
+    .career-role-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 2px 12px;
     }
 
     .career-role {
@@ -110,6 +116,55 @@ export const CareerContainer = styled.section`
       font-variant-numeric: tabular-nums;
       color: ${({ theme }) => theme.grayColor};
     }
+
+    .career-role-description {
+      font-size: 14px;
+      line-height: 150%;
+      color: ${({ theme }) => theme.grayColor};
+    }
+
+    /* vários cargos na mesma empresa viram uma mini linha do tempo */
+    &.is-timeline {
+      gap: 16px;
+      padding-left: 22px;
+
+      li {
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0.35em;
+          left: -22px;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: ${({ theme }) => theme.bgPrimary};
+          box-shadow: inset 0 0 0 2px ${({ theme }) => theme.grayColor};
+        }
+
+        &:first-child::before {
+          background-color: ${({ theme }) => theme.secondaryColor};
+          box-shadow: none;
+        }
+
+        /* linha que liga um cargo ao próximo */
+        &:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          top: calc(0.35em + 14px);
+          bottom: calc(-12px - 0.35em);
+          left: -18px;
+          width: 2px;
+          border-radius: 2px;
+          background-image: linear-gradient(to bottom, ${({ theme }) => theme.secondaryColor}, rgba(249, 249, 249, 0.15));
+        }
+      }
+    }
+  }
+
+  .career-item.current .career-roles.is-timeline li:first-child::before {
+    box-shadow: ${({ theme }) => theme.shadows.light.boxShadow};
   }
 
   .career-description {
@@ -169,14 +224,21 @@ export const CareerContainer = styled.section`
 
   .career-links {
     display: flex;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 8px 16px;
 
-    a {
+    a,
+    button {
       display: flex;
       align-items: center;
       gap: 4px;
+      padding: 0;
+      border: none;
+      background: none;
+      font-family: inherit;
       font-size: 14px;
       font-weight: 500;
+      cursor: pointer;
       color: ${({ theme }) => theme.secondaryColor};
 
       svg {

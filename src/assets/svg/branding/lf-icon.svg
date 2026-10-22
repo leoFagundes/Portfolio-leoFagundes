@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="lf-icon-title">
+  <title id="lf-icon-title">LF · Leonardo Fagundes</title>
+  <defs>
+    <linearGradient id="lf-icon-gradient" x1="0" y1="0" x2="216" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3CE7A2"/>
+      <stop offset="1" stop-color="#069A63"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#111111"/>
+  <g transform="translate(163 85) scale(0.95)" fill="url(#lf-icon-gradient)">
+    <path d="M48 120H216V144H72V208H48Z M48 248H72V360H48Z"/>
+    <path d="M0 0H24V216H168V240H0Z"/>
+  </g>
+</svg>

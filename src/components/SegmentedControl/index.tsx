@@ -13,6 +13,7 @@ type SegmentedControlProps<T extends string> = {
   options: SegmentedOption<T>[];
   value: T;
   onChange: (value: T) => void;
+  tabIndex?: number;
 };
 
 export const SegmentedControl = <T extends string>({
@@ -20,6 +21,7 @@ export const SegmentedControl = <T extends string>({
   options,
   value,
   onChange,
+  tabIndex,
 }: SegmentedControlProps<T>) => (
   <S.SegmentedControlContainer role="group" aria-label={label}>
     {options.map((option) => (
@@ -27,6 +29,7 @@ export const SegmentedControl = <T extends string>({
         key={option.value}
         type="button"
         aria-pressed={option.value === value}
+        tabIndex={tabIndex}
         onClick={() => onChange(option.value)}
       >
         {option.icon}

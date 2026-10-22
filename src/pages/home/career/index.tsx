@@ -7,6 +7,7 @@ import {
   BookOpen,
   Briefcase,
   ExternalLink,
+  FileText,
   Users,
 } from "react-feather";
 import { careerData } from "src/data/careerData";
@@ -14,6 +15,7 @@ import {
   SegmentedControl,
   SegmentedOption,
 } from "src/components/SegmentedControl";
+import { DocumentFile, DocumentModal } from "src/components/DocumentModal";
 import { selectProject } from "src/utils/projectSelection";
 import { CareerItemProps } from "src/types/type";
 
@@ -45,6 +47,7 @@ const careerOptions: SegmentedOption<CareerType>[] = [
 
 export const Career = () => {
   const [activeType, setActiveType] = useState<CareerType>("job");
+  const [openFile, setOpenFile] = useState<DocumentFile>();
 
   const visibleItems = careerData.filter((item) => item.type === activeType);
 
@@ -72,6 +75,7 @@ export const Career = () => {
             current,
             projectName,
             link,
+            file,
           }) => (
             <li
               key={organization}
@@ -87,11 +91,22 @@ export const Career = () => {
               </div>
 
               {roles.length > 0 && (
-                <ul className="career-roles">
+                <ul
+                  className={`career-roles ${
+                    roles.length > 1 ? "is-timeline" : ""
+                  }`}
+                >
                   {roles.map((role) => (
                     <li key={role.title}>
-                      <span className="career-role">{role.title}</span>
-                      <span className="career-period">{role.period}</span>
+                      <div className="career-role-header">
+                        <span className="career-role">{role.title}</span>
+                        <span className="career-period">{role.period}</span>
+                      </div>
+                      {role.description && (
+                        <p className="career-role-description">
+                          {role.description}
+                        </p>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -109,7 +124,7 @@ export const Career = () => {
                 </ul>
               )}
 
-              {(stack || projectName || link) && (
+              {(stack || projectName || link || file) && (
                 <div className="career-footer">
                   {stack && (
                     <ul className="career-stack">
@@ -119,8 +134,23 @@ export const Career = () => {
                     </ul>
                   )}
 
-                  {(projectName || link) && (
+                  {(projectName || link || file) && (
                     <div className="career-links">
+                      {file && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setOpenFile({
+                              title: roles[0]?.title ?? organization,
+                              subtitle: organization,
+                              link: file.link,
+                            })
+                          }
+                        >
+                          {file.label}
+                          <FileText size={14} />
+                        </button>
+                      )}
                       {projectName && (
                         <a
                           href="#projects"
@@ -144,6 +174,8 @@ export const Career = () => {
           )
         )}
       </ol>
+
+      <DocumentModal file={openFile} onClose={() => setOpenFile(undefined)} />
     </S.CareerContainer>
   );
 };

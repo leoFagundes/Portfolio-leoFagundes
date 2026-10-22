@@ -112,14 +112,18 @@ export const AboutMeContainer = styled.section`
       flex-wrap: wrap;
       gap: 12px;
 
-      a {
+      a,
+      button {
         display: flex;
         align-items: center;
         gap: 8px;
         height: 42px;
         padding: 0 20px;
+        border: none;
         border-radius: 5px;
+        font-family: inherit;
         font-size: 15px;
+        cursor: pointer;
         color: ${({ theme }) => theme.whiteColor};
         background-color: ${({ theme }) => theme.bgPrimary};
         box-shadow: inset 0 0 0 1px rgba(249, 249, 249, 0.15);
