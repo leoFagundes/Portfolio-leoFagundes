@@ -66,6 +66,7 @@ import cineAdminPerfil from "src/assets/image/projects/cinedrivein/admin/perfil.
 // projetos com uma tela só
 import effycityMain from "src/assets/image/projects/effycity/effycity-main.png";
 import myBooksMain from "src/assets/image/projects/mybooks/mybooks-main.png";
+import nox42Main from "src/assets/image/projects/nox42/nox42-main.png";
 import blackJackMain from "src/assets/image/projects/blackjack/blackjack-main.png";
 import comunidadeProgramacaoMain from "src/assets/image/projects/comunidade-programacao/comunidade-programacao-main.png";
 import weatherForecastMain from "src/assets/image/projects/weather-forecast/weather-forecast-main.png";
@@ -253,6 +254,16 @@ export const projectsDataJSON: ProjectDataProps[] = [
     figmaLink:
       "https://www.figma.com/design/V2hiugqjTDX3Z6mo1sxLof/MyBooks?node-id=1-4&t=avP2MHjMuKyEMCtf-1",
     isRelevant: true,
+  },
+  {
+    images: [nox42Main],
+    name: "NOX42",
+    description:
+      "Jogo de enigmas com 11 fases protegidas por senha, pistas escondidas em imagens, áudio e cifras e caminhos secretos.",
+    stack: ["Next.js", "TypeScript", "Tailwind", "GSAP", "Leaflet"],
+    isPrivateRepo: true,
+    demoLink: "https://nox42.vercel.app/",
+    isRelevant: false,
   },
   {
     images: [blackJackMain],
