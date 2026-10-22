@@ -90,10 +90,10 @@ export const Contact = () => {
       };
 
       const response = await emailjs.send(
-        "service_bn1l5ac",
+        "service_82ayqoc",
         "template_oyyaw83",
         templateParams,
-        "SIMSqB4eHRWnaQaui"
+        "SIMSqB4eHRWnaQaui",
       );
 
       console.log("E-mail enviado:", response.status, response.text);
